@@ -21,18 +21,52 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
+  const lastScrollY = React.useRef(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Enable liquid glass background styling after initial scroll
+      setScrolled(currentScrollY > 20);
+
+      // Always keep visible near the top of the page
+      if (currentScrollY <= 60) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Small threshold to avoid twitching on micro movements
+      const delta = currentScrollY - lastScrollY.current;
+      if (Math.abs(delta) < 6) return;
+
+      // Do not hide navbar if mobile drawer is currently open
+      if (mobileMenuOpen) {
+        setIsVisible(true);
+        return;
+      }
+
+      // Scrolling down -> hide navbar (slides up)
+      // Scrolling up -> reveal navbar (slides down)
+      if (delta > 0) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   // Close mobile menu on page change
   React.useEffect(() => {
     setMobileMenuOpen(false);
+    setIsVisible(true);
   }, [pathname]);
 
   const navLinks = [
@@ -52,12 +86,14 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 w-full transition-all duration-300',
+        'sticky top-0 z-40 w-full transition-all duration-300 ease-in-out',
         scrolled
           ? 'liquid-glass-nav'
-          : 'bg-transparent border-b border-transparent'
+          : 'bg-transparent border-b border-transparent',
+        isVisible ? 'translate-y-0' : '-translate-y-full'
       )}
     >
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}

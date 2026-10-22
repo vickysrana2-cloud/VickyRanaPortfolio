@@ -122,8 +122,8 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
 
 
 
-          {/* Desktop Navigation Links (Floating Liquid Glass Pill) */}
-          <nav className="hidden lg:flex items-center gap-1 liquid-glass-pill p-1.5 rounded-full">
+          {/* Desktop Navigation Links (Simple Words, No BG, No Border) */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -131,20 +131,15 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5',
+                    'text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 py-1 select-none',
                     isActive
-                      ? 'text-white liquid-btn-primary shadow-xs'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10'
+                      ? 'text-foreground font-bold'
+                      : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
-                  {link.name}
+                  <span>{link.name}</span>
                   {link.badge && (
-                    <span className={cn(
-                      "text-[10px] font-bold px-1.5 py-0.2 rounded-full uppercase tracking-wider",
-                      isActive
-                        ? "bg-white/20 text-white"
-                        : "liquid-badge text-indigo-600 dark:text-indigo-400"
-                    )}>
+                    <span className="text-[10px] font-semibold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider">
                       {link.badge}
                     </span>
                   )}
@@ -152,6 +147,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
               );
             })}
           </nav>
+
 
           {/* Right Action Icons & Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
@@ -230,22 +226,20 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      'flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200',
+                      'flex items-center justify-between px-3 py-2.5 text-sm transition-colors duration-200 select-none',
                       isActive
-                        ? 'liquid-btn-primary text-white font-semibold'
-                        : 'text-foreground hover:bg-white/30 dark:hover:bg-white/10'
+                        ? 'text-foreground font-bold'
+                        : 'text-muted-foreground hover:text-foreground'
                     )}
                   >
                     <span>{link.name}</span>
                     {link.badge && (
-                      <span className={cn(
-                        "text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider",
-                        isActive ? "bg-white/20 text-white" : "liquid-badge text-indigo-600 dark:text-indigo-400"
-                      )}>
+                      <span className="text-[10px] font-semibold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider">
                         {link.badge}
                       </span>
                     )}
                   </Link>
+
                 );
               })}
             </div>

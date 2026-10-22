@@ -3,176 +3,148 @@ import { SkillCategory } from '@/types';
 export const skillsData: SkillCategory[] = [
   {
     category: 'Frontend Engineering',
-    description: 'Creating accessible, responsive, and blazing-fast user interfaces with modern React ecosystems.',
+    description: 'Crafting responsive, high-performance, component-driven user interfaces.',
     iconName: 'Layout',
     skills: [
       {
-        name: 'Next.js (App Router)',
+        name: 'Next.js',
         level: 'Expert',
         highlight: true,
         iconName: 'Nextjs',
-        description: 'Server Components, streaming SSR, API routes, Turbopack, and dynamic routing'
+        description: 'App Router, Server-Side Rendering (SSR), Static Generation (SSG), and responsive layouts'
       },
       {
-        name: 'React',
+        name: 'React.js',
         level: 'Expert',
         highlight: true,
         iconName: 'React',
-        description: 'Hooks, custom hooks, context, state optimization, Concurrent features'
-      },
-      {
-        name: 'TypeScript',
-        level: 'Expert',
-        highlight: true,
-        iconName: 'TypeScript',
-        description: 'Type safety, generics, utility types, strict schema enforcement'
+        description: 'Component-based architecture, React hooks, state management, and virtual DOM optimization'
       },
       {
         name: 'JavaScript (ES6+)',
         level: 'Expert',
-        highlight: false,
+        highlight: true,
         iconName: 'JavaScript',
-        description: 'Modern asynchronous patterns, event loop, DOM manipulation, modular JS'
+        description: 'Modern asynchronous programming, promises, DOM manipulation, and ES6+ features'
       },
       {
         name: 'Tailwind CSS',
         level: 'Expert',
         highlight: true,
         iconName: 'Tailwind',
-        description: 'Utility-first styling, CSS variables, dark mode architecture, custom tokens'
+        description: 'Utility-first modern styling, responsive layouts, dark/light themes, and custom animations'
       },
       {
-        name: 'Framer Motion / Animations',
-        level: 'Advanced',
-        highlight: false,
-        iconName: 'Motion',
-        description: 'Micro-interactions, layout transitions, gesture physics, scroll animations'
-      },
-      {
-        name: 'HTML5 & Semantic Markup',
+        name: 'HTML5 & CSS3',
         level: 'Expert',
         highlight: false,
         iconName: 'Html',
-        description: 'WCAG 2.1 AA accessibility, SEO structured data, semantic layout elements'
+        description: 'Semantic markup, accessible structure, Flexbox, Grid, and cross-browser styling'
+      },
+      {
+        name: 'Bootstrap',
+        level: 'Advanced',
+        highlight: false,
+        iconName: 'Bootstrap',
+        description: 'Rapid responsive grid layout prototyping and UI component integration'
       }
     ]
   },
   {
-    category: 'Backend & System Architecture',
-    description: 'Architecting robust, secure server-side applications, microservices, and high-throughput APIs.',
+    category: 'Backend & APIs',
+    description: 'Developing secure, high-throughput server backends and RESTful API endpoints.',
     iconName: 'Server',
     skills: [
       {
-        name: 'NestJS',
+        name: 'Java (8+)',
         level: 'Advanced',
-        highlight: true,
-        iconName: 'Nestjs',
-        description: 'Enterprise modular architecture, dependency injection, guards, interceptors'
-      },
-      {
-        name: 'REST APIs',
-        level: 'Expert',
-        highlight: true,
-        iconName: 'Api',
-        description: 'RESTful architecture, status codes, OpenAPI/Swagger docs, payload validation'
-      },
-      {
-        name: 'Node.js & Express',
-        level: 'Advanced',
-        highlight: false,
-        iconName: 'Node',
-        description: 'Event-driven backend services, middleware pipelines, streaming files'
-      },
-      {
-        name: 'Java',
-        level: 'Proficient',
         highlight: true,
         iconName: 'Java',
-        description: 'Object-oriented programming, data structures, concurrency, JVM ecosystem'
+        description: 'Object-oriented programming, data structures, multithreading, and JVM ecosystem'
       },
       {
         name: 'Spring Boot',
-        level: 'Proficient',
+        level: 'Advanced',
         highlight: true,
         iconName: 'Spring',
-        description: 'Spring MVC, JPA/Hibernate, Spring Security, microservice configuration'
+        description: 'Spring MVC, Spring Data JPA/Hibernate, Spring Security with JWT, and dependency injection'
+      },
+      {
+        name: 'RESTful APIs & JSON',
+        level: 'Expert',
+        highlight: true,
+        iconName: 'Api',
+        description: 'Robust REST architectural principles, JSON schema contracts, and error handling'
+      },
+      {
+        name: 'NestJS',
+        level: 'Proficient',
+        highlight: true,
+        iconName: 'Nestjs',
+        description: 'Modular TypeScript backend architecture, controllers, services, and middleware'
       }
     ]
   },
   {
-    category: 'Databases & Cloud Storage',
-    description: 'Designing performant relational and document schemas, indexing strategies, and data integrity.',
+    category: 'Databases & Storage',
+    description: 'Designing normalized relational schemas and scalable document collections.',
     iconName: 'Database',
     skills: [
+      {
+        name: 'MySQL',
+        level: 'Advanced',
+        highlight: true,
+        iconName: 'Mysql',
+        description: 'Relational database schema design, indexing, complex joins, and transactional integrity'
+      },
       {
         name: 'MongoDB',
         level: 'Advanced',
         highlight: true,
         iconName: 'Mongodb',
-        description: 'Aggregation pipelines, indexing, schema validation, document modeling'
+        description: 'Document modeling, BSON data structures, and query optimization'
       },
       {
         name: 'MongoDB Atlas',
         level: 'Advanced',
         highlight: true,
         iconName: 'Cloud',
-        description: 'Cloud cluster provisioning, connection pooling, Atlas Search, backup policies'
-      },
-      {
-        name: 'MySQL',
-        level: 'Advanced',
-        highlight: true,
-        iconName: 'Mysql',
-        description: 'Relational schema design, complex joins, indexing, ACID transactions'
-      },
-      {
-        name: 'Redis',
-        level: 'Proficient',
-        highlight: false,
-        iconName: 'Redis',
-        description: 'In-memory caching, rate limiting, pub/sub queues, session management'
+        description: 'Cloud database cluster provisioning, connection management, and live monitoring'
       }
     ]
   },
   {
-    category: 'DevOps, Tooling & Version Control',
-    description: 'Streamlining deployment workflows, automated CI/CD pipelines, and collaboration standards.',
+    category: 'Tools, UI & Performance',
+    description: 'Professional developer tooling, version control, and web performance optimization.',
     iconName: 'Cpu',
     skills: [
       {
-        name: 'Git',
-        level: 'Expert',
-        highlight: true,
-        iconName: 'Git',
-        description: 'Branching strategies, interactive rebasing, merge conflict resolution'
-      },
-      {
-        name: 'GitHub',
+        name: 'Git & GitHub',
         level: 'Expert',
         highlight: true,
         iconName: 'Github',
-        description: 'GitHub Actions CI/CD, PR code reviews, issues, releases, project boards'
+        description: 'Branch management, pull requests, collaborative code reviews, and remote repositories'
       },
       {
-        name: 'Docker & Containers',
-        level: 'Proficient',
-        highlight: false,
-        iconName: 'Docker',
-        description: 'Dockerfile composition, multi-stage builds, containerized local dev'
+        name: 'Responsive Web Design',
+        level: 'Expert',
+        highlight: true,
+        iconName: 'Responsive',
+        description: 'Mobile-first fluid layouts, media queries, and touch-screen accessibility'
       },
       {
-        name: 'Postman & API Testing',
+        name: 'Performance Optimization & SEO',
         level: 'Advanced',
         highlight: false,
-        iconName: 'Postman',
-        description: 'Automated test collections, environment variables, integration testing'
+        iconName: 'Speed',
+        description: 'Minimizing layout shifts, asset compression, meta tags, and Lighthouse optimization'
       },
       {
-        name: 'Vercel & Cloud Deployments',
-        level: 'Advanced',
+        name: 'Chrome DevTools',
+        level: 'Expert',
         highlight: false,
-        iconName: 'Vercel',
-        description: 'Serverless deployment, edge network optimization, environment configs'
+        iconName: 'Tools',
+        description: 'DOM inspection, network waterfall analysis, JavaScript debugging, and memory profiling'
       }
     ]
   }

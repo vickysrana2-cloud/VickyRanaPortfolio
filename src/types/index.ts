@@ -63,7 +63,10 @@ export type TemplateCategory =
   | 'E-commerce' 
   | 'Dashboards' 
   | 'Education' 
-  | 'Business';
+  | 'Business'
+  | 'Services'
+  | 'Health & Wellness'
+  | 'Hospitality';
 
 export interface Template {
   id: string;
@@ -72,7 +75,7 @@ export interface Template {
   tagline: string;
   description: string;
   fullDescription: string;
-  category: 'Portfolio' | 'SaaS' | 'Landing Pages' | 'E-commerce' | 'Dashboards' | 'Education' | 'Business';
+  category: TemplateCategory;
   previewImage: string;
   tags: string[];
   features: string[];

@@ -4,94 +4,142 @@ export const experienceData: Experience[] = [
   {
     id: 'actifyzone-internship',
     company: 'Actifyzone',
-    role: 'Full Stack Developer Intern',
-    location: 'Remote / Hybrid', // [EDITABLE PLACEHOLDER: Update location if needed]
+    role: 'Frontend Developer Intern',
+    location: 'Remote / Hybrid',
     type: 'Internship',
-    period: 'Internship Period (e.g. 2024 - 2025)', // [EDITABLE PLACEHOLDER: Add exact dates e.g. Jun 2024 - Dec 2024]
-    startDate: '2024',
-    endDate: '2025',
-    current: false,
-    description: 'Contributed as a Full Stack Developer Intern, collaborating with cross-functional teams to build, test, and deploy responsive web interfaces, robust backend APIs, and database workflows.',
+    period: 'Aug 2026 – Present',
+    startDate: '2026',
+    endDate: 'Present',
+    current: true,
+    description: 'Contributing to frontend development across multiple web projects, focusing on responsive UI engineering, cross-device compatibility, and accessible design.',
     responsibilities: [
-      'Engineered responsive web interfaces using React, Next.js, and modern CSS/Tailwind utilities to ensure seamless user engagement across devices.',
-      'Developed and integrated RESTful APIs, handling asynchronous data fetching, error handling, and structured JSON payloads.',
-      'Designed and optimized database queries with MongoDB Atlas and MySQL, ensuring high data integrity and efficient response times.',
-      'Collaborated in Agile sprints, participated in code reviews on GitHub, and resolved frontend and backend issues.'
+      'Contributing to frontend development across multiple active web client projects.',
+      'Working on responsive user interfaces, modular React/Next.js components, and CSS/Tailwind utilities.',
+      'Implementing UI motion, interactive elements, and modern layout best practices.',
+      'Collaborating with engineering team members on Git code reviews and interface testing.'
     ],
     keyAchievements: [
-      'Improved component reusability and reduced styling redundancy by implementing shared design tokens and modular UI components.',
-      'Optimized client-side rendering and API response formatting, resulting in smoother page navigation and reduced network payloads.',
-      'Delivered production-ready modules within sprint deadlines with thorough unit testing.'
+      'Engineered clean, reusable UI components that improved design consistency across client web projects.',
+      'Optimized responsive layouts for mobile, tablet, and desktop viewports with zero visual regression.',
+      'Delivered sprint deliverables on schedule with high adherence to usability standards.'
     ],
     technologies: [
       'Next.js',
-      'React',
-      'TypeScript',
+      'React.js',
+      'JavaScript (ES6+)',
       'Tailwind CSS',
-      'REST APIs',
-      'MongoDB Atlas',
-      'Node.js',
+      'HTML5 & CSS3',
       'Git & GitHub'
     ],
     verified: true,
     isInternship: true,
-    website: 'https://actifyzone.com' // [EDITABLE PLACEHOLDER: Verify/update company URL]
+    website: 'https://actifyzone.com'
   },
   {
     id: 'havet-ai-internship',
     company: 'Havet AI',
-    role: 'Software Engineer Intern',
-    location: 'Remote', // [EDITABLE PLACEHOLDER: Update location if needed]
+    role: 'Full Stack Developer Intern',
+    location: 'Remote',
     type: 'Internship',
-    period: 'Internship Period (e.g. 2024)', // [EDITABLE PLACEHOLDER: Add exact dates]
+    period: '3-Month Internship',
     startDate: '2024',
     endDate: '2024',
     current: false,
-    description: 'Engaged as a Software Engineer Intern at Havet AI, focusing on AI-driven platform features, backend microservices, intelligent workflow integrations, and user experience enhancements.',
+    description: 'Contributed to full-stack web development using Next.js, NestJS, and MongoDB Atlas—implementing responsive UI components, REST API integrations, and backend features.',
     responsibilities: [
-      'Participated in developing and testing scalable backend services using NestJS and Spring Boot for AI application pipelines.',
-      'Integrated external REST APIs, machine learning inference endpoints, and caching layers to accelerate data retrieval.',
-      'Refined user-facing dashboards and data visualization components with TypeScript and reactive state management.',
-      'Implemented robust validation logic using Zod and class-validator to ensure strict runtime data safety.'
+      'Contributed to full-stack web development using Next.js, NestJS, and MongoDB Atlas cloud database.',
+      'Implemented clean, reusable UI components and client-side views with responsive design.',
+      'Engineered and integrated REST API endpoints, handling JSON request/response payloads.',
+      'Supported backend functionality, database connection validation, and UI integration tasks.'
     ],
     keyAchievements: [
-      'Streamlined API response times by incorporating caching strategies and indexing database fields in MongoDB and MySQL.',
-      'Built reusable, accessible UI elements enabling smooth user interaction with AI prompt pipelines and results.',
-      'Active contributor to architectural design discussions, documentation, and automated testing.'
+      'Seamlessly connected Next.js frontend interfaces to NestJS microservices and MongoDB Atlas collections.',
+      'Ensured strict data validation on API payloads, reducing client-side submission errors.',
+      'Actively supported development across the entire full-stack lifecycle during the 3-month tenure.'
     ],
     technologies: [
+      'Next.js',
       'NestJS',
-      'Spring Boot',
-      'Java',
-      'TypeScript',
+      'MongoDB Atlas',
       'REST APIs',
-      'MongoDB',
-      'MySQL',
-      'Postman',
-      'Git'
+      'JavaScript',
+      'JSON',
+      'Git & GitHub'
     ],
     verified: true,
     isInternship: true,
-    website: 'https://havet.ai' // [EDITABLE PLACEHOLDER: Verify/update company URL]
+    website: 'https://havet.ai'
   }
 ];
 
 export const educationData = [
   {
-    id: 'btech-cs',
-    institution: 'University / Institute of Technology', // [EDITABLE PLACEHOLDER: Add your college/university name]
-    degree: 'Bachelor of Technology (B.Tech)',
-    fieldOfStudy: 'Computer Science and Engineering',
-    period: '2021 – 2025 (or Expected)', // [EDITABLE PLACEHOLDER: Add graduation years]
-    score: 'First Class with Distinction', // [EDITABLE PLACEHOLDER: Add GPA or percentage if desired]
+    id: 'it-vedant-fullstack',
+    institution: 'IT Vedant Education',
+    degree: 'Professional Certification',
+    fieldOfStudy: 'Full Stack Web Development (Java, Spring Boot, React, MySQL)',
+    period: 'Completed Feb 2026',
+    score: 'Team Leader & Hackathon Silver Medalist',
     coursework: [
-      'Data Structures & Algorithms',
-      'Object-Oriented Programming (Java)',
-      'Database Management Systems (MySQL/NoSQL)',
-      'Web Technologies & Cloud Computing',
-      'Operating Systems & Computer Networks',
-      'Software Engineering & System Design'
+      'Java (8+) & Object-Oriented Programming',
+      'Spring Boot & RESTful API Architecture',
+      'React.js & Frontend Component Design',
+      'MySQL Relational Database Management',
+      'JWT Authentication & Full Stack Integration'
     ],
+    verified: true
+  },
+  {
+    id: 'btech-rtmnu',
+    institution: 'RTMNU University',
+    degree: 'Bachelor of Technology (B.Tech)',
+    fieldOfStudy: 'Mechanical Engineering',
+    period: 'Graduated 2024',
+    score: 'First Class Graduate',
+    coursework: [
+      'Applied Mathematics & Computational Logic',
+      'Engineering Design & Systems Modeling',
+      'Project Management & Optimization',
+      'Analytical Problem Solving'
+    ],
+    verified: true
+  },
+  {
+    id: 'diploma-msbte',
+    institution: 'MSBTE Board',
+    degree: 'Diploma (Polytechnic)',
+    fieldOfStudy: 'Mechanical Engineering',
+    period: 'Completed 2021',
+    score: 'Distinction',
+    coursework: [
+      'Core Technical Fundamentals',
+      'CAD / CAM & Engineering Graphics',
+      'Industrial Systems & Practical Workshops'
+    ],
+    verified: true
+  },
+  {
+    id: 'hsc-cs',
+    institution: 'Maharashtra State Board (HSC)',
+    degree: 'Higher Secondary Certificate (12th)',
+    fieldOfStudy: 'Computer Science (Science Stream)',
+    period: 'Completed 2019',
+    score: 'First Class',
+    coursework: [
+      'Computer Science Principles',
+      'Fundamentals of Programming',
+      'Physics, Chemistry & Mathematics'
+    ],
+    verified: true
+  },
+  {
+    id: 'ssc-board',
+    institution: 'Maharashtra State Board (SSC)',
+    degree: 'Secondary School Certificate (10th)',
+    fieldOfStudy: 'General Studies',
+    period: 'Completed 2017',
+    score: 'Distinction',
+    coursework: ['Mathematics', 'Science', 'Languages & Social Studies'],
     verified: true
   }
 ];

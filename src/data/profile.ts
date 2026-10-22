@@ -1,53 +1,54 @@
 import { ProfileData } from '@/types';
 
 export const profileData: ProfileData = {
-  name: "Full Stack Engineer",
-  title: "Full-Stack Software Engineer & System Architect",
-  tagline: "Building scalable web platforms, high-performance APIs, and intuitive digital experiences with modern TypeScript, Next.js, and Cloud backends.",
+  name: "Vicky Rana",
+  title: "Software Developer & Full-Stack Engineer",
+  tagline: "Building responsive, scalable web applications and high-performance APIs using React.js, Next.js, Java, Spring Boot, NestJS, and MySQL.",
   bio: [
-    "I am a passionate Full-Stack Developer specializing in modern web architecture, reactive user interfaces, and robust backend microservices. I bridge the gap between design precision and server-side scalability.",
-    "With hands-on software engineering experience at Actifyzone and Havet AI, I have engineered production-grade features, optimized database querying with MongoDB Atlas and MySQL, and built maintainable RESTful services using NestJS and Spring Boot.",
-    "When I'm not architecting web apps or refining user experiences, I enjoy developing interactive browser games, open-source utilities, and reusable design templates for developers."
+    "I am an aspiring Software Developer with hands-on experience building responsive and scalable web applications using React.js, Next.js, Java, Spring Boot, and MySQL. I have a strong foundation in object-oriented programming, REST API integration, and full-stack development.",
+    "During my internships at Actifyzone (Frontend Developer Intern) and Havet AI (Full Stack Developer Intern), I contributed to multi-tier web projects using Next.js, NestJS, and MongoDB Atlas—implementing reusable UI components, integrating backend REST endpoints, and optimizing client-side performance.",
+    "I have led teams in hackathons (such as winning the Silver Medal for the WeatherWatch project at IT Vedant) and continuously build real-world web apps like Pawsitive (Pet Care Management Platform), DesignMeInteriors, and Archinet."
   ],
   availability: {
     status: 'Available',
-    message: 'Available for full-time roles & high-impact contract engineering',
-    location: 'Open to Remote & Hybrid',
+    message: 'Available for Software Developer & Full-Stack roles',
+    location: 'Nagpur, Maharashtra (Open to Remote / Relocation)',
     timezone: 'UTC+05:30 (IST)'
   },
   contact: {
-    email: 'developer.contact@example.com', // [EDITABLE PLACEHOLDER: Replace with your actual email]
-    github: 'https://github.com', // [EDITABLE PLACEHOLDER: Replace with your GitHub URL]
-    linkedin: 'https://linkedin.com', // [EDITABLE PLACEHOLDER: Replace with your LinkedIn URL]
-    twitter: 'https://twitter.com', // [EDITABLE PLACEHOLDER: Optional]
+    email: 'vickysrana2@gmail.com',
+    github: 'https://github.com/vickysrana2-cloud',
+    linkedin: 'https://linkedin.com/in/vicky-rana-7457ab225',
+    twitter: '',
   },
-  resumeUrl: '/resume.pdf', // [EDITABLE PLACEHOLDER: Place your resume.pdf in /public/resume.pdf]
+  resumeUrl: '/vickyrana_resume_fe_new.pdf',
   metrics: [
     {
-      label: 'Core Focus',
-      value: 'Full-Stack',
-      description: 'End-to-end architecture & system design'
+      label: 'Core Stack',
+      value: 'React & Spring Boot',
+      description: 'Next.js, Java, MySQL & MongoDB'
     },
     {
-      label: 'Modern Stack',
-      value: 'TypeScript',
-      description: 'Next.js, React, Node.js & Spring Boot'
+      label: 'Internships',
+      value: 'Actifyzone & Havet AI',
+      description: 'Frontend & Full-Stack experience'
     },
     {
-      label: 'Databases',
-      value: 'NoSQL & SQL',
-      description: 'MongoDB Atlas, MySQL & Redis'
+      label: 'Hackathon Honor',
+      value: 'Silver Medal',
+      description: 'Team Leader at IT Vedant'
     },
     {
-      label: 'Status',
-      value: 'Ready to Deploy',
-      description: 'Actively interviewing for new opportunities'
+      label: 'Location',
+      value: 'Nagpur, MH',
+      description: 'Ready to deploy immediately'
     }
   ],
   coreHighlights: [
-    'Engineered production web apps using Next.js App Router, React 19, and Tailwind CSS',
-    'Developed robust backend services with NestJS, Spring Boot, and RESTful APIs',
-    'Designed scalable relational & document database schemas with MySQL & MongoDB Atlas',
-    'Strong focus on accessible UI, performance optimization, and clean architectural design'
+    'Hands-on full-stack engineering with React.js, Next.js, Java, Spring Boot, and MySQL',
+    'Frontend Developer Intern at Actifyzone contributing to responsive multi-project web UIs',
+    'Full Stack Developer Intern at Havet AI engineering Next.js, NestJS, and MongoDB Atlas features',
+    'Team Leader & Silver Medal winner at IT Vedant Hackathon (WeatherWatch platform)',
+    'Certified in Java Full Stack Web Development and HackerRank JavaScript'
   ]
 };

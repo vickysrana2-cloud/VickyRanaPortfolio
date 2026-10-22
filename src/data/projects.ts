@@ -2,230 +2,188 @@ import { Project } from '@/types';
 
 export const projectsData: Project[] = [
   {
-    id: 'proj-nexus-saas',
-    slug: 'nexus-cloud-workspace',
-    title: 'Nexus Cloud Workspace & API Hub',
-    tagline: 'High-concurrency collaborative workspace with real-time sync, microservice integrations, and JWT authentication.',
-    description: 'A full-stack enterprise collaboration suite enabling developers and teams to manage projects, simulate API endpoints, and inspect logs with real-time WebSocket telemetry.',
-    fullDescription: 'Nexus Cloud Workspace was designed to solve communication overhead between frontend and backend teams. It features real-time document collaboration, an interactive REST API mock playground, role-based access control (RBAC), and team workspaces. Built with Next.js App Router on the client and NestJS on the backend, it utilizes MongoDB Atlas for flexible metadata storage and Redis for sub-millisecond session caching.',
+    id: 'proj-pawsitive',
+    slug: 'pawsitive-pet-care-platform',
+    title: 'Pawsitive – Pet Care Management Platform',
+    tagline: 'Comprehensive pet care management system with React.js frontend, Spring Boot backend, and MySQL database.',
+    description: 'A full-stack pet care management platform featuring role-based access control, medical and adoption records tracking, appointment scheduling, and secure JWT authentication.',
+    fullDescription: 'Pawsitive was engineered to streamline the operations of veterinary clinics, pet owners, and shelters. It provides a centralized dashboard for managing user profiles, pet medical histories, vaccination schedules, and appointments. The backend uses Java and Spring Boot with RESTful endpoints, while the client utilizes React.js, Tailwind CSS, and client-side state management for real-time data synchronization.',
     category: 'Full Stack',
     featured: true,
-    tags: ['Next.js', 'TypeScript', 'NestJS', 'MongoDB Atlas', 'Tailwind CSS', 'Redis', 'Docker'],
-    thumbnail: '/images/projects/nexus-cloud.png',
-    liveUrl: 'https://demo-nexus-workspace.example.com', // [EDITABLE PLACEHOLDER]
-    githubUrl: 'https://github.com/example/nexus-cloud-workspace', // [EDITABLE PLACEHOLDER]
-    problemStatement: 'Modern distributed engineering teams frequently suffer from disconnected documentation, out-of-sync API mocks, and slow feedback loops during sprint development.',
-    architectureOverview: 'Architected around a modular decoupled stack: Next.js 16 handles server-side streaming and static asset delivery, while a NestJS cluster manages business rules, WebSocket events, and database transactions with MongoDB Atlas replica sets.',
+    tags: ['React.js', 'JavaScript', 'Spring Boot', 'REST APIs', 'MySQL', 'JWT', 'Tailwind CSS', 'Git', 'GitHub'],
+    thumbnail: '/images/projects/pawsitive.png',
+    liveUrl: 'https://github.com/vickysrana2-cloud',
+    githubUrl: 'https://github.com/vickysrana2-cloud',
+    problemStatement: 'Pet care management and veterinary clinics often rely on disconnected manual records or fragmented tools, leading to missed vaccination schedules and delayed medical histories.',
+    architectureOverview: 'Multi-tier architecture combining a modular React.js SPA communicating via JSON payloads over HTTP to a secure Spring Boot REST API, persisting normalized relational entities in a MySQL database.',
     architecturePoints: [
-      'Next.js App Router for dynamic routing and fast edge rendering',
-      'NestJS microservices with modular providers and dependency injection',
-      'MongoDB Atlas cluster with optimized compound indices for high read efficiency',
-      'Redis Pub/Sub channel for instant synchronization across connected user tabs',
-      'JWT with refresh token rotation stored in secure HTTP-only cookies'
+      'Spring Boot backend with RESTful controllers, service layers, and Spring Data JPA repositories',
+      'MySQL database design enforcing relational integrity with foreign keys and optimized indexes',
+      'JWT token authentication for secure, role-based access (Owner, Veterinarian, Admin)',
+      'React.js component-based architecture styled with responsive Tailwind CSS utilities',
+      'Client-side state management handling dynamic asynchronous data fetching and loading states'
     ],
     keyFeatures: [
-      'Live real-time collaborative workspace with multi-user presence indicators',
-      'API testing simulator with request payload validation and response inspection',
-      'Role-based permissions (Admin, Developer, Viewer) with granular workspace security',
-      'Automated schema generation and export to Postman / OpenAPI formats'
+      'Developed responsive UI components using React.js and Tailwind CSS for managing user and pet data',
+      'Integrated REST APIs and handled client-side state for dynamic data rendering',
+      'Implemented role-based UI access and ensured consistent, user-friendly experience across devices',
+      'Appointment scheduling and vaccination reminder tracker with status updates',
+      'Responsive design ensuring full accessibility across mobile, tablet, and desktop'
     ],
     technicalChallenges: [
-      'Managing WebSocket reconnection and missed delta events during brief network drops.',
-      'Preventing N+1 query bottlenecks in nested workspace tree structures through MongoDB aggregation pipelines.',
-      'Ensuring strict TypeScript type inference across shared client-server contracts.'
+      'Managing client-side authentication persistence with JWT tokens while preventing stale session states.',
+      'Structuring relational foreign keys between user accounts, multiple pet profiles, and historical medical logs.',
+      'Ensuring seamless form validations and feedback states across complex multi-step intake flows.'
     ],
     contributions: [
-      'Designed end-to-end database schema models and aggregation queries in MongoDB Atlas.',
-      'Authored reusable design system components in React and Tailwind CSS.',
-      'Implemented JWT authentication flow with refresh tokens and NestJS authentication guards.'
+      'Engineered responsive React.js UI views and modular form components with Tailwind CSS.',
+      'Developed Spring Boot RESTful API endpoints for pet and user data operations.',
+      'Configured MySQL schemas, entity relationships, and database transactions.'
     ],
     stats: {
-      performance: '99/100 Lighthouse',
-      uptime: '99.9% Uptime',
-      queriesPerSec: '1,200+ req/sec'
-    },
-    role: 'Lead Full-Stack Architect',
-    timeline: '3 Months (Iterative releases)',
-    publishedAt: '2025-01-15'
-  },
-  {
-    id: 'proj-pulse-ecommerce',
-    slug: 'pulse-commerce-engine',
-    title: 'Pulse Commerce Engine & Inventory Manager',
-    tagline: 'High-throughput e-commerce platform with Spring Boot backend, MySQL transactions, and Next.js storefront.',
-    description: 'An end-to-end transactional e-commerce engine with inventory tracking, ACID payment processing, and an administrative dashboard for order fulfillment.',
-    fullDescription: 'Pulse Commerce was built to deliver enterprise-grade transaction handling with zero tolerance for overselling or race conditions. The backend leverages Java and Spring Boot with Spring Data JPA and MySQL to enforce strict database locks during checkout. The frontend utilizes Next.js with optimistic UI updates and instant search filtering.',
-    category: 'Full Stack',
-    featured: true,
-    tags: ['Next.js', 'React', 'Java', 'Spring Boot', 'MySQL', 'Tailwind CSS', 'REST APIs'],
-    thumbnail: '/images/projects/pulse-commerce.png',
-    liveUrl: 'https://demo-pulse-commerce.example.com', // [EDITABLE PLACEHOLDER]
-    githubUrl: 'https://github.com/example/pulse-commerce-engine', // [EDITABLE PLACEHOLDER]
-    problemStatement: 'E-commerce flash sales frequently cause inventory inconsistencies, race conditions in multi-server environments, and sluggish product catalog search.',
-    architectureOverview: 'Employs a multi-tier architecture with a Next.js server-rendered storefront communicating via RESTful endpoints to a Spring Boot microservice. Relational data integrity is enforced in MySQL using pessimistic write locks on stock rows during cart checkout.',
-    architecturePoints: [
-      'Spring Boot 3 application with JPA/Hibernate entity mappings and validation',
-      'MySQL database with foreign keys, index-backed lookup, and ACID transactions',
-      'Next.js dynamic product catalogs with ISR (Incremental Static Regeneration)',
-      'Optimistic cart updates on the frontend for instantaneous customer interactions'
-    ],
-    keyFeatures: [
-      'Concurrent-safe checkout pipeline with automated inventory reservation timeouts',
-      'Admin analytics dashboard with charts for daily sales, inventory levels, and orders',
-      'Full-text product search with instant category, price range, and tag filtering',
-      'Automated email notification triggers upon order confirmation and dispatch'
-    ],
-    technicalChallenges: [
-      'Handling race conditions when multiple customers attempt to purchase the final inventory item simultaneously.',
-      'Structuring relational foreign keys and indexes to sustain high query throughput during promotional events.',
-      'Maintaining consistent decimal calculations for taxes and discounts without floating-point inaccuracies.'
-    ],
-    contributions: [
-      'Engineered Spring Boot REST controllers, service layers, and Spring Data JPA repositories.',
-      'Wrote relational migration scripts and index optimization for MySQL tables.',
-      'Created responsive checkout flows, cart drawers, and product filter interfaces in React.'
-    ],
-    stats: {
-      performance: '< 180ms API Latency',
+      performance: 'Fast API Response',
       uptime: 'ACID Compliant',
-      queriesPerSec: '850 transactions/sec'
+      queriesPerSec: 'Role-Based RBAC'
     },
     role: 'Full-Stack Developer',
-    timeline: '2.5 Months',
-    publishedAt: '2024-11-20'
+    timeline: 'Completed',
+    publishedAt: '2025-02-01'
   },
   {
-    id: 'proj-zenith-api',
-    slug: 'zenith-microservice-gateway',
-    title: 'Zenith API Gateway & Telemetry Service',
-    tagline: 'High-performance NestJS microservice gateway featuring token bucket rate limiting, Redis caching, and health diagnostics.',
-    description: 'A centralized backend gateway that routes incoming API requests, enforces JWT authorization, applies distributed rate-limiting, and captures system metrics.',
-    fullDescription: 'Zenith was created to orchestrate communication between distributed microservices. It intercepts incoming HTTP traffic, validates bearer tokens, manages client rate limits using a Redis token bucket algorithm, and logs Prometheus-compatible telemetry for system monitoring.',
-    category: 'Backend & API',
+    id: 'proj-designmeinteriors',
+    slug: 'designmeinteriors',
+    title: 'DesignMeInteriors – Studio Showcase Website',
+    tagline: 'Modern, responsive interior design showcase built with Next.js, Tailwind CSS, and Blogger API integration.',
+    description: 'An aesthetic, reference-driven interior design portfolio featuring fluid animations, dynamic blog updates via Blogger API, responsive gallery layouts, and SEO enhancements.',
+    fullDescription: 'DesignMeInteriors was crafted to showcase bespoke architectural and interior design concepts. Built with Next.js App Router and Tailwind CSS, it incorporates subtle UI motion, high-resolution visual imagery, and external CMS integration through Blogger API to deliver an editorial, luxury user experience.',
+    category: 'Frontend',
     featured: true,
-    tags: ['NestJS', 'TypeScript', 'Redis', 'REST APIs', 'Docker', 'Postman'],
-    thumbnail: '/images/projects/zenith-gateway.png',
-    liveUrl: 'https://demo-zenith-gateway.example.com', // [EDITABLE PLACEHOLDER]
-    githubUrl: 'https://github.com/example/zenith-api-gateway', // [EDITABLE PLACEHOLDER]
-    problemStatement: 'Unprotected microservices lack uniform security enforcement, request throttling, and unified request tracing across independent backend services.',
-    architectureOverview: 'Constructed with NestJS fastify/express adapters, Redis cluster for distributed caching and sliding window counters, and standardized middleware pipelines.',
+    tags: ['Next.js', 'Tailwind CSS', 'Blogger API', 'UI Motion', 'Responsive Web Design', 'SEO'],
+    thumbnail: '/images/projects/designmeinteriors.png',
+    liveUrl: 'https://vickysrana2-cloud.github.io',
+    githubUrl: 'https://github.com/vickysrana2-cloud',
+    problemStatement: 'Interior design studios require highly visual, fast-loading portfolios with rich typography, smooth transitions, and seamless content publishing capabilities without heavy CMS overhead.',
+    architectureOverview: 'Constructed with Next.js App Router for server-rendered page efficiency and Tailwind CSS for utility styling. Integrates Blogger API as a lightweight headless CMS for dynamic studio updates.',
     architecturePoints: [
-      'Reverse proxy routing layer routing requests dynamically to upstream services',
-      'Redis-backed distributed rate limiter preventing denial of service attempts',
-      'Centralized CORS, security headers, and compression middleware',
-      'Comprehensive Swagger/OpenAPI interactive documentation generation'
+      'Next.js component hierarchy optimized for fast initial paint and fluid navigation',
+      'Tailwind CSS design system utilizing custom typography, aspect ratios, and soft shadows',
+      'Blogger API integration for publishing studio design articles and case studies',
+      'Semantic HTML5 structure and OpenGraph metadata for enhanced search engine visibility'
     ],
     keyFeatures: [
-      'Configurable rate-limiting tiers (Free, Pro, Enterprise) based on client API keys',
-      'Sub-5ms proxy overhead with streaming request/response pipelines',
-      'Automated health check endpoints with database and cache liveness probes',
-      'Structured JSON logging with unique trace-id propagation'
+      'Developed frontend sections for an interior-design website using a reference-driven layout and responsive styling',
+      'Implemented UI motion and animations and integrated a mock API during development',
+      'Applied responsive design and SEO-related improvements',
+      'Filterable project gallery showcasing residential, commercial, and modular concepts',
+      'Mobile-first responsive navigation with fluid layout reflow'
     ],
     technicalChallenges: [
-      'Minimizing gateway latency overhead while executing multi-step token validation.',
-      'Synchronizing sliding window rate counters accurately across multiple container instances in Redis.'
+      'Preserving high visual fidelity while preventing layout shifts (CLS) on large photography assets.',
+      'Integrating external API data with graceful fallbacks during network latency.'
     ],
     contributions: [
-      'Developed custom NestJS interceptors for distributed request tracing and error masking.',
-      'Configured Docker Compose multi-container test environments with automated Postman tests.',
-      'Authored technical documentation and architecture diagrams for upstream developers.'
+      'Built complete frontend UI components and layout sections from scratch.',
+      'Authored responsive styling using modern Tailwind CSS tokens.',
+      'Implemented SEO enhancements and meta tags.'
     ],
     stats: {
-      performance: '3.4ms avg latency',
-      uptime: '99.95%',
-      queriesPerSec: '5,000+ rps'
+      performance: '100% Mobile Responsive',
+      uptime: 'SEO Optimized',
+      queriesPerSec: 'Next.js Fast Refresh'
     },
-    role: 'Backend Architect',
-    timeline: '6 Weeks',
-    publishedAt: '2024-09-10'
+    role: 'Frontend Developer',
+    timeline: 'Completed',
+    publishedAt: '2025-01-10'
   },
   {
-    id: 'proj-aurora-ui',
-    slug: 'aurora-design-system',
-    title: 'Aurora UI Component Library & Token Suite',
-    tagline: 'Accessible, themeable design system built with React, TypeScript, Tailwind CSS, and Radix UI primitives.',
-    description: 'An open-source accessible component system providing 40+ primitives, keyboard-first navigation, fluid typography, and zero-runtime style token customization.',
-    fullDescription: 'Aurora UI is an enterprise design system focusing on WCAG 2.1 AA compliance, smooth keyboard navigation, and seamless light/dark mode theming. It provides ready-to-use form controls, modal dialogs, data tables, and animated disclosure panels.',
+    id: 'proj-archinet',
+    slug: 'archinet-design-architecture',
+    title: 'Archinet – Design & Architecture Website',
+    tagline: 'Clean, structured architecture portfolio engineered from scratch with Next.js and Tailwind CSS.',
+    description: 'A modern design and architectural firm website featuring structured frontend implementation, interactive UI components, clean typography, and cross-device responsiveness.',
+    fullDescription: 'Archinet is a dedicated architectural firm portfolio developed from scratch. It emphasizes minimalist aesthetics, structured component hierarchies, intuitive navigation, and clean user experience. Engineered with Next.js and Tailwind CSS, it delivers fast page load times and accessible interactive components.',
+    category: 'Frontend',
+    featured: true,
+    tags: ['Next.js', 'Tailwind CSS', 'JavaScript (ES6+)', 'GitHub', 'Component Architecture'],
+    thumbnail: '/images/projects/archinet.png',
+    liveUrl: 'https://vickysrana2-cloud.github.io',
+    githubUrl: 'https://github.com/vickysrana2-cloud',
+    problemStatement: 'Architectural portfolios often fail to balance heavy visual assets with structured, maintainable codebases and fast load times.',
+    architectureOverview: 'Built around a modular React component design with Next.js static asset optimization and zero-runtime CSS via Tailwind utilities.',
+    architecturePoints: [
+      'Next.js for component modularity and efficient client routing',
+      'Tailwind CSS for responsive layouts and custom theme tokens',
+      'Component-based architecture ensuring reusability across pages',
+      'Cross-browser tested for consistent rendering on Chrome, Safari, and Firefox'
+    ],
+    keyFeatures: [
+      'Developed the Archinet website from scratch, implementing the frontend and overall user interface',
+      'Built responsive layouts and interactive UI components to deliver a consistent experience across devices',
+      'Focused on clean design, usability, and structured frontend implementation',
+      'Project showcase with categorization by project scale and typology',
+      'Clean interactive contact and inquiry forms'
+    ],
+    technicalChallenges: [
+      'Designing an intuitive grid system that adapts seamlessly from ultra-wide desktops to compact mobile screens.',
+      'Writing maintainable, DRY component structures for architectural showcase sections.'
+    ],
+    contributions: [
+      'Architected and implemented the entire frontend user interface from scratch.',
+      'Created reusable interactive components with responsive Tailwind CSS utilities.',
+      'Managed version control and deployment workflows using Git & GitHub.'
+    ],
+    stats: {
+      performance: 'Fluid 60 FPS UI',
+      uptime: 'Responsive',
+      queriesPerSec: 'Clean Code'
+    },
+    role: 'Frontend Developer',
+    timeline: 'Completed',
+    publishedAt: '2024-12-05'
+  },
+  {
+    id: 'proj-weatherwatch',
+    slug: 'weatherwatch-hackathon-project',
+    title: 'WeatherWatch – Live Weather Telemetry Platform',
+    tagline: 'Hackathon Silver Medal winning project at IT Vedant. Led development as Team Leader.',
+    description: 'An interactive weather forecasting and climate telemetry application featuring real-time meteorological API integration, location lookup, and reactive dashboards.',
+    fullDescription: 'WeatherWatch earned the Silver Medal at the IT Vedant Tech Hackathon. Leading a cross-functional team, Vicky architected the frontend application, coordinated API integrations for real-time weather metrics, humidity, and 7-day outlook forecasts, and delivered a winning demo under competitive sprint conditions.',
     category: 'Frontend',
     featured: false,
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Accessibility', 'Framer Motion'],
-    thumbnail: '/images/projects/aurora-ui.png',
-    liveUrl: 'https://demo-aurora-ui.example.com', // [EDITABLE PLACEHOLDER]
-    githubUrl: 'https://github.com/example/aurora-design-system', // [EDITABLE PLACEHOLDER]
-    problemStatement: 'Inconsistent component implementations across projects create accessibility bugs and slow down UI engineering velocity.',
-    architectureOverview: 'Built as a tree-shakeable TypeScript package using Radix UI accessible unstyled primitives and styled with Tailwind CSS tokens and CSS variables.',
+    tags: ['React.js', 'JavaScript', 'REST APIs', 'Tailwind CSS', 'Team Leadership', 'Hackathon Winner'],
+    thumbnail: '/images/projects/weatherwatch.png',
+    liveUrl: 'https://github.com/vickysrana2-cloud',
+    githubUrl: 'https://github.com/vickysrana2-cloud',
+    problemStatement: 'Providing users with real-time, accurate, and easily digestible meteorological forecasts across varying bandwidth conditions during competitive hackathon constraints.',
+    architectureOverview: 'React.js application communicating with external weather telemetry REST endpoints, featuring responsive data cards, visual icon mappings, and search caching.',
     architecturePoints: [
-      'Radix UI primitives ensuring screen-reader compatibility and focus trapping',
-      'Tailwind CSS tokens using semantic CSS variables for dark/light transitions',
-      'Full TypeScript type safety with strict prop inference',
-      'Comprehensive keyboard navigation support for modals, dropdowns, and tabs'
+      'React.js with custom hooks for weather API polling and coordinate geocoding',
+      'Responsive weather metrics dashboard showing temperature, humidity, wind, and forecast',
+      'Error handling and fallback states for failed geolocation permissions or network drops',
+      'Team leadership and Agile sprint coordination under tight hackathon deadlines'
     ],
     keyFeatures: [
-      '40+ accessible UI components including dialogs, tooltips, sheets, and datatables',
-      'Built-in reduced motion fallbacks for vestibular sensitivity compliance',
-      'Zero layout shift (CLS) design with predefined aspect ratio utilities',
-      'Interactive component playground with live code preview and copy-paste exports'
+      'Team Leader for hackathon project, achieving Silver Medal recognition at IT Vedant',
+      'Live weather radar and telemetry metrics with instant city search',
+      '7-day forecast cards with dynamic weather condition visuals',
+      'Intuitive responsive interface built with modern Tailwind CSS'
     ],
     technicalChallenges: [
-      'Managing modal focus traps without disrupting screen reader announcement flow.',
-      'Structuring CSS variable fallbacks to prevent theme flash (FOUC) during client hydration.'
+      'Coordinating rapid task delegation across team members while maintaining a unified UI standard.',
+      'Handling asynchronous API limits and geocoding fallbacks smoothly.'
     ],
     contributions: [
-      'Implemented component library architecture, build tooling, and TypeScript types.',
-      'Conducted keyboard navigation and accessibility screen reader audits.',
-      'Created documentation site with live editable code previews.'
+      'Served as Team Leader, coordinating architecture and feature roadmap.',
+      'Developed core React components and API integration pipeline.',
+      'Delivered final presentation and live system demonstration to judges.'
     ],
     stats: {
-      performance: '100% WCAG AA',
-      uptime: '12kb Gzip',
-      users: '40+ Components'
+      performance: 'Silver Medalist',
+      uptime: 'IT Vedant Hackathon',
+      users: 'Team Leader'
     },
-    role: 'Frontend Engineer',
-    timeline: '2 Months',
-    publishedAt: '2024-07-05'
-  },
-  {
-    id: 'proj-atlas-sync',
-    slug: 'atlas-db-monitor',
-    title: 'AtlasDB Query Health & Schema Inspector',
-    tagline: 'Database diagnostic tool for MongoDB Atlas and MySQL instances with slow query profiling and index recommendations.',
-    description: 'A developer tool that analyzes database schema utilization, tracks slow query spikes, and suggests missing composite indices to optimize database throughput.',
-    fullDescription: 'AtlasDB Monitor helps developers proactively identify database bottlenecks before they cause production downtime. It connects securely to MongoDB Atlas clusters and MySQL servers, monitors execution plans (EXPLAIN), and visualizes query latency distributions in real-time.',
-    category: 'DevOps & Tools',
-    featured: false,
-    tags: ['TypeScript', 'MongoDB Atlas', 'MySQL', 'Node.js', 'REST APIs', 'Tailwind CSS'],
-    thumbnail: '/images/projects/atlas-monitor.png',
-    liveUrl: 'https://demo-atlas-monitor.example.com', // [EDITABLE PLACEHOLDER]
-    githubUrl: 'https://github.com/example/atlas-db-monitor', // [EDITABLE PLACEHOLDER]
-    problemStatement: 'Developers frequently discover unindexed or unoptimized database queries only after application latency degrades under production traffic.',
-    architectureOverview: 'A Node.js backend connects using read-only administrative credentials to database servers, pulling execution statistics and serving summarized diagnostics through a responsive dashboard.',
-    architecturePoints: [
-      'MongoDB Atlas management API integration for cluster metric aggregation',
-      'MySQL performance_schema analysis for slow query detection',
-      'Interactive query timeline graphs with drill-down execution statistics',
-      'Automated index advisor detecting unindexed sorting and collations'
-    ],
-    keyFeatures: [
-      'Real-time query duration heatmaps and slowest 10 queries list',
-      'Index redundancy detector highlighting duplicate index paths',
-      'One-click query EXPLAIN visualizer with execution cost scoring',
-      'Slack and Webhook alerting for sudden connection pool saturation'
-    ],
-    technicalChallenges: [
-      'Executing diagnostics with zero performance impact on monitored production clusters.',
-      'Normalizing execution plan formats across heterogeneous SQL and NoSQL engines.'
-    ],
-    contributions: [
-      'Wrote MongoDB aggregation pipelines and MySQL performance query extractors.',
-      'Built interactive data visualization views with responsive charts.',
-      'Engineered connection pool management with automatic retry logic.'
-    ],
-    stats: {
-      performance: 'Near-zero overhead',
-      queriesPerSec: '100+ Metrics/sec'
-    },
-    role: 'Backend & DevOps Engineer',
-    timeline: '1 Month',
-    publishedAt: '2024-05-18'
+    role: 'Team Leader & Lead Developer',
+    timeline: 'Hackathon Sprint',
+    publishedAt: '2024-11-15'
   }
 ];

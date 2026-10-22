@@ -86,13 +86,11 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 w-full transition-all duration-300 ease-in-out',
-        scrolled
-          ? 'liquid-glass-nav'
-          : 'bg-transparent border-b border-transparent',
+        'sticky top-0 z-40 w-full bg-transparent border-none transition-transform duration-300 ease-in-out',
         isVisible ? 'translate-y-0' : '-translate-y-full'
       )}
     >
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">

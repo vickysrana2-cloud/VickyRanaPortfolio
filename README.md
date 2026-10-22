@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VickyRanaPortfolio
 
-## Getting Started
+> **VickyRana Dev** — Full-Stack Developer & Software Engineer Portfolio  
+> Built with Next.js 16 (App Router), TypeScript, Tailwind CSS, Lucide React, and Apple-inspired Liquid Glass Design.
 
-First, run the development server:
+---
+
+## 🌟 Highlights & Features
+
+- **Liquid Glass Aesthetics**: Modern Apple-inspired specular highlights, frosted blur surfaces, and ambient caustics with dynamic theme toggling (Dark/Light).
+- **40+ Commercial Production Templates**: Real-world website templates spanning 9 industries (Automotive, Real Estate, Healthcare, Law, Hospitality, Bakery, Fitness, Gifting, and E-commerce) with live responsive multi-device viewport testing (Desktop, Tablet, Mobile).
+- **Playable Games Arcade**: Interactive in-browser games (Cyber 2048, Retro Snake Quest, Memory Matrix, Dev Code Typer) built with HTML5 Canvas and React.
+- **Projects Showcase**: Deep-dive case studies with problem-solution breakdowns, architectural highlights, and live preview links.
+- **Interactive Contact System**: Server-side validated contact form with Zod schema, honeypot anti-spam defense, celebration confetti, and direct email delivery via **Resend** to `vickysrana2@gmail.com`.
+- **Command Palette (Cmd+K / Ctrl+K)**: Quick navigation across pages, projects, games, and templates.
+- **Direct Resume Download**: Integrated one-click download for `vickyrana_resume_fe_new.pdf`.
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 16.4 (App Router, Turbopack, Partial Prerendering)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, CSS Variables, Liquid Glass tokens
+- **Icons**: Lucide React & React Icons
+- **Animation**: Framer Motion
+- **Form Management**: React Hook Form & Zod
+- **Email Delivery**: Resend SDK
+
+---
+
+## 🛠️ Getting Started
+
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Set up your environment variables by copying the example:
+
+```bash
+cp .env.example .env.local
+```
+
+Add your optional [Resend](https://resend.com) API key in `.env.local` for direct contact form email dispatch:
+
+```env
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_NOTIFICATION_EMAIL=vickysrana2@gmail.com
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Production Build
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👤 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Vicky Rana**  
+- **Email**: [vickysrana2@gmail.com](mailto:vickysrana2@gmail.com)  
+- **GitHub**: [@vickysrana2-cloud](https://github.com/vickysrana2-cloud)  
+- **LinkedIn**: [Vicky Rana](https://linkedin.com/in/vicky-rana-7457ab225)  

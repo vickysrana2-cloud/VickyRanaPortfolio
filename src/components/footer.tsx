@@ -22,19 +22,27 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 tracking-tight text-foreground transition-transform hover:opacity-90"
-              aria-label="VickyRana Dev Home"
+              className="group inline-flex items-center font-mono text-xl font-bold tracking-tight text-foreground transition-transform hover:opacity-90 select-none"
+              aria-label="VickyRana Home"
             >
-              <div className="flex items-center justify-center px-2 py-1 rounded-lg font-mono text-xs font-semibold border border-border/60 bg-muted/30 select-none">
-                <span className="text-indigo-500 dark:text-indigo-400 select-none">&lt;</span>
-                <span className="font-extrabold text-foreground tracking-tight">VR</span>
-                <span className="text-indigo-500 dark:text-indigo-400 select-none">/&gt;</span>
-              </div>
-              <span className="text-lg font-bold tracking-tight flex items-center">
-                <span className="text-foreground">VickyRana</span>
-                <span className="text-indigo-500 dark:text-indigo-400 ml-1 font-semibold">Dev</span>
+              <span
+                aria-hidden="true"
+                className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:-translate-x-0.5 select-none"
+              >
+                &lt;
+              </span>
+              <span className="text-foreground font-black">Vicky</span>
+              <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400 font-black">
+                Rana
+              </span>
+              <span
+                aria-hidden="true"
+                className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:translate-x-0.5 select-none"
+              >
+                /&gt;
               </span>
             </Link>
+
 
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
               {profileData.tagline}

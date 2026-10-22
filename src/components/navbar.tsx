@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import { 
   Menu, 
   X, 
-  Code2, 
   Search, 
   FileText,
   Mail
@@ -64,24 +63,27 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
           {/* Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5 tracking-tight text-foreground transition-all duration-200"
-            aria-label="VickyRana Dev Home"
+            aria-label="VickyRana Home"
+            className="group inline-flex items-center rounded-md font-mono text-base sm:text-lg font-bold tracking-tight select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity hover:opacity-90"
           >
-            <div className="flex items-center justify-center px-2 py-1 rounded-lg font-mono text-xs sm:text-sm font-semibold border border-border/60 bg-muted/30 group-hover:border-indigo-500/40 group-hover:bg-indigo-500/5 transition-all select-none">
-              <span className="text-indigo-500 dark:text-indigo-400 select-none">&lt;</span>
-              <span className="font-extrabold text-foreground tracking-tight">VR</span>
-              <span className="text-indigo-500 dark:text-indigo-400 select-none">/&gt;</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-base font-bold leading-none tracking-tight flex items-center">
-                <span className="text-foreground">VickyRana</span>
-                <span className="text-indigo-500 dark:text-indigo-400 ml-1 font-semibold">Dev</span>
-              </span>
-              <span className="hidden sm:block text-[11px] font-mono text-muted-foreground mt-0.5">
-                Full-Stack Developer
-              </span>
-            </div>
+            <span
+              aria-hidden="true"
+              className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:-translate-x-0.5 select-none"
+            >
+              &lt;
+            </span>
+            <span className="text-foreground font-black">Vicky</span>
+            <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400 font-black">
+              Rana
+            </span>
+            <span
+              aria-hidden="true"
+              className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:translate-x-0.5 select-none"
+            >
+              /&gt;
+            </span>
           </Link>
+
 
 
           {/* Desktop Navigation Links (Floating Liquid Glass Pill) */}

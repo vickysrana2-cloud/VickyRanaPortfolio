@@ -23,6 +23,7 @@ import {
   Play
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
+import { CursorCharacter } from '@/components/cursor-character';
 
 export default function HomePage() {
   const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 3);
@@ -32,12 +33,18 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-24 sm:gap-32 pb-16 overflow-hidden">
       {/* 1. HERO SECTION */}
-      <section className="relative pt-12 sm:pt-20 lg:pt-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        {/* Ambient liquid lighting caustics */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] bg-indigo-500/15 dark:bg-indigo-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/3 right-1/4 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-violet-500/10 dark:bg-violet-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      <section className="relative pt-24 sm:pt-32 lg:pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        {/* Ambient liquid lighting caustics extending to top 0 */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[350px] sm:w-[750px] h-[350px] sm:h-[700px] bg-indigo-500/15 dark:bg-indigo-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-0 right-1/4 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-violet-500/10 dark:bg-violet-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+
 
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
+          {/* Interactive Cursor-Tracking Character */}
+          <div className="relative flex justify-center -mb-2">
+            <CursorCharacter className="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-2xl transition-transform duration-300 hover:scale-105 select-none" />
+          </div>
+
           {/* Availability Status Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-indigo-600 dark:text-indigo-400 text-xs font-semibold">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-xs shadow-emerald-500/50" />

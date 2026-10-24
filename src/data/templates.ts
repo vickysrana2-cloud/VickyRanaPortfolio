@@ -1025,5 +1025,31 @@ export const templatesData: Template[] = [
     styling: 'Tailwind CSS',
     featured: false,
     version: 'v1.6.0'
+  },
+  {
+    id: 'tmpl-hotel-landing-spa',
+    slug: 'hotellandingspa',
+    title: 'The Aurelian – 5-Star Luxury Lakeside Retreat & Hotel SPA',
+    tagline: 'Refined lake-view suites, lakeside dining, and instant WhatsApp room reservations.',
+    description: 'An unhurried destination hotel landing page featuring dynamic room reservations, date-picker availability checker, dining showcases, and WhatsApp booking integration.',
+    fullDescription: 'Set along the water’s edge, The Aurelian blends heritage architecture with contemporary comfort. Engineered with interactive room filtering, estimated total price calculations, curated amenity grids, chef’s table dining menus, and instant WhatsApp booking flows.',
+    category: 'Hospitality',
+    previewImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1800&auto=format&fit=crop',
+    tags: ['React', 'Next.js', 'Tailwind CSS', 'Hospitality UI', 'WhatsApp Booking'],
+    features: [
+      'Interactive room availability checker with live date & guest calculations',
+      'Filtered room & suite browser with dynamic estimated totals',
+      'Pre-filled WhatsApp reservation engine for instant direct booking',
+      'Seasonal Chef’s Table dining & experience showcase',
+      'Lightbox photo gallery with full keyboard navigation and scroll lock',
+      'Guest review slider with verified ratings and interactive FAQ accordion'
+    ],
+    responsiveBreakpoints: { desktop: true, tablet: true, mobile: true },
+    demoUrl: 'https://github.com/vickysrana2-cloud',
+    sourceUrl: 'https://github.com/vickysrana2-cloud',
+    framework: 'React / Next.js',
+    styling: 'Tailwind CSS',
+    featured: true,
+    version: 'v2.0.0'
   }
 ];

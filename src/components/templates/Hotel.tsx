@@ -1,14 +1,57 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { 
   Menu, X, Phone, Mail, MapPin, Calendar, Users, 
-  Sparkles, Award, ChevronRight, ChevronLeft, Star 
+  Sparkles, Award, ChevronRight, ChevronLeft, Star, Camera 
 } from "lucide-react";
 
 interface LuxeHavenHotelProps {
   data?: any;
+}
+
+// Verified high-resolution luxury fallback assets
+const FALLBACK_HERO = "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600";
+const FALLBACK_ROOM_1 = "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800";
+const FALLBACK_ROOM_2 = "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800";
+const FALLBACK_ROOM_3 = "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800";
+const FALLBACK_DINING_1 = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800";
+const FALLBACK_DINING_2 = "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=800";
+
+// Robust resilient image component that guarantees zero broken images
+function SafeImage({
+  src,
+  alt,
+  className,
+  fallbackSrc = FALLBACK_ROOM_1,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  fallbackSrc?: string;
+}) {
+  const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(src || fallbackSrc);
+    setHasError(false);
+  }, [src, fallbackSrc]);
+
+  return (
+    <img
+      src={hasError ? fallbackSrc : currentSrc}
+      alt={alt}
+      className={className}
+      onError={() => {
+        if (!hasError && fallbackSrc) {
+          setHasError(true);
+          setCurrentSrc(fallbackSrc);
+        }
+      }}
+    />
+  );
 }
 
 // Universal Parser Helper: Handles raw strings, arrays, and pipe-delimited tokens
@@ -54,13 +97,14 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
   const roomsData = data?.rooms || data || {};
   const amenitiesData = data?.amenities || data || {};
   const diningData = data?.dining || data || {};
+  const galleryData = data?.gallery || data || {};
   const testimonialsData = data?.testimonials || data || {};
   const social = data?.socials || data || {};
 
   // 1. All Dynamic User Inputs for Identity & Logo
   const hotelName = basic.hotelName || "LUXEHAVEN";
   const subTitle = basic.subTitle || "RESORT & SPA";
-  const logoUrl = basic.logoUrl || data?.logoUrl || ""; // User Input Logo Image URL
+  const logoUrl = basic.logoUrl || data?.logoUrl || "";
   const hotelDesc = basic.description || "A sanctuary of serene luxury nestled along coastal shores, offering tailored hospitality and refined comfort.";
   const phone = basic.phone || social.phone || "+1 (800) 555-0199";
   const email = basic.email || social.email || "concierge@luxehavenresort.com";
@@ -70,7 +114,7 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
   // 2. All Dynamic User Inputs for Hero Section
   const heroHeading = hero.heroHeading || "Elegance Redefined in Every Detail";
   const heroTagline = hero.heroTagline || "Experience bespoke luxury, world-class dining, and serene coastal views tailored for the discerning traveler.";
-  const heroBg = hero.heroBgImage || "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600";
+  const heroBg = hero.heroBgImage || FALLBACK_HERO;
   const ctaText = hero.ctaText || "Reserve Your Suite";
 
   // 3. Dynamic User Inputs for Accommodations
@@ -83,21 +127,21 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
         price: "$850 / night",
         details: "2 Guests • 850 sq ft",
         desc: "Panoramic coastline views with private infinity plunge pool and dedicated butler service.",
-        image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800"
+        image: FALLBACK_ROOM_1
       },
       {
         name: "Royal Palm Villa",
         price: "$1,450 / night",
         details: "4 Guests • 1,600 sq ft",
         desc: "Two-bedroom sanctuary with private garden patio, outdoor rain shower, and lounge.",
-        image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800"
+        image: FALLBACK_ROOM_2
       },
       {
         name: "Horizon Executive Suite",
         price: "$620 / night",
         details: "2 Guests • 650 sq ft",
         desc: "Contemporary elegance featuring floor-to-ceiling glass walls and marble bath amenities.",
-        image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800"
+        image: FALLBACK_ROOM_3
       }
     ],
     (tokens) => ({
@@ -105,7 +149,7 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
       price: tokens[1] || "Contact for Rates",
       details: tokens[2] || "2 Guests",
       desc: tokens[3] || "High-end luxury accommodations with ocean views.",
-      image: tokens[4] || "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800"
+      image: tokens[4] || FALLBACK_ROOM_1
     })
   );
 
@@ -127,18 +171,37 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
     diningData.diningDataString,
     diningData.diningList,
     [
-      { name: "Aura Ocean Grill", cuisine: "Mediterranean Seafood", hours: "5:30 PM - 11:00 PM", image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800" },
-      { name: "The Velvet Lounge", cuisine: "Craft Cocktails & Wine", hours: "4:00 PM - 1:00 AM", image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=800" }
+      { name: "Aura Ocean Grill", cuisine: "Mediterranean Seafood", hours: "5:30 PM - 11:00 PM", image: FALLBACK_DINING_1 },
+      { name: "The Velvet Lounge", cuisine: "Craft Cocktails & Wine", hours: "4:00 PM - 1:00 AM", image: FALLBACK_DINING_2 }
     ],
     (tokens) => ({
       name: tokens[0] || "Dining Venue",
       cuisine: tokens[1] || "Gourmet Cuisine",
       hours: tokens[2] || "Open Daily",
-      image: tokens[3] || "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800"
+      image: tokens[3] || FALLBACK_DINING_1
     })
   );
 
-  // 6. Dynamic User Inputs for Testimonials
+  // 6. Dynamic User Inputs for Visual Gallery
+  const galleryArray = resolveSectionArray(
+    galleryData.galleryDataString,
+    galleryData.galleryList,
+    [
+      { title: "Oceanfront Infinity Oasis", category: "Pool & Ocean", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000" },
+      { title: "Private Villa Veranda", category: "Accommodations", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1000" },
+      { title: "Holistic Hydrotherapy Suite", category: "Thermal Spa", image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1000" },
+      { title: "Bespoke Beachfront Dining", category: "Gastronomy", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000" },
+      { title: "Twilight Sunset Terrace", category: "Lounge & Views", image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000" },
+      { title: "Executive Master Bedroom", category: "Suites", image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1000" }
+    ],
+    (tokens) => ({
+      title: tokens[0] || "Resort Space",
+      category: tokens[1] || "Luxury Sanctuary",
+      image: tokens[2] || FALLBACK_ROOM_1
+    })
+  );
+
+  // 7. Dynamic User Inputs for Testimonials
   const testimonialsArray = resolveSectionArray(
     testimonialsData.testimonialsDataString,
     testimonialsData.testimonialsList,
@@ -164,9 +227,9 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1817] font-serif antialiased selection:bg-[#C5A059]/30 relative">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1817] font-serif antialiased selection:bg-[#C5A059]/30 relative overflow-x-hidden">
       
-      {/* FLOATING WHATSAPP BUTTON */}
+      {/* FLOATING WHATSAPP BUTTON (Stays inside the isolated iframe viewport) */}
       <a
         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello Concierge, I would like to inquire about booking availability.")}`}
         target="_blank"
@@ -181,13 +244,18 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
         <span className="text-xs font-bold tracking-wider uppercase">Book via WhatsApp</span>
       </a>
 
-      {/* TOP HEADER & NAVBAR */}
+      {/* TOP HEADER & NAVBAR (Contained in iframe) */}
       <NavbarComponent hotelName={hotelName} subTitle={subTitle} logoUrl={logoUrl} ctaText={ctaText} phone={phone} />
 
       {/* HERO SECTION */}
       <header className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6">
-        <div className="absolute inset-0 z-0">
-          <img src={heroBg} alt={hotelName} className="w-full h-full object-cover brightness-[0.45]" />
+        <div className="absolute inset-0 z-0 bg-[#1A1817]">
+          <SafeImage 
+            src={heroBg} 
+            alt={hotelName} 
+            className="w-full h-full object-cover brightness-[0.45]"
+            fallbackSrc={FALLBACK_HERO}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1817] via-transparent to-black/30" />
         </div>
 
@@ -247,11 +315,12 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {roomsArray.map((room: any, idx: number) => (
             <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-stone-100 flex flex-col group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img 
+              <div className="relative aspect-[4/3] overflow-hidden bg-stone-900">
+                <SafeImage 
                   src={room.image} 
                   alt={room.name} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  fallbackSrc={idx === 1 ? FALLBACK_ROOM_2 : idx === 2 ? FALLBACK_ROOM_3 : FALLBACK_ROOM_1}
                 />
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-sans font-medium">
                   {room.price}
@@ -316,8 +385,13 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {diningArray.map((venue: any, idx: number) => (
-            <div key={idx} className="relative aspect-[16/10] rounded-2xl overflow-hidden group shadow-lg">
-              <img src={venue.image} alt={venue.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div key={idx} className="relative aspect-[16/10] rounded-2xl overflow-hidden group shadow-lg bg-stone-900">
+              <SafeImage 
+                src={venue.image} 
+                alt={venue.name} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                fallbackSrc={idx === 1 ? FALLBACK_DINING_2 : FALLBACK_DINING_1}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
                 <div className="flex justify-between items-center text-xs font-sans text-[#C5A059] uppercase tracking-widest font-bold">
@@ -325,6 +399,46 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
                   <span>{venue.hours}</span>
                 </div>
                 <h3 className="text-2xl font-serif">{venue.name}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CURATED RESORT GALLERY */}
+      <section id="gallery" className="py-28 px-6 lg:px-16 max-w-7xl mx-auto space-y-16">
+        <div className="text-center space-y-4 max-w-2xl mx-auto">
+          <span className="text-[#C5A059] text-xs font-sans tracking-[0.3em] uppercase font-bold">
+            VISUAL IMMERSION
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-serif text-[#1A1817]">
+            The LuxeHaven Experience
+          </h2>
+          <p className="text-stone-500 font-sans text-sm leading-relaxed font-light">
+            Take a glimpse into secluded coastline pavilions, Michelin-inspired gastronomy, and tranquil wellness sanctuaries.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryArray.map((item: any, idx: number) => (
+            <div 
+              key={idx} 
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-stone-100 bg-stone-900"
+            >
+              <SafeImage
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                fallbackSrc={FALLBACK_ROOM_1}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+              <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                <span className="text-[10px] font-sans uppercase tracking-widest text-[#C5A059] font-bold">
+                  {item.category}
+                </span>
+                <h4 className="text-lg font-serif text-white">
+                  {item.title}
+                </h4>
               </div>
             </div>
           ))}
@@ -437,19 +551,40 @@ export default function LuxeHavenHotel({ data: rawData }: LuxeHavenHotelProps) {
   );
 }
 
-// NAVBAR COMPONENT
+// NAVBAR COMPONENT (Responding properly to iframe document scroll)
 function NavbarComponent({ hotelName, subTitle, logoUrl, ctaText, phone }: any) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1A1817]/90 backdrop-blur-md text-white border-b border-stone-800 px-6 lg:px-16 py-3.5">
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300 px-6 lg:px-16 ${
+        scrolled 
+          ? "bg-[#1A1817]/95 backdrop-blur-md shadow-2xl border-b border-stone-800/80 py-3" 
+          : "bg-[#1A1817]/85 backdrop-blur-sm border-b border-stone-800/40 py-4"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
         {/* LOGO & HOTEL BRANDING */}
         <Link href="#" className="flex items-center gap-3.5 group">
           <div className="w-10 h-10 rounded-full border border-[#C5A059]/40 bg-stone-900/80 overflow-hidden flex items-center justify-center shrink-0 shadow-inner group-hover:border-[#C5A059] transition-colors">
-            {logoUrl ? (
-              <img src={logoUrl} alt={hotelName} className="w-full h-full object-cover" />
+            {logoUrl && !logoFailed ? (
+              <img 
+                src={logoUrl} 
+                alt={hotelName} 
+                className="w-full h-full object-cover" 
+                onError={() => setLogoFailed(true)}
+              />
             ) : (
               <span className="font-serif font-bold text-sm text-[#C5A059]">
                 {hotelName.charAt(0)}
@@ -468,6 +603,7 @@ function NavbarComponent({ hotelName, subTitle, logoUrl, ctaText, phone }: any) 
           <Link href="#rooms" className="hover:text-[#C5A059] transition-colors">Suites</Link>
           <Link href="#amenities" className="hover:text-[#C5A059] transition-colors">Amenities</Link>
           <Link href="#dining" className="hover:text-[#C5A059] transition-colors">Dining</Link>
+          <Link href="#gallery" className="hover:text-[#C5A059] transition-colors">Gallery</Link>
           <Link href="#reviews" className="hover:text-[#C5A059] transition-colors">Reviews</Link>
         </div>
 
@@ -475,26 +611,32 @@ function NavbarComponent({ hotelName, subTitle, logoUrl, ctaText, phone }: any) 
         <div className="hidden md:flex items-center gap-4">
           <Link 
             href="#booking" 
-            className="bg-[#C5A059] hover:bg-[#b08b46] text-white text-xs font-sans font-bold tracking-widest uppercase px-6 py-2.5 rounded-full transition-colors"
+            className="bg-[#C5A059] hover:bg-[#b08b46] text-white text-xs font-sans font-bold tracking-widest uppercase px-6 py-2.5 rounded-full transition-colors shadow-md"
           >
             {ctaText}
           </Link>
         </div>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white p-1">
+        {/* MOBILE MENU TOGGLE */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-white p-1.5 rounded-lg hover:bg-stone-800/60 transition-colors"
+          aria-label="Toggle Navigation Menu"
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU (Drop-down contained within iframe) */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#1A1817] border-b border-stone-800 p-6 flex flex-col space-y-4 text-center font-sans text-xs uppercase tracking-widest">
-          <Link href="#" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="#rooms" onClick={() => setIsOpen(false)}>Suites</Link>
-          <Link href="#amenities" onClick={() => setIsOpen(false)}>Amenities</Link>
-          <Link href="#dining" onClick={() => setIsOpen(false)}>Dining</Link>
-          <Link href="#reviews" onClick={() => setIsOpen(false)}>Reviews</Link>
-          <Link href="#booking" onClick={() => setIsOpen(false)} className="text-[#C5A059] font-bold">Reserve</Link>
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#1A1817] border-b border-stone-800 p-6 flex flex-col space-y-4 text-center font-sans text-xs uppercase tracking-widest shadow-2xl">
+          <Link href="#" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Home</Link>
+          <Link href="#rooms" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Suites</Link>
+          <Link href="#amenities" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Amenities</Link>
+          <Link href="#dining" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Dining</Link>
+          <Link href="#gallery" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Gallery</Link>
+          <Link href="#reviews" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-1">Reviews</Link>
+          <Link href="#booking" onClick={() => setIsOpen(false)} className="text-[#C5A059] font-bold py-1">Reserve</Link>
         </div>
       )}
     </nav>
@@ -503,7 +645,8 @@ function NavbarComponent({ hotelName, subTitle, logoUrl, ctaText, phone }: any) 
 
 // FOOTER COMPONENT
 function FooterComponent({ hotelName, subTitle, logoUrl, phone, email, address, hotelDesc, social }: any) {
-  // Always fallback to standard URLs if user didn't provide specific social links
+  const [logoFailed, setLogoFailed] = useState(false);
+
   const instagramLink = social?.instagram || social?.instagramUrl || "#";
   const facebookLink = social?.facebook || social?.facebookUrl || "#";
   const tripadvisorLink = social?.tripadvisor || social?.tripadvisorUrl || "#";
@@ -517,8 +660,13 @@ function FooterComponent({ hotelName, subTitle, logoUrl, phone, email, address, 
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full border border-[#C5A059]/40 bg-stone-900 overflow-hidden flex items-center justify-center shrink-0">
-              {logoUrl ? (
-                <img src={logoUrl} alt={hotelName} className="w-full h-full object-cover" />
+              {logoUrl && !logoFailed ? (
+                <img 
+                  src={logoUrl} 
+                  alt={hotelName} 
+                  className="w-full h-full object-cover" 
+                  onError={() => setLogoFailed(true)}
+                />
               ) : (
                 <span className="font-serif font-bold text-xs text-[#C5A059]">{hotelName.charAt(0)}</span>
               )}
@@ -541,7 +689,7 @@ function FooterComponent({ hotelName, subTitle, logoUrl, phone, email, address, 
           </div>
         </div>
 
-        {/* Social Media Links (Guaranteed High-Visibility Inline SVGs) */}
+        {/* Social Media Links */}
         <div className="space-y-3 md:text-right flex flex-col md:items-end">
           <h5 className="text-white text-[10px] font-bold tracking-widest uppercase">Social Media</h5>
           <div className="flex items-center gap-4 text-[#C5A059] pt-2">

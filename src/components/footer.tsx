@@ -7,6 +7,8 @@ import {
   Heart
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { TechBadge } from '@/components/ui/tech-icon';
 
 export function Footer() {
   const currentYear = 2026;
@@ -17,7 +19,8 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/25 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-border/70">
+        <ScrollReveal direction="up" duration={0.8}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-border/70">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Link
@@ -102,7 +105,7 @@ export function Footer() {
               <li>
                 <Link href="/games" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
                   Games Arcade
-                  <span className="text-[10px] liquid-badge text-indigo-500 font-semibold px-1.5 py-0.2 rounded-full">Play</span>
+                  <span className="text-[10px] liquid-badge text-indigo-500 font-semibold px-2 py-0.5 rounded-full">Play</span>
                 </Link>
               </li>
               <li>
@@ -171,14 +174,14 @@ export function Footer() {
             <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
               Core Tech Stack
             </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'NestJS', 'Spring Boot', 'MongoDB Atlas', 'MySQL', 'REST APIs', 'Git'].map((tech) => (
-                <span
+            <div className="flex flex-wrap gap-2 pt-1">
+              {['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'NestJS', 'Spring Boot', 'MySQL', 'MongoDB', 'Git', 'REST APIs'].map((tech) => (
+                <TechBadge
                   key={tech}
-                  className="text-xs px-2.5 py-1 rounded-lg liquid-glass-subtle text-muted-foreground border border-white/20 dark:border-white/10"
-                >
-                  {tech}
-                </span>
+                  name={tech}
+                  iconOnly={true}
+                  size="md"
+                />
               ))}
             </div>
             <div className="pt-2 text-xs text-muted-foreground">
@@ -186,26 +189,29 @@ export function Footer() {
             </div>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Bottom row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p className="flex items-center gap-1">
-            <span>© {currentYear} VickyRanaDev. Crafted with</span>
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline" />
-            <span>using Next.js & Tailwind CSS.</span>
-          </p>
-          <div className="flex items-center gap-4">
-            <Link href="/contact" className="hover:text-foreground transition-colors">
-              Get in Touch
-            </Link>
-            <span>•</span>
-            <a href="/vickyrana_resume_fe_new.pdf" download="vickyrana_resume_fe_new.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Download CV
-            </a>
-            <span>•</span>
-            <span className="font-mono">{profileData.availability.timezone}</span>
+        <ScrollReveal direction="up" delay={0.15} duration={0.8}>
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground text-center sm:text-left">
+            <p className="flex items-center gap-1.5">
+              <span>© {currentYear} VickyRanaDev. Crafted with</span>
+              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" />
+              <span>using Next.js & Tailwind CSS.</span>
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link href="/contact" className="hover:text-foreground transition-colors">
+                Get in Touch
+              </Link>
+              <span className="text-muted-foreground/40">•</span>
+              <a href="/vickyrana_resume_fe_new.pdf" download="vickyrana_resume_fe_new.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                Download CV
+              </a>
+              <span className="text-muted-foreground/40">•</span>
+              <span className="font-mono">{profileData.availability.timezone}</span>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </footer>
   );

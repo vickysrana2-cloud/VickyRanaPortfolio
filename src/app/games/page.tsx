@@ -14,6 +14,8 @@ import {
   X
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { TechBadge } from '@/components/ui/tech-icon';
 
 export default function GamesArcadePage() {
   const [selectedCategory, setSelectedCategory] = React.useState<GameCategory>('All');
@@ -36,59 +38,69 @@ export default function GamesArcadePage() {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header Banner */}
-      <div className="relative mb-12 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-indigo-500 dark:text-indigo-400 text-xs font-semibold mb-4">
-          <Gamepad2 className="w-4 h-4" />
-          <span>Interactive Browser Arcade</span>
+      <ScrollReveal direction="down" duration={0.8}>
+        <div className="relative mb-12 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-indigo-500 dark:text-indigo-400 text-xs font-semibold mb-4">
+            <Gamepad2 className="w-4 h-4" />
+            <span>Interactive Browser Arcade</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
+            Playable Mini-Games
+          </h1>
+          <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            Engineered from scratch using React 19, TypeScript, HTML5 Canvas, and Web Audio API. No external plugins—every game is fully functional directly in your browser.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
-          Playable Mini-Games
-        </h1>
-        <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Engineered from scratch using React 19, TypeScript, HTML5 Canvas, and Web Audio API. No external plugins—every game is fully functional directly in your browser.
-        </p>
-      </div>
+      </ScrollReveal>
 
       {/* Search and Filters Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto p-1.5 rounded-2xl liquid-glass-subtle">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={cn(
-                'px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200',
-                selectedCategory === cat
-                  ? 'liquid-btn-primary text-white shadow-xs'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10'
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+          {/* Category Pills */}
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto p-1.5 rounded-2xl liquid-glass-subtle">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={cn(
+                  'px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200',
+                  selectedCategory === cat
+                    ? 'liquid-btn-primary text-white shadow-xs'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10'
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
 
-        {/* Search Input */}
-        <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-indigo-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search games or tech..."
-            className="w-full pl-10 pr-4 py-2 text-sm liquid-glass-input rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
+          {/* Search Input */}
+          <div className="relative w-full sm:w-72">
+            <Search className="w-4 h-4 text-indigo-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search games or tech..."
+              className="w-full pl-10 pr-4 py-2 text-sm liquid-glass-input rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none"
+            />
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Game Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {filteredGames.map((game) => (
-          <div
+        {filteredGames.map((game, idx) => (
+          <ScrollReveal
             key={game.id}
-            className="group rounded-3xl liquid-glass-interactive border border-white/25 dark:border-white/12 p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden"
+            direction="scale"
+            delay={idx * 0.08}
+            duration={0.8}
+            amount={0.1}
           >
+            <div
+              className="group rounded-3xl liquid-glass-interactive border border-white/25 dark:border-white/12 p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden h-full"
+            >
             {/* Specular top highlight */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
 
@@ -137,12 +149,11 @@ export default function GamesArcadePage() {
               {/* Tech stack badges */}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {game.techStack.map((tech) => (
-                  <span
+                  <TechBadge
                     key={tech}
-                    className="text-[11px] font-mono px-2 py-0.5 rounded-lg liquid-glass-subtle border border-white/20 text-muted-foreground"
-                  >
-                    {tech}
-                  </span>
+                    name={tech}
+                    size="sm"
+                  />
                 ))}
               </div>
             </div>
@@ -166,6 +177,7 @@ export default function GamesArcadePage() {
               </Link>
             </div>
           </div>
+          </ScrollReveal>
         ))}
       </div>
 

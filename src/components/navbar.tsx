@@ -127,7 +127,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
 
 
           {/* Desktop Navigation Links (Simple Words, No BG, No Border) */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -135,17 +135,20 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 py-1 select-none',
+                    'text-sm font-medium transition-all duration-200 flex items-center gap-1.5 py-1 select-none relative',
                     isActive
-                      ? 'text-foreground font-bold'
+                      ? 'text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
                   <span>{link.name}</span>
                   {link.badge && (
-                    <span className="text-[10px] font-semibold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider">
+                    <span className="text-[9px] font-bold text-indigo-500 dark:text-indigo-400 bg-indigo-500/10 dark:bg-indigo-400/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
                       {link.badge}
                     </span>
+                  )}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
                   )}
                 </Link>
               );

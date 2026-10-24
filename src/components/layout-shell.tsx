@@ -12,6 +12,15 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
   const [commandOpen, setCommandOpen] = React.useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const isPreview = pathname?.startsWith('/templates/preview');
+
+  if (isPreview) {
+    return (
+      <main className="w-full min-h-screen bg-background text-foreground overflow-x-hidden">
+        {children}
+      </main>
+    );
+  }
 
   return (
     <>

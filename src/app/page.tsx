@@ -20,7 +20,8 @@ import {
   CheckCircle2, 
   Terminal,
   Zap,
-  Play
+  Play,
+  MapPin
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
 import { CursorCharacter } from '@/components/cursor-character';
@@ -114,10 +115,10 @@ function ProjectCard({
 
           {/* Stats Bar */}
           {project.stats && (
-            <div className="grid grid-cols-3 gap-2 pt-1">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-1">
               {Object.entries(project.stats).map(([k, v]) => (
-                <div key={k} className="p-2.5 rounded-xl border border-white/10 bg-white/[0.02] dark:bg-white/[0.03] text-center">
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase block">{k}</span>
+                <div key={k} className="p-2 sm:p-2.5 rounded-xl border border-white/10 bg-white/[0.02] dark:bg-white/[0.03] text-center">
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase block truncate">{k}</span>
                   <span className="text-xs font-mono font-bold text-foreground mt-0.5 block truncate">{v}</span>
                 </div>
               ))}
@@ -133,15 +134,15 @@ function ProjectCard({
         </div>
 
         {/* Card Footer CTAs */}
-        <div className="relative mt-8 pt-5 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
+        <div className="relative mt-8 pt-5 border-t border-border/60 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
           <Link
             href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl liquid-btn-primary text-xs sm:text-sm font-semibold transition-all hover:scale-102"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl liquid-btn-primary text-xs sm:text-sm font-semibold transition-all hover:scale-102 text-center"
           >
             <span>Explore Architecture Case Study</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 shrink-0" />
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
@@ -278,17 +279,17 @@ function ProjectCard({
 
 export default function HomePage() {
   const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 3);
-  const featuredGames = gamesData.slice(0, 3);
+  const featuredGames = gamesData.slice(0, 4);
   const featuredTemplates = templatesData.slice(0, 3);
   const [leadBio, ...restBio] = profileData.bio;
 
   return (
-    <div className="flex flex-col gap-24 sm:gap-32 pb-16 overflow-hidden">
+    <div className="flex flex-col gap-16 sm:gap-24 lg:gap-32 pb-16 overflow-hidden">
      {/* 1. HERO SECTION */}
 <section
   id="home"
   aria-labelledby="hero-heading"
-  className="relative mx-auto w-full max-w-7xl px-4 pt-24 sm:px-6 sm:pt-32 lg:px-8 lg:pt-36"
+  className="relative mx-auto w-full max-w-7xl px-4 pt-20 sm:px-6 sm:pt-28 lg:px-8 lg:pt-36"
 >
   {/* One soft ambient glow (was two) */}
   <div
@@ -296,7 +297,7 @@ export default function HomePage() {
     className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl sm:h-[640px] sm:w-[640px] dark:bg-indigo-600/20"
   />
 
-  <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12 lg:gap-16">
+  <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 lg:gap-16">
     {/* LEFT: message */}
     <ScrollReveal direction="up" duration={0.8} once={true} className="flex flex-col items-center text-center md:col-span-7 md:items-start md:text-left">
       {/* Availability */}
@@ -311,7 +312,7 @@ export default function HomePage() {
       {/* Headline */}
       <h1
         id="hero-heading"
-        className="mt-6 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+        className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
       >
         Building{" "}
         <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
@@ -328,10 +329,10 @@ export default function HomePage() {
       </p>
 
       {/* Actions: one primary, one secondary */}
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+      <div className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <Code2 className="h-4 w-4" aria-hidden="true" />
           View projects
@@ -342,7 +343,7 @@ export default function HomePage() {
           download="vickyrana_resume_fe_new.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <FileText className="h-4 w-4 text-indigo-500" aria-hidden="true" />
           Download resume
@@ -350,7 +351,7 @@ export default function HomePage() {
       </div>
 
       {/* Quiet secondary links: contact + socials in one row */}
-      <div className="mt-6 flex items-center gap-1 text-muted-foreground">
+      <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-1 text-muted-foreground">
         <Link
           href="/contact"
           className="mr-2 rounded-md px-2 py-1 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
@@ -377,32 +378,44 @@ export default function HomePage() {
     </ScrollReveal>
 
     {/* RIGHT: character */}
-    <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="flex w-full justify-center md:col-span-5">
+    <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5">
       <CursorCharacter className="aspect-square w-full max-w-xs select-none sm:max-w-sm md:max-w-md" />
     </ScrollReveal>
   </div>
 
   {/* Metrics: one slim divided strip instead of four heavy cards */}
   <ScrollReveal direction="up" delay={0.3} duration={0.8} once={true}>
-    <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-2xl border border-border/60 bg-background/40 backdrop-blur-sm sm:mt-20 md:grid-cols-4 md:divide-x md:divide-border/60">
-      {profileData.metrics.map((metric, i) => (
-        <div
-          key={i}
-          className={cn(
-            "px-5 py-6 text-center md:text-left",
-            i % 2 === 1 && "border-l border-border/60 md:border-l-0",
-            i > 1 && "border-t border-border/60 md:border-t-0"
-          )}
-        >
-          <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-            {metric.label}
-          </dt>
-          <dd className="mt-1.5 font-mono text-3xl font-bold tracking-tight text-foreground">
-            {metric.value}
-          </dd>
-          <p className="mt-1 text-xs leading-snug text-muted-foreground">{metric.description}</p>
-        </div>
-      ))}
+    <dl className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-2xl border border-border/60 bg-background/40 backdrop-blur-sm shadow-sm">
+      {profileData.metrics.map((metric, i) => {
+        const metricIcons = [Code2, Briefcase, Award, MapPin];
+        const Icon = metricIcons[i] || Sparkles;
+        return (
+          <div
+            key={metric.label}
+            className={cn(
+              "relative flex flex-col justify-between p-5 sm:p-6 transition-colors duration-200 hover:bg-muted/15",
+              i === 1 && "border-t border-border/60 sm:border-t-0 sm:border-l",
+              i === 2 && "border-t border-border/60 sm:border-l-0 lg:border-l lg:border-t-0",
+              i === 3 && "border-t border-border/60 sm:border-l lg:border-t-0"
+            )}
+          >
+            <div>
+              <div className="flex items-center justify-between gap-2">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {metric.label}
+                </dt>
+                <span className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </div>
+              <dd className="mt-2.5 text-base sm:text-lg lg:text-base xl:text-lg font-bold tracking-tight text-foreground">
+                {metric.value}
+              </dd>
+            </div>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{metric.description}</p>
+          </div>
+        );
+      })}
     </dl>
   </ScrollReveal>
 </section>
@@ -640,7 +653,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Arcade Card */}
           <ScrollReveal direction="scale" duration={0.8}>
-            <div className="p-8 sm:p-10 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 flex flex-col justify-between space-y-6 relative overflow-hidden h-full">
+            <div className="p-5 sm:p-8 lg:p-10 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 flex flex-col justify-between space-y-6 relative overflow-hidden h-full">
               {/* Specular top highlight */}
               <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />
 
@@ -653,10 +666,10 @@ export default function HomePage() {
                   Playable Games Arcade
                 </h2>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Test your reflexes and problem solving with Cyber 2048, Retro Snake Quest, Memory Matrix, and Dev Code Typer. Built with HTML5 Canvas and React.
+                  Test your reflexes and problem solving with Cyber 2048, Retro Snake Quest, Dragon Runner, and Dev Code Typer. Built with HTML5 Canvas and React.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 pt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-4 sm:pt-6">
                   {featuredGames.map((game) => (
                     <Link
                       key={game.id}
@@ -665,7 +678,7 @@ export default function HomePage() {
                     >
                       <div className="flex items-center justify-between text-xs font-bold text-foreground group-hover:text-emerald-400">
                         <span>{game.title}</span>
-                        <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />
+                        <Play className="w-3 h-3 text-emerald-400 fill-emerald-400 shrink-0" />
                       </div>
                       <span className="text-[11px] text-muted-foreground font-mono block mt-0.5">
                         {game.category} • Playable
@@ -677,7 +690,7 @@ export default function HomePage() {
 
               <Link
                 href="/games"
-                className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/25 border border-white/20"
+                className="inline-flex w-full items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/25 border border-white/20 text-center"
               >
                 <Gamepad2 className="w-4 h-4" />
                 <span>Enter Games Arcade</span>
@@ -687,7 +700,7 @@ export default function HomePage() {
 
           {/* Templates Card */}
           <ScrollReveal direction="scale" delay={0.15} duration={0.8}>
-            <div className="p-8 sm:p-10 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 flex flex-col justify-between space-y-6 relative overflow-hidden h-full">
+            <div className="p-5 sm:p-8 lg:p-10 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 flex flex-col justify-between space-y-6 relative overflow-hidden h-full">
               {/* Specular top highlight */}
               <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-purple-400/40 to-transparent pointer-events-none" />
 
@@ -703,7 +716,7 @@ export default function HomePage() {
                   Explore over 40 production-grade commercial website templates across 9 industries (Automotive, Real Estate, Healthcare, Law, Hospitality, Luxury, Fitness, and E-commerce) with interactive multi-device viewport testing.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 pt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-4 sm:pt-6">
                   {featuredTemplates.map((template) => (
                     <Link
                       key={template.id}
@@ -711,10 +724,10 @@ export default function HomePage() {
                       className="p-3.5 rounded-2xl liquid-glass-subtle hover:border-purple-500/40 border border-white/20 dark:border-white/10 transition-all group block"
                     >
                       <div className="flex items-center justify-between text-xs font-bold text-foreground group-hover:text-purple-400">
-                        <span>{template.title.split(' ')[0]} {template.title.split(' ')[1] || ''}</span>
-                        <ArrowRight className="w-3 h-3 text-purple-400" />
+                        <span className="truncate">{template.title.split(' ')[0]} {template.title.split(' ')[1] || ''}</span>
+                        <ArrowRight className="w-3 h-3 text-purple-400 shrink-0" />
                       </div>
-                      <span className="text-[11px] text-muted-foreground font-mono block mt-0.5">
+                      <span className="text-[11px] text-muted-foreground font-mono block mt-0.5 truncate">
                         {template.category}
                       </span>
                     </Link>
@@ -724,7 +737,7 @@ export default function HomePage() {
 
               <Link
                 href="/templates"
-                className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/25 border border-white/20"
+                className="inline-flex w-full items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/25 border border-white/20 text-center"
               >
                 <LayoutTemplate className="w-4 h-4" />
                 <span>Explore 40+ Commercial Templates</span>
@@ -737,20 +750,20 @@ export default function HomePage() {
       {/* 7. VERIFIED ACHIEVEMENTS BANNER */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <ScrollReveal direction="up" duration={0.8}>
-          <div className="p-8 sm:p-10 rounded-3xl liquid-glass-elevated border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div className="p-5 sm:p-8 lg:p-10 rounded-3xl liquid-glass-elevated border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative overflow-hidden">
             {/* Specular highlight */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent pointer-events-none" />
 
-            <div className="flex items-center gap-4">
-              <div className="p-4 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/25 shrink-0 shadow-sm shadow-amber-500/10">
-                <Award className="w-8 h-8" />
+            <div className="flex items-start sm:items-center gap-4">
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/25 shrink-0 shadow-sm shadow-amber-500/10">
+                <Award className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-foreground">
                     Verified Certifications & Academic Accomplishments
                   </h3>
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     Verified
                   </span>
@@ -763,10 +776,10 @@ export default function HomePage() {
 
             <Link
               href="/achievements"
-              className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 border border-white/30"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 border border-white/30 text-center"
             >
               <span>View All Credentials</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
           </div>
         </ScrollReveal>
@@ -775,7 +788,7 @@ export default function HomePage() {
       {/* 8. CALL TO ACTION / CONTACT INVITATION */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <ScrollReveal direction="scale" duration={0.9} amount={0.2}>
-          <div className="p-8 sm:p-14 rounded-3xl liquid-glass-elevated border border-white/30 dark:border-white/15 text-center max-w-3xl mx-auto space-y-6 relative overflow-hidden">
+          <div className="p-6 sm:p-10 lg:p-14 rounded-3xl liquid-glass-elevated border border-white/30 dark:border-white/15 text-center max-w-3xl mx-auto space-y-6 relative overflow-hidden">
             {/* Specular top highlight */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/60 dark:via-white/30 to-transparent pointer-events-none" />
 
@@ -784,18 +797,18 @@ export default function HomePage() {
               <span>Currently Interviewing</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-foreground tracking-tight">
               Have a role or project in mind?
             </h2>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
               Whether you need a full-stack engineer to build an end-to-end platform or lead backend service architecture, let’s connect.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2">
               <Link
                 href="/contact"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm sm:text-base text-center"
               >
                 <Mail className="w-4 h-4" />
                 <span>Send a Message</span>
@@ -803,7 +816,7 @@ export default function HomePage() {
 
               <a
                 href={`mailto:${profileData.contact.email}`}
-                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-secondary text-foreground font-semibold text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-secondary text-foreground font-semibold text-sm sm:text-base text-center"
               >
                 <span>{profileData.contact.email}</span>
               </a>

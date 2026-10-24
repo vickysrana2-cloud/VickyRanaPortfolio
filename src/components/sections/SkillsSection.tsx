@@ -285,9 +285,7 @@ function MobileSkillMarquee({ skills }: { skills: MarqueeSkill[] }) {
           </div>
         );
       })}
-      <p className="px-4 text-center text-[11px] text-muted-foreground motion-reduce:hidden">
-        Press and hold to pause
-      </p>
+     
     </div>
   );
 }

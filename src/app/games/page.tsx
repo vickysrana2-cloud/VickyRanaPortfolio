@@ -183,8 +183,8 @@ export default function GamesArcadePage() {
 
       {/* Embedded Arcade Modal Player */}
       {activeGame && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-3xl p-4 sm:p-6 liquid-glass-elevated border border-white/30 dark:border-white/15 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-4xl max-h-[94vh] overflow-y-auto rounded-3xl p-3 sm:p-5 liquid-glass-elevated border border-white/30 dark:border-white/15 animate-in zoom-in-95 duration-200">
             {/* Modal Close Button */}
             <button
               onClick={() => setActiveGame(null)}

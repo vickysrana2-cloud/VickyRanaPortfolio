@@ -19,7 +19,7 @@ export default function FixedBackgroundSection({
   className = '',
   overlay = false,
   overlayOpacity = 0,
-  minHeight = '70vh',
+  minHeight = '60vh',
   imageSize = 'min(100vh, 100vw)',
 }: FixedBackgroundSectionProps) {
   return (

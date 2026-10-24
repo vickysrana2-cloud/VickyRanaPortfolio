@@ -162,6 +162,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/games/dragon-runner" className="text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between">
+                  <span>Dragon Runner</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/60" />
+                </Link>
+              </li>
+              <li>
                 <Link href="/templates" className="text-muted-foreground hover:text-foreground transition-colors">
                   Responsive Templates
                 </Link>

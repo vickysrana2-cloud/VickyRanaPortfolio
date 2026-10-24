@@ -80,5 +80,30 @@ export const gamesData: Game[] = [
     ],
     difficulty: 'Easy',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Typing Metrics Engine']
+  },
+  {
+    id: 'game-dragon-runner',
+    slug: 'dragon-runner',
+    title: 'Dragon Runner',
+    tagline: 'Leap over obstacles, duck under flying bats, and survive the endless arcade sprint.',
+    description: 'A high-speed offline-style browser runner game built with HTML5 Canvas and React. Leap over crystals and rocks, duck under airborne enemies, and survive escalating speeds with synthesized audio feedback and high score tracking.',
+    category: 'Arcade',
+    thumbnail: '/images/games/dragon-runner.png',
+    tags: ['HTML5 Canvas', 'TypeScript', 'Arcade', 'Physics Loop', 'Web Audio API'],
+    featured: true,
+    playableOnline: true,
+    controls: [
+      'Spacebar, Arrow Up, or W key to jump',
+      'Arrow Down or S key to duck',
+      'On-screen touch buttons for mobile devices',
+      'Enter key to restart after a run'
+    ],
+    instructions: [
+      'Press Space or Up Arrow to leap over ground obstacles like rocks and crystals.',
+      'Hold Down Arrow to duck beneath flying bats.',
+      'The speed gradually increases the longer you survive. Compete for the personal best score!'
+    ],
+    difficulty: 'Medium',
+    techStack: ['HTML5 Canvas', 'TypeScript', 'Web Audio API', 'React 19', 'Tailwind CSS']
   }
 ];

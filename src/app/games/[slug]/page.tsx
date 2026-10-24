@@ -37,7 +37,7 @@ export default async function DedicatedGamePage({ params }: GamePageProps) {
   }
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Back button */}
       <ScrollReveal direction="down" duration={0.6}>
         <div className="mb-6">
@@ -54,12 +54,12 @@ export default async function DedicatedGamePage({ params }: GamePageProps) {
       {/* Game Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Playable Game Viewport */}
-        <ScrollReveal direction="scale" duration={0.8} amount={0.1} className="lg:col-span-7 flex flex-col items-center">
+        <ScrollReveal direction="scale" duration={0.8} amount={0.1} className="lg:col-span-8 flex flex-col items-stretch">
           <GamePlayer game={game} />
         </ScrollReveal>
 
         {/* Game Details Sidebar */}
-        <ScrollReveal direction="up" delay={0.15} duration={0.8} className="lg:col-span-5 space-y-6">
+        <ScrollReveal direction="up" delay={0.15} duration={0.8} className="lg:col-span-4 space-y-6">
           <div className="p-6 sm:p-7 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 space-y-4 relative overflow-hidden">
             {/* Specular top highlight */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />

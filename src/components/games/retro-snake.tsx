@@ -34,9 +34,9 @@ const INITIAL_SNAKE: Point[] = [
 ];
 
 const DIFFICULTIES: { label: Difficulty; speed: number; description: string }[] = [
-  { label: 'Casual', speed: 145, description: 'Relaxed pace' },
-  { label: 'Normal', speed: 105, description: 'Classic mode' },
-  { label: 'Overdrive', speed: 65, description: 'Maximum speed' },
+  { label: 'Casual', speed: 280, description: 'Relaxed pace' },
+  { label: 'Normal', speed: 185, description: 'Classic mode' },
+  { label: 'Overdrive', speed: 100, description: 'Maximum speed' },
 ];
 
 function createFood(snake: Point[]): Point | null {

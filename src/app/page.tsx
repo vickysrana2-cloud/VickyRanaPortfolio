@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
 import { CursorCharacter } from '@/components/cursor-character';
+import { CharacterScene } from '@/components/character/CharacterScene';
 import { FixedBackgroundSection } from '@/components/sections/FixedBackgroundSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
@@ -419,6 +420,17 @@ export default function HomePage() {
     </dl>
   </ScrollReveal>
 </section>
+
+      {/* 3D PROCEDURAL CHARACTER COMPANION */}
+      <ScrollReveal direction="up" duration={0.9} amount={0.15}>
+        <section
+          id="character-companion"
+          aria-label="Interactive 3D Golden Monkey Character"
+          className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
+          <CharacterScene />
+        </section>
+      </ScrollReveal>
 
       {/* 2. ABOUT ME SECTION */}
       <ScrollReveal direction="up" duration={0.9} amount={0.15}>

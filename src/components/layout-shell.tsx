@@ -8,7 +8,9 @@ import { CommandMenu } from './command-menu';
 import { BackToTop } from './back-to-top';
 import { cn } from '@/lib/utils';
 
-export function LayoutShell({ children }: { children: React.ReactNode }) {
+// Inner component that uses usePathname — must be wrapped in <Suspense>
+// by the parent so Next.js can prerender the shell without blocking.
+function LayoutShellInner({ children }: { children: React.ReactNode }) {
   const [commandOpen, setCommandOpen] = React.useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
@@ -32,6 +34,18 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
       <CommandMenu isOpen={commandOpen} onClose={() => setCommandOpen(false)} />
       <BackToTop />
     </>
+  );
+}
+
+export function LayoutShell({ children }: { children: React.ReactNode }) {
+  return (
+    <React.Suspense fallback={
+      <main className="flex-1 flex flex-col">
+        {children}
+      </main>
+    }>
+      <LayoutShellInner>{children}</LayoutShellInner>
+    </React.Suspense>
   );
 }
 

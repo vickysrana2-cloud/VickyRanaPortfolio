@@ -1,5 +1,7 @@
 'use client';
 
+import { ElectricLogo } from '@/components/ui/ElectricLogo';
+
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -100,28 +102,23 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
+          {/* Logo with Electric Animation */}
           <Link
             href="/"
             aria-label="VickyRana Home"
-            className="group inline-flex items-center rounded-md font-mono text-base  sm:text-2xl font-bold tracking-tight select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity hover:opacity-90"
+            className="group relative inline-flex items-center h-10 w-36 sm:h-12 sm:w-48 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-transform hover:scale-[1.02]"
           >
-            <span
-              aria-hidden="true"
-              className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:-translate-x-0.5 select-none"
-            >
-              &lt;
-            </span>
-            <span className="text-foreground font-black">Vicky</span>
-            <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400 font-black">
-              Rana
-            </span>
-            <span
-              aria-hidden="true"
-              className="text-indigo-500 dark:text-indigo-400 font-semibold transition-transform duration-300 group-hover:translate-x-0.5 select-none"
-            >
-              /&gt;
-            </span>
+            <ElectricLogo
+              scale={0.92}
+              glow={1.4}
+              intensity={1.2}
+              thickness={1.5}
+              arcs={2}
+              speed={2.2}
+              color="#e0f7ff"
+              glowColor="#00d4ff"
+              className="w-full h-full pointer-events-none"
+            />
           </Link>
 
 

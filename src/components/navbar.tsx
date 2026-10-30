@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './theme-toggle';
 import { cn } from '@/lib/utils';
-import { 
-  Menu, 
-  X, 
-  Search, 
+import {
+  Menu,
+  X,
+  Search,
   FileText,
   Mail
 } from 'lucide-react';
@@ -74,8 +74,8 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
-    { 
-      name: 'Games', 
+    {
+      name: 'Games',
       href: '/games',
       badge: 'Arcade'
     },
@@ -104,7 +104,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
           <Link
             href="/"
             aria-label="VickyRana Home"
-            className="group inline-flex items-center rounded-md font-mono text-base sm:text-lg font-bold tracking-tight select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity hover:opacity-90"
+            className="group inline-flex items-center rounded-md font-mono text-base  sm:text-2xl font-bold tracking-tight select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity hover:opacity-90"
           >
             <span
               aria-hidden="true"

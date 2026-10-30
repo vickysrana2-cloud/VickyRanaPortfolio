@@ -611,9 +611,17 @@ void main() {
   float tint = (1.0 - exp(-body * gain * 1.2)) * grow * grow * (1.0 - ink * 0.82);
   color += uGlowColor * tint * (1.0 - alpha);
   alpha += tint * (1.0 - alpha);
-  float grain = (fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715)))) - 0.5) / 255.0;
-  alpha = clamp(alpha + grain, 0.0, 1.0);
-  fragColor = vec4(clamp(color + grain, 0.0, alpha), alpha);
+
+  // Soft edge fade near canvas bounds so no hard rectangular clipping ever occurs:
+  vec2 edgeDist = min(vUv, 1.0 - vUv) * uResolution;
+  float edgeMask = smoothstep(0.0, 18.0, min(edgeDist.x, edgeDist.y));
+  alpha *= edgeMask;
+  color *= edgeMask;
+
+  if (alpha < 0.002) {
+    discard;
+  }
+  fragColor = vec4(clamp(color, 0.0, alpha), alpha);
 }
 `;
 
@@ -746,6 +754,8 @@ export const ElectricLogo = ({
         type: gl.FLOAT,
         minFilter: gl.LINEAR,
         magFilter: gl.LINEAR,
+        wrapS: gl.CLAMP_TO_EDGE,
+        wrapT: gl.CLAMP_TO_EDGE,
         generateMipmaps: false,
         flipY: false,
         unpackAlignment: 1
@@ -759,6 +769,8 @@ export const ElectricLogo = ({
         type: gl.FLOAT,
         minFilter: gl.LINEAR,
         magFilter: gl.LINEAR,
+        wrapS: gl.CLAMP_TO_EDGE,
+        wrapT: gl.CLAMP_TO_EDGE,
         generateMipmaps: false,
         flipY: false,
         unpackAlignment: 1

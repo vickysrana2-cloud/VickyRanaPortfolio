@@ -24,7 +24,7 @@ export function TemplatePreviewRenderer({ slug }: TemplatePreviewRendererProps) 
   }
 
   return (
-    <div className="w-full min-h-screen bg-background text-foreground selection:bg-indigo-500/20 selection:text-indigo-500">
+    <div className="w-full min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-indigo-500/20 selection:text-indigo-500">
       <LiveComponent />
     </div>
   );

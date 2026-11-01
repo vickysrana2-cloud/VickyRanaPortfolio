@@ -263,7 +263,11 @@ export function TemplateDevicePreview({
           <div 
             className={cn(
               'w-full bg-background overflow-hidden transition-all relative',
-              device === 'desktop' ? 'h-[640px]' : device === 'tablet' ? 'w-[768px] max-w-full mx-auto h-[740px] rounded-[24px]' : 'w-[390px] max-w-full mx-auto h-[680px] rounded-[36px]'
+              device === 'desktop'
+                ? 'h-[500px] sm:h-[640px] max-h-[72vh]'
+                : device === 'tablet'
+                ? 'w-[768px] max-w-full mx-auto h-[520px] sm:h-[740px] max-h-[72vh] rounded-[24px]'
+                : 'w-[390px] max-w-full mx-auto h-[480px] sm:h-[680px] max-h-[72vh] rounded-[24px] sm:rounded-[36px]'
             )}
           >
             {viewMode === 'live' && hasLiveComponent ? (

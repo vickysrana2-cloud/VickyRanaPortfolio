@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import {
   ArrowLeft,
   Gamepad2,
@@ -13,11 +14,27 @@ import {
   Zap,
 } from 'lucide-react';
 
-import { Cyber2048 } from './cyber-2048';
-import { RetroSnake } from './retro-snake';
-import { MemoryMatrix } from './memory-matrix';
-import { CodeSpeedTyper } from './code-typer';
-import { DragonRunner } from './DragonRunner';
+const Cyber2048 = dynamic(
+  () => import('./cyber-2048').then((m) => m.Cyber2048),
+  { ssr: false }
+);
+const RetroSnake = dynamic(
+  () => import('./retro-snake').then((m) => m.RetroSnake),
+  { ssr: false }
+);
+const MemoryMatrix = dynamic(
+  () => import('./memory-matrix').then((m) => m.MemoryMatrix),
+  { ssr: false }
+);
+const CodeSpeedTyper = dynamic(
+  () => import('./code-typer').then((m) => m.CodeSpeedTyper),
+  { ssr: false }
+);
+const DragonRunner = dynamic(
+  () => import('./DragonRunner').then((m) => m.DragonRunner),
+  { ssr: false }
+);
+
 import { Game } from '@/types';
 
 interface GamePlayerProps {

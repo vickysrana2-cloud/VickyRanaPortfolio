@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { ScrollReveal } from '../animations/ScrollReveal';
 
@@ -29,7 +27,7 @@ export default function FixedBackgroundSection({
     >
       {/* Fixed Background Layer (bg-fixed anchored to viewport center with matching black backdrop) */}
       <div 
-        className="absolute inset-0 bg-black pointer-events-none z-0 bg-fixed bg-center bg-no-repeat"
+        className="absolute inset-0 bg-black pointer-events-none z-0 bg-scroll sm:bg-fixed bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url('${image}')`,
           backgroundSize: imageSize,
@@ -44,8 +42,6 @@ export default function FixedBackgroundSection({
         />
       )}
 
-
-
       {/* Foreground Content Layer (if provided) */}
       {children && (
         <ScrollReveal className="relative z-10 w-full min-h-full flex flex-col justify-center items-center py-12">
@@ -57,4 +53,3 @@ export default function FixedBackgroundSection({
 }
 
 export { FixedBackgroundSection };
-

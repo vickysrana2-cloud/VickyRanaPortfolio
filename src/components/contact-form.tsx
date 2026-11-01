@@ -244,7 +244,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={submissionStatus === 'loading'}
-            className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl liquid-btn-primary disabled:opacity-60 text-white font-semibold text-sm transition-all"
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl liquid-btn-primary disabled:opacity-60 text-white font-semibold text-sm transition-all shadow-lg shadow-indigo-600/20"
           >
             {submissionStatus === 'loading' ? (
               <>

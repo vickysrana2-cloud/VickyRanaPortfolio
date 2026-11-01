@@ -285,7 +285,7 @@ function MobileSkillMarquee({ skills }: { skills: MarqueeSkill[] }) {
           </div>
         );
       })}
-     
+
     </div>
   );
 }
@@ -363,10 +363,6 @@ export function SkillsSection() {
       <ScrollReveal direction="down" duration={0.8} amount={0.15}>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
-              <Zap className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Technical Competencies</span>
-            </div>
             <h2
               id="skills-heading"
               className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl"
@@ -415,80 +411,80 @@ export function SkillsSection() {
 
       {/* Tabs + legend (tablet / desktop) */}
       <div className="hidden sm:block">
-      <ScrollReveal direction="up" delay={0.1} duration={0.8}>
-        <div className="mt-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div
-            role="tablist"
-            aria-label="Skill categories"
-            onKeyDown={onTabKey}
-            className="-mx-1 flex gap-2 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {tabs.map((t) => {
-              const selected = active === t.key;
-              return (
-                <button
-                  key={t.key}
-                  role="tab"
-                  type="button"
-                  id={`skills-tab-${slug(t.key)}`}
-                  aria-selected={selected}
-                  aria-controls="skills-panel"
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActive(t.key)}
-                  className={cn(
-                    'group/tab relative inline-flex shrink-0 items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-                    selected
-                      ? cn('border-transparent bg-gradient-to-r text-white shadow-lg', t.theme.tabActive)
-                      : cn(
+        <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+          <div className="mt-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div
+              role="tablist"
+              aria-label="Skill categories"
+              onKeyDown={onTabKey}
+              className="-mx-1 flex gap-2 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {tabs.map((t) => {
+                const selected = active === t.key;
+                return (
+                  <button
+                    key={t.key}
+                    role="tab"
+                    type="button"
+                    id={`skills-tab-${slug(t.key)}`}
+                    aria-selected={selected}
+                    aria-controls="skills-panel"
+                    tabIndex={selected ? 0 : -1}
+                    onClick={() => setActive(t.key)}
+                    className={cn(
+                      'group/tab relative inline-flex shrink-0 items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                      selected
+                        ? cn('border-transparent bg-gradient-to-r text-white shadow-lg', t.theme.tabActive)
+                        : cn(
                           'border-border/60 bg-background/40 text-muted-foreground hover:-translate-y-0.5 hover:text-foreground',
                           t.theme.tabHover
                         )
-                  )}
-                >
-                  {!selected && (
-                    <span
-                      aria-hidden="true"
-                      className={cn('h-1.5 w-1.5 rounded-full transition-transform duration-300 group-hover/tab:scale-150', t.theme.dot)}
-                    />
-                  )}
-                  {t.key}
-                  <span
-                    className={cn(
-                      'rounded-full px-1.5 py-0.5 font-mono text-[10px] transition-colors',
-                      selected ? 'bg-white/25 text-white' : 'bg-muted text-muted-foreground'
                     )}
                   >
-                    {t.count}
-                  </span>
-                  {selected && (
+                    {!selected && (
+                      <span
+                        aria-hidden="true"
+                        className={cn('h-1.5 w-1.5 rounded-full transition-transform duration-300 group-hover/tab:scale-150', t.theme.dot)}
+                      />
+                    )}
+                    {t.key}
                     <span
-                      aria-hidden="true"
-                      className="skill-anim pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-white/25 blur-sm [animation:skill-shine_3.2s_ease-in-out_infinite]"
-                    />
-                  )}
-                </button>
-              );
-            })}
+                      className={cn(
+                        'rounded-full px-1.5 py-0.5 font-mono text-[10px] transition-colors',
+                        selected ? 'bg-white/25 text-white' : 'bg-muted text-muted-foreground'
+                      )}
+                    >
+                      {t.count}
+                    </span>
+                    {selected && (
+                      <span
+                        aria-hidden="true"
+                        className="skill-anim pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-white/25 blur-sm [animation:skill-shine_3.2s_ease-in-out_infinite]"
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="hidden items-center gap-4 text-[11px] text-muted-foreground sm:flex">
+              {Object.entries(LEVELS).map(([name, cfg]) => (
+                <span key={name} className="inline-flex items-center gap-1.5">
+                  <span className={cn('h-1.5 w-1.5 rounded-full', cfg.bar)} aria-hidden="true" />
+                  {name}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="hidden items-center gap-4 text-[11px] text-muted-foreground sm:flex">
-            {Object.entries(LEVELS).map(([name, cfg]) => (
-              <span key={name} className="inline-flex items-center gap-1.5">
-                <span className={cn('h-1.5 w-1.5 rounded-full', cfg.bar)} aria-hidden="true" />
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Active category description (fades on change) */}
-        <p
-          key={active}
-          className="skill-anim mt-4 min-h-[1.25rem] text-sm text-muted-foreground [animation:skill-fade_0.45s_ease-out_both]"
-        >
-          {activeMeta ? activeMeta.description : 'Everything across all categories.'}
-        </p>
-      </ScrollReveal>
+          {/* Active category description (fades on change) */}
+          <p
+            key={active}
+            className="skill-anim mt-4 min-h-[1.25rem] text-sm text-muted-foreground [animation:skill-fade_0.45s_ease-out_both]"
+          >
+            {activeMeta ? activeMeta.description : 'Everything across all categories.'}
+          </p>
+        </ScrollReveal>
       </div>
 
       {/* Skill cards (remounted per tab so the entrance replays) */}

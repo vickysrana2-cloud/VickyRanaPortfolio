@@ -24,6 +24,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: 'cover',
 };
 
 const SITE_URL =
@@ -80,6 +81,20 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/icon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '256x256', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   alternates: {
     canonical: SITE_URL,
   },

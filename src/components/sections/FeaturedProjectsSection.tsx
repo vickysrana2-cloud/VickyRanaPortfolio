@@ -99,7 +99,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                   type="button"
                   onClick={() => swapRef.current?.prev()}
                   aria-label="Previous project card"
-                  className="p-2 rounded-xl border border-border/70 bg-background/60 hover:bg-muted text-muted-foreground hover:text-foreground transition-all duration-200"
+                  className="p-2.5 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-all duration-200"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -107,7 +107,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                   type="button"
                   onClick={() => swapRef.current?.next()}
                   aria-label="Next project card"
-                  className="p-2 rounded-xl border border-border/70 bg-background/60 hover:bg-muted text-muted-foreground hover:text-foreground transition-all duration-200"
+                  className="p-2.5 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-all duration-200"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -199,7 +199,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           <div className="pt-2 flex items-center gap-3">
             <Link
               href={`/projects/${activeProject.slug}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl liquid-btn-primary text-xs sm:text-sm font-semibold transition-all hover:scale-102"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-primary text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-indigo-600/20"
             >
               <span>Explore Architecture Case Study</span>
               <ArrowRight className="w-4 h-4" />

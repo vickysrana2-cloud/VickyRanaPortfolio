@@ -34,7 +34,7 @@ function LayoutShellInner({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar onOpenCommand={() => setCommandOpen(true)} />
-      <main className={cn('flex-1 flex flex-col', !isHome && 'pt-16 sm:pt-20')}>
+      <main className={cn('flex-1 flex flex-col w-full overflow-x-hidden', !isHome && 'pt-16 sm:pt-20')}>
         {children}
       </main>
       <Footer />

@@ -209,7 +209,7 @@ export default function HomePage() {
             ariaLabel="About Me interactive flip card"
             className="w-full shadow-2xl"
             front={
-              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+              <div key="about-front" className="relative flex h-full flex-col justify-between p-5 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl overflow-y-auto">
                 {/* Specular top highlight */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent dark:via-white/30" />
                 {/* Soft ambient glow */}
@@ -265,7 +265,7 @@ export default function HomePage() {
               </div>
             }
             back={
-              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+              <div key="about-back" className="relative flex h-full flex-col justify-between p-5 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl overflow-y-auto">
                 {/* Specular top highlight */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent dark:via-white/30" />
                 {/* Soft ambient glow */}

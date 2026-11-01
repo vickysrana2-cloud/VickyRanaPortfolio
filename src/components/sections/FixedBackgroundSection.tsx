@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { ScrollReveal } from '../animations/ScrollReveal';
 
@@ -44,8 +42,6 @@ export default function FixedBackgroundSection({
         />
       )}
 
-
-
       {/* Foreground Content Layer (if provided) */}
       {children && (
         <ScrollReveal className="relative z-10 w-full min-h-full flex flex-col justify-center items-center py-12">
@@ -57,4 +53,3 @@ export default function FixedBackgroundSection({
 }
 
 export { FixedBackgroundSection };
-

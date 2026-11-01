@@ -44,7 +44,7 @@ export default function HomePage() {
       <section
         id="home"
         aria-labelledby="hero-heading"
-        className="relative mx-auto w-full max-w-7xl px-4 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pt-28"
+        className="relative mx-auto w-full max-w-7xl px-4 pt-28 sm:px-6 sm:pt-20 lg:px-8 lg:pt-28"
       >
         {/* One soft ambient glow (was two) */}
         <div

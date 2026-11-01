@@ -14,7 +14,6 @@ import {
   LayoutGrid
 } from 'lucide-react';
 import { Github } from '@/components/icons';
-import { cn } from '@/lib/utils';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TechBadge } from '@/components/ui/tech-icon';
 

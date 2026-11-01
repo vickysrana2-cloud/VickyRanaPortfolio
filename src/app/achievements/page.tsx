@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
-import { Award, ShieldCheck, Trophy, Sparkles } from 'lucide-react';
+import { Award } from 'lucide-react';
 import { AchievementsClient } from './AchievementsClient';
 
 export const metadata: Metadata = {

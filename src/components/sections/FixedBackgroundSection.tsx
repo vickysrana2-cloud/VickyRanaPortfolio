@@ -29,7 +29,7 @@ export default function FixedBackgroundSection({
     >
       {/* Fixed Background Layer (bg-fixed anchored to viewport center with matching black backdrop) */}
       <div 
-        className="absolute inset-0 bg-black pointer-events-none z-0 bg-fixed bg-center bg-no-repeat"
+        className="absolute inset-0 bg-black pointer-events-none z-0 bg-scroll sm:bg-fixed bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url('${image}')`,
           backgroundSize: imageSize,

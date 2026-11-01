@@ -273,6 +273,12 @@ body {
     inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
 }
 
+/* Selection highlight */
+::selection {
+  background-color: rgba(99, 102, 241, 0.28);
+  color: inherit;
+}
+
 /* Liquid Glass Buttons */
 .liquid-btn-primary {
   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
@@ -281,6 +287,12 @@ body {
     0 8px 24px -4px rgba(79, 70, 229, 0.45),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.liquid-btn-primary:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }
 
 .liquid-btn-primary:hover {
@@ -292,7 +304,7 @@ body {
 }
 
 .liquid-btn-primary:active {
-  transform: translateY(0.5px) scale(0.99);
+  transform: translateY(0.5px) scale(0.985);
 }
 
 .liquid-btn-secondary {
@@ -304,6 +316,12 @@ body {
     0 4px 14px -2px rgba(0, 0, 0, 0.05),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.liquid-btn-secondary:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }
 
 .liquid-btn-secondary:hover {
@@ -313,6 +331,10 @@ body {
   box-shadow: 
     0 6px 20px -3px rgba(0, 0, 0, 0.08),
     inset 0 1px 1px 0 #ffffff;
+}
+
+.liquid-btn-secondary:active {
+  transform: translateY(0.5px) scale(0.985);
 }
 
 .dark .liquid-btn-secondary {
@@ -331,6 +353,53 @@ body {
   box-shadow: 
     0 6px 22px -3px rgba(0, 0, 0, 0.5),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.dark .liquid-btn-secondary:active {
+  transform: translateY(0.5px) scale(0.985);
+}
+
+/* Unified Liquid Card Pattern */
+.liquid-card {
+  border-radius: 1.5rem; /* 24px */
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  background: rgba(241, 245, 250, 0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 
+    0 10px 32px -6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .liquid-card {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(14, 19, 32, 0.58);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  box-shadow: 
+    0 12px 36px -8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.02);
+}
+
+.liquid-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 
+    0 16px 40px -8px rgba(99, 102, 241, 0.12),
+    0 24px 48px -12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+.dark .liquid-card:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+  box-shadow: 
+    0 18px 45px -10px rgba(99, 102, 241, 0.22),
+    0 24px 50px -12px rgba(0, 0, 0, 0.65),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.28);
 }
 
 /* Glass Badges & Micro-Pills */

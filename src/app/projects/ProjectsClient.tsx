@@ -93,7 +93,7 @@ export function ProjectsClient() {
               <select
                 aria-label="Sort projects"
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
+                onChange={(e) => setSortBy(e.target.value as 'featured' | 'newest' | 'title')}
                 className="appearance-none pl-3 pr-8 py-2 rounded-xl text-xs sm:text-sm liquid-glass-input text-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer font-medium"
               >
                 <option value="featured" className="bg-background text-foreground">Featured</option>
@@ -115,7 +115,10 @@ export function ProjectsClient() {
             delay={idx * 0.1}
             duration={0.8}
           >
-            <div className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl liquid-glass border border-white/10 dark:border-white/10 hover:border-indigo-500/30 transition-all duration-300">
+            <div className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl liquid-glass liquid-glass-interactive border border-white/20 dark:border-white/10 hover:border-indigo-500/40 transition-all duration-300 overflow-hidden">
+              {/* Specular top highlight */}
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
+
               <div>
                 {/* Header: Category Badge + Status */}
                 <div className="flex items-center justify-between gap-2 mb-4">

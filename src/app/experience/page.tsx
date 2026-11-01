@@ -43,7 +43,7 @@ export default function ExperiencePage() {
               download="vickyrana_resume_fe_new.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm shadow-lg shadow-indigo-600/20"
             >
               <FileText className="w-4 h-4" />
               <span>Download Curriculum Vitae (PDF)</span>

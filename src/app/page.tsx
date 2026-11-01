@@ -6,7 +6,6 @@ import { gamesData } from '@/data/games';
 import { templatesData } from '@/data/templates';
 import {
   ArrowRight,
-  ExternalLink,
   Mail,
   FileText,
   Code2,
@@ -18,7 +17,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   Terminal,
-  Zap,
   Play,
   MapPin
 } from 'lucide-react';
@@ -40,7 +38,6 @@ export default function HomePage() {
   const featuredProjects = projectsData.slice(0, 4);
   const featuredGames = gamesData.slice(0, 4);
   const featuredTemplates = templatesData.slice(0, 3);
-  const [leadBio, ...restBio] = profileData.bio;
 
   return (
     <div className="flex flex-col gap-16 sm:gap-24 lg:gap-32 pb-16 overflow-hidden">
@@ -91,10 +88,10 @@ export default function HomePage() {
             <div className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
               <Link
                 href="/projects"
-                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl liquid-btn-primary px-6 py-3.5 text-sm font-semibold text-white text-center shadow-lg shadow-indigo-600/20"
               >
                 <Code2 className="h-4 w-4" aria-hidden="true" />
-                View projects
+                <span>View projects</span>
               </Link>
 
               <a
@@ -102,10 +99,10 @@ export default function HomePage() {
                 download="vickyrana_resume_fe_new.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl liquid-btn-secondary px-6 py-3.5 text-sm font-semibold text-foreground text-center"
               >
                 <FileText className="h-4 w-4 text-indigo-500" aria-hidden="true" />
-                Download resume
+                <span>Download resume</span>
               </a>
             </div>
 
@@ -136,24 +133,30 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          {/* RIGHT: character */}
-          <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5">
-
-            <Image
-              src="/hero_section_img.webp"
-              alt="Hero section illustration"
-              width={480}
-              height={576}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 480px"
-              className="h-[460px] sm:h-[520px] md:h-[580px] lg:h-[640px] w-auto max-w-full select-none object-contain"
-              priority
-            />
+          {/* RIGHT: character illustration with subtle glass pedestal backdrop */}
+          <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5 relative">
+            <div className="relative flex items-center justify-center">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-8 bottom-6 -z-10 h-64 rounded-full bg-gradient-to-t from-indigo-500/15 via-violet-500/10 to-transparent blur-2xl dark:from-indigo-400/15"
+              />
+              <Image
+                src="/hero_section_img.webp"
+                alt="Vicky Rana full stack developer 3D character illustration"
+                width={480}
+                height={576}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 480px"
+                className="h-[460px] sm:h-[520px] md:h-[580px] lg:h-[640px] w-auto max-w-full select-none object-contain drop-shadow-2xl"
+                priority
+              />
+            </div>
           </ScrollReveal>
         </div>
 
-        {/* Metrics: one slim divided strip instead of four heavy cards */}
+        {/* Metrics: one slim divided strip in liquid glass with specular highlight */}
         <ScrollReveal direction="up" delay={0.3} duration={0.8} once={true}>
-          <dl className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-2xl border border-border/60 bg-background/40 backdrop-blur-sm shadow-sm">
+          <dl className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-3xl liquid-glass border border-white/25 dark:border-white/12 shadow-xl relative">
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
             {profileData.metrics.map((metric, i) => {
               const metricIcons = [Code2, Briefcase, Award, MapPin];
               const Icon = metricIcons[i] || Sparkles;
@@ -374,10 +377,6 @@ export default function HomePage() {
         <ScrollReveal direction="down" duration={0.8}>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-500 mb-2">
-                <Briefcase className="w-4 h-4" />
-                <span>Production Track Record</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight">
                 Internships & Industry Experience
               </h2>
@@ -487,7 +486,7 @@ export default function HomePage() {
 
               <Link
                 href="/games"
-                className="inline-flex w-full items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/25 border border-white/20 text-center"
+                className="inline-flex w-full items-center justify-center gap-2 py-3.5 px-5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm transition-all text-center shadow-lg shadow-indigo-600/20"
               >
                 <Gamepad2 className="w-4 h-4" />
                 <span>Enter Games Arcade</span>
@@ -534,7 +533,7 @@ export default function HomePage() {
 
               <Link
                 href="/templates"
-                className="inline-flex w-full items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/25 border border-white/20 text-center"
+                className="inline-flex w-full items-center justify-center gap-2 py-3.5 px-5 rounded-2xl liquid-btn-primary text-white font-semibold text-sm transition-all text-center shadow-lg shadow-indigo-600/20"
               >
                 <LayoutTemplate className="w-4 h-4" />
                 <span>Explore 40+ Commercial Templates</span>
@@ -573,10 +572,10 @@ export default function HomePage() {
 
             <Link
               href="/achievements"
-              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 border border-white/30 text-center"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl liquid-btn-secondary text-foreground font-bold text-xs sm:text-sm transition-all text-center group"
             >
               <span>View All Credentials</span>
-              <ArrowRight className="w-4 h-4 shrink-0" />
+              <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </ScrollReveal>

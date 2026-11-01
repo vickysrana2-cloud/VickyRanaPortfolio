@@ -29,6 +29,8 @@ import Image from 'next/image';
 
 import { FixedBackgroundSection } from '@/components/sections/FixedBackgroundSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
+import { FeaturedProjectsSection } from '@/components/sections/FeaturedProjectsSection';
+import { FlipCard } from '@/components/ui/FlipCard';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TechBadge } from '@/components/ui/tech-icon';
 import { cn } from '@/lib/utils';
@@ -280,7 +282,7 @@ function ProjectCard({
 
 
 export default function HomePage() {
-  const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 3);
+  const featuredProjects = projectsData.slice(0, 4);
   const featuredGames = gamesData.slice(0, 4);
   const featuredTemplates = templatesData.slice(0, 3);
   const [leadBio, ...restBio] = profileData.bio;
@@ -430,86 +432,138 @@ export default function HomePage() {
         </ScrollReveal>
       </section>
 
-      {/* 2. ABOUT ME SECTION */}
+      {/* 2. ABOUT ME SECTION (3D Interactive FlipCard) */}
       <ScrollReveal direction="up" duration={0.9} amount={0.15}>
         <section
           id="about"
           aria-labelledby="about-heading"
           className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15">
-            {/* Specular top highlight */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent dark:via-white/30" />
-            {/* Soft ambient glow */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-400/10"
-            />
+          <FlipCard
+            width="100%"
+            height="min(640px, 90vh)"
+            radius={24}
+            perspective={1200}
+            tiltMax={6}
+            glare={true}
+            glareOpacity={0.15}
+            ariaLabel="About Me interactive flip card"
+            className="w-full shadow-2xl"
+            front={
+              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+                {/* Specular top highlight */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent dark:via-white/30" />
+                {/* Soft ambient glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/15 blur-3xl dark:bg-indigo-400/10"
+                />
 
-            <div className="relative grid grid-cols-1 gap-10 p-6 sm:p-10 lg:grid-cols-12 lg:gap-14 lg:p-14">
-              {/* LEFT: story */}
-              <div className="lg:col-span-7 xl:col-span-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
-                  <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>Engineering Philosophy</span>
-                </div>
-
-                <h2
-                  id="about-heading"
-                  className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl"
-                >
-                  Bridging frontend reactivity with{" "}
-                  <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
-                    scalable server architectures
-                  </span>
-                </h2>
-
-                <div className="mt-8 max-w-2xl space-y-5">
-                  {leadBio && (
-                    <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl">
-                      {leadBio}
-                    </p>
-                  )}
-                  {restBio.map((paragraph, idx) => (
-                    <p
-                      key={idx}
-                      className="text-sm leading-relaxed text-muted-foreground sm:text-base"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* RIGHT: milestones */}
-              <aside className="lg:col-span-5 xl:col-span-4">
-                <div className="rounded-2xl border border-border/60 bg-background/40 p-6 backdrop-blur-sm sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground">
-                      <Sparkles className="h-4 w-4 text-amber-500" aria-hidden="true" />
-                      <span>Verified Milestones</span>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
+                      <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
+                      <span>About Me</span>
                     </div>
-                    <span className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
-                      {String(profileData.coreHighlights.length).padStart(2, "0")}
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
+                      <Sparkles className="h-3 w-3 text-amber-500" aria-hidden="true" />
+                      <span>Tap or Drag to Flip</span>
                     </span>
                   </div>
 
-                  <ol className="relative mt-6 space-y-5 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
-                    {profileData.coreHighlights.map((highlight, idx) => (
+                  <h2
+                    id="about-heading"
+                    className="mt-5 text-balance text-2xl font-extrabold leading-[1.2] tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+                  >
+                    Bridging frontend reactivity with{' '}
+                    <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
+                      scalable server architectures
+                    </span>
+                  </h2>
+
+                  <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    <p className="text-foreground/95 font-medium leading-relaxed">
+                      I am an aspiring Software Developer with hands-on experience building responsive and scalable web applications using React.js, Next.js, Java, Spring Boot, and MySQL. I have a strong foundation in object-oriented programming, REST API integration, and full-stack development.
+                    </p>
+                    <p className="leading-relaxed">
+                      During my internships at Actifyzone (Frontend Developer Intern) and Havet AI (Full Stack Developer Intern), I contributed to multi-tier web projects using Next.js, NestJS, and MongoDB Atlas—implementing reusable UI components, integrating backend REST endpoints, and optimizing client-side performance.
+                    </p>
+                    <p className="leading-relaxed">
+                      I have led teams in hackathons (such as winning the Silver Medal for the WeatherWatch project at IT Vedant) and continuously build real-world web apps like Pawsitive (Pet Care Management Platform), DesignMeInteriors, and Archinet.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Available for full-time software engineering roles
+                  </span>
+                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
+                    View Verified Milestones ↻
+                  </span>
+                </div>
+              </div>
+            }
+            back={
+              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+                {/* Specular top highlight */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent dark:via-white/30" />
+                {/* Soft ambient glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-500/15 blur-3xl dark:bg-purple-400/10"
+                />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="p-2 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 border border-amber-500/20">
+                        <Sparkles className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                        Verified Milestones
+                      </h3>
+                    </div>
+                    <span className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 font-mono text-base font-bold text-indigo-500 dark:text-indigo-400 shadow-inner">
+                      05
+                    </span>
+                  </div>
+
+                  <ol className="relative mt-6 space-y-3 sm:space-y-3.5 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
+                    {[
+                      'Hands-on full-stack engineering with React.js, Next.js, Java, Spring Boot, and MySQL',
+                      'Frontend Developer Intern at Actifyzone contributing to responsive multi-project web UIs',
+                      'Full Stack Developer Intern at Havet AI engineering Next.js, NestJS, and MongoDB Atlas features',
+                      'Team Leader & Silver Medal winner at IT Vedant Hackathon (WeatherWatch platform)',
+                      'Certified in Java Full Stack Web Development and HackerRank JavaScript'
+                    ].map((milestone, idx) => (
                       <li key={idx} className="group relative pl-9">
-                        <span className="absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
+                        <span className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
                           <CheckCircle2 className="h-4 w-4 text-emerald-500" aria-hidden="true" />
                         </span>
-                        <p className="text-sm leading-relaxed text-muted-foreground transition-colors duration-200 group-hover:text-foreground">
-                          {highlight}
-                        </p>
+                        <div className="rounded-xl border border-border/50 bg-background/40 p-3 sm:p-3.5 backdrop-blur-sm transition-all duration-200 group-hover:border-indigo-500/40 group-hover:bg-muted/30">
+                          <p className="text-sm leading-relaxed text-foreground/90 font-medium sm:text-base">
+                            {milestone}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ol>
                 </div>
-              </aside>
-            </div>
-          </div>
+
+                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    All milestones independently verified & referenced
+                  </span>
+                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
+                    Flip back to About Me ↺
+                  </span>
+                </div>
+              </div>
+            }
+          />
         </section>
       </ScrollReveal>
 
@@ -528,7 +582,7 @@ export default function HomePage() {
         className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <ScrollReveal direction="down" duration={0.8} amount={0.15}>
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between pb-4">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between pb-6">
             <div className="max-w-2xl space-y-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 backdrop-blur-md">
                 <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -538,7 +592,7 @@ export default function HomePage() {
                 id="projects-heading"
                 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight"
               >
-                Featured{" "}
+                Featured{' '}
                 <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                   Case Studies & Systems
                 </span>
@@ -558,27 +612,8 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
 
-        {/* Modern Asymmetric Bento Grid */}
-        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 items-stretch">
-          {/* Spotlight Lead Card (7 cols) */}
-          {featuredProjects[0] && (
-            <div className="lg:col-span-7 h-full flex flex-col">
-              <ScrollReveal direction="scale" duration={0.9} amount={0.1} className="h-full flex-1">
-                <ProjectCard project={featuredProjects[0]} index={0} lead={true} />
-              </ScrollReveal>
-            </div>
-          )}
-
-          {/* Secondary Stack (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-6 lg:gap-8 h-full justify-between">
-            {featuredProjects.slice(1).map((project, idx) => (
-              <div key={project.id} className="flex-1 flex flex-col">
-                <ScrollReveal direction="up" delay={(idx + 1) * 0.15} duration={0.8} amount={0.1} className="h-full flex-1">
-                  <ProjectCard project={project} index={idx + 1} lead={false} />
-                </ScrollReveal>
-              </div>
-            ))}
-          </div>
+        <div className="mt-6">
+          <FeaturedProjectsSection projects={featuredProjects} />
         </div>
       </section>
 

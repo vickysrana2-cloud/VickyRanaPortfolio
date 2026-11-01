@@ -26,8 +26,12 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+  'https://portfolio.example.com';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portfolio.example.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'VickyRanaDev | Full-Stack Software Developer & System Architect',
     template: '%s | VickyRanaDev',
@@ -54,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://portfolio.example.com',
+    url: SITE_URL,
     title: 'VickyRanaDev | Full-Stack Software Developer & System Architect',
     description:
       'VickyRanaDev – Explore featured projects, live interactive arcade games, responsive templates, and engineering experience.',
@@ -69,6 +73,15 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 

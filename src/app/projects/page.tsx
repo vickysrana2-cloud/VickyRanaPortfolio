@@ -14,10 +14,6 @@ export default function ProjectsPage() {
       {/* Header Banner - Server Rendered for SEO & instant static paint */}
       <ScrollReveal direction="down" duration={0.8}>
         <div className="relative mb-12 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-indigo-500 dark:text-indigo-400 text-xs font-semibold mb-4">
-            <Code2 className="w-4 h-4" />
-            <span>Production Engineering</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
             Featured Projects & Architecture
           </h1>

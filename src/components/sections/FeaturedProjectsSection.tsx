@@ -31,12 +31,33 @@ interface FeaturedProjectsSectionProps {
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const { resolvedTheme } = useTheme();
   const swapRef = useRef<CardSwapHandle>(null);
 
   useEffect(() => {
     setMounted(true);
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
   }, []);
+
+  const handlePrev = () => {
+    if (swapRef.current) {
+      swapRef.current.prev();
+    } else {
+      setActiveIndex(prev => (prev - 1 + projects.length) % projects.length);
+    }
+  };
+
+  const handleNext = () => {
+    if (swapRef.current) {
+      swapRef.current.next();
+    } else {
+      setActiveIndex(prev => (prev + 1) % projects.length);
+    }
+  };
 
   const activeProject = projects[activeIndex] || projects[0];
   const isDark = mounted ? resolvedTheme !== 'light' : true;
@@ -86,18 +107,45 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           <div className="space-y-4">
             {/* Carousel navigation & counter badge */}
             <div className="flex items-center justify-between">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/60 bg-background/50 backdrop-blur-md text-xs font-mono font-medium text-muted-foreground">
-                <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
-                <span>
-                  Project {String(activeIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
-                </span>
+              <div className="flex items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border/60 bg-background/50 backdrop-blur-md text-xs font-mono font-medium text-muted-foreground">
+                  <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
+                  <span>
+                    Project {String(activeIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                  </span>
+                </div>
+
+                {/* Mobile project quick indicator dots */}
+                <div className="flex lg:hidden items-center gap-1.5 ml-1">
+                  {projects.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => {
+                        const diff = i - activeIndex;
+                        if (diff > 0) {
+                          for (let step = 0; step < diff; step++) swapRef.current?.next();
+                        } else if (diff < 0) {
+                          for (let step = 0; step < Math.abs(diff); step++) swapRef.current?.prev();
+                        }
+                        setActiveIndex(i);
+                      }}
+                      aria-label={`Switch to project ${i + 1}`}
+                      className={`h-1.5 rounded-full transition-all duration-200 ${
+                        i === activeIndex
+                          ? 'w-5 bg-indigo-500'
+                          : 'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Prev / Next swap controls */}
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => swapRef.current?.prev()}
+                  onClick={handlePrev}
                   aria-label="Previous project card"
                   className="p-2.5 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-all duration-200"
                 >
@@ -105,7 +153,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                 </button>
                 <button
                   type="button"
-                  onClick={() => swapRef.current?.next()}
+                  onClick={handleNext}
                   aria-label="Next project card"
                   className="p-2.5 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-all duration-200"
                 >
@@ -231,8 +279,8 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Interactive 3D CardSwap Deck */}
-        <div className="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[520px] sm:min-h-[560px] md:min-h-[600px] w-full py-4 select-none">
+        {/* RIGHT COLUMN: Interactive 3D CardSwap Deck (Desktop view only) */}
+        <div className="hidden lg:flex lg:col-span-7 flex-col items-center justify-center relative min-h-[520px] sm:min-h-[560px] md:min-h-[600px] w-full py-4 select-none">
           {/* Ambient Glow behind the deck */}
           <div
             aria-hidden="true"
@@ -249,7 +297,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
             skewAmount={5}
             visibleCards={4}
             delay={4500}
-            autoplay={true}
+            autoplay={isDesktop}
             pauseOnHover={true}
             draggable={true}
             speed={1.1}

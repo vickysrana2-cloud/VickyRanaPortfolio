@@ -22,12 +22,12 @@ export default function FixedBackgroundSection({
 }: FixedBackgroundSectionProps) {
   return (
     <section
-      className={`relative w-full overflow-hidden bg-black ${className}`}
-      style={{ minHeight }}
+      className={`relative w-full overflow-hidden bg-black [clip-path:inset(0)] ${className}`}
+      style={{ minHeight, clipPath: 'inset(0)' }}
     >
-      {/* Fixed Background Layer (bg-fixed anchored to viewport center with matching black backdrop) */}
+      {/* Fixed Background Layer (viewport-fixed, clipped to this section's bounds across all mobile & desktop viewports) */}
       <div 
-        className="absolute inset-0 bg-black pointer-events-none z-0 bg-scroll sm:bg-fixed bg-center bg-no-repeat"
+        className="fixed inset-0 bg-black pointer-events-none z-0 bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url('${image}')`,
           backgroundSize: imageSize,

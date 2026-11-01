@@ -102,10 +102,6 @@ export default function TemplatesPage() {
       {/* Header Banner */}
       <ScrollReveal direction="down" duration={0.8}>
         <div className="relative mb-12 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-badge text-purple-400 text-xs font-semibold mb-4 border border-purple-500/30">
-            <LayoutTemplate className="w-4 h-4 text-purple-400 animate-pulse" />
-            <span>Production Architecture Blueprints & UI Starter Kits</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
             Commercial Website Templates
           </h1>

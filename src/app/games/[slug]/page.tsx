@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { gamesData } from '@/data/games';
 import { GamePlayer } from '@/components/games/game-player';
 import { ArrowLeft, HelpCircle, Layers } from 'lucide-react';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { TechBadge } from '@/components/ui/tech-icon';
 
 interface GamePageProps {
   params: Promise<{ slug: string }>;
@@ -35,27 +37,29 @@ export default async function DedicatedGamePage({ params }: GamePageProps) {
   }
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Back button */}
-      <div className="mb-6">
-        <Link
-          href="/games"
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl liquid-btn-secondary text-sm font-medium text-muted-foreground hover:text-foreground transition-all group"
-        >
-          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          <span>Back to Arcade</span>
-        </Link>
-      </div>
+      <ScrollReveal direction="down" duration={0.6}>
+        <div className="mb-6">
+          <Link
+            href="/games"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl liquid-btn-secondary text-sm font-medium text-muted-foreground hover:text-foreground transition-all group"
+          >
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            <span>Back to Arcade</span>
+          </Link>
+        </div>
+      </ScrollReveal>
 
       {/* Game Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Playable Game Viewport */}
-        <div className="lg:col-span-7 flex flex-col items-center">
+        <ScrollReveal direction="scale" duration={0.8} amount={0.1} className="lg:col-span-8 flex flex-col items-stretch">
           <GamePlayer game={game} />
-        </div>
+        </ScrollReveal>
 
         {/* Game Details Sidebar */}
-        <div className="lg:col-span-5 space-y-6">
+        <ScrollReveal direction="up" delay={0.15} duration={0.8} className="lg:col-span-4 space-y-6">
           <div className="p-6 sm:p-7 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 space-y-4 relative overflow-hidden">
             {/* Specular top highlight */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />
@@ -117,17 +121,16 @@ export default async function DedicatedGamePage({ params }: GamePageProps) {
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {game.techStack.map((tech) => (
-                  <span
+                  <TechBadge
                     key={tech}
-                    className="text-xs font-mono px-2.5 py-1 rounded-lg liquid-glass-subtle border border-white/20 text-foreground"
-                  >
-                    {tech}
-                  </span>
+                    name={tech}
+                    size="sm"
+                  />
                 ))}
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );

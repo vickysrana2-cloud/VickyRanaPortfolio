@@ -40,6 +40,7 @@ import CorporateGiftingTemplate1 from "./CorporateGifting"
 import AutoDetailing from "./AutoDetailing"
 import FolioTemplate from "./folio"
 import NovaStudioTemplate from "./novaStudio"
+import HotelLandingSPA from "./Hotellandingspa"
 export const TEMPLATE_REGISTRY: Record<string, React.ComponentType<any>> = {
   "Business Card" : EcardProfile,
   "Clothing" : LuminaTailorsSPA,
@@ -79,6 +80,9 @@ export const TEMPLATE_REGISTRY: Record<string, React.ComponentType<any>> = {
   "Dance Martial" : DanceMartial,
   "Corporategiftingtemplate1" : CorporateGiftingTemplate1,
   "AutoLux" : AutoDetailing,
+  "Hotellandingspa": HotelLandingSPA,
+  "Hotel Landing SPA": HotelLandingSPA,
+  "Aurelian Hotel": HotelLandingSPA,
 };
 
 export const SLUG_TO_TEMPLATE_COMPONENT: Record<string, React.ComponentType<any>> = {
@@ -122,4 +126,7 @@ export const SLUG_TO_TEMPLATE_COMPONENT: Record<string, React.ComponentType<any>
   "prestige-event-planning": EventPlanningTemplate,
   "modern-interior-hutch-studio": HutchTemplate,
   "elite-corporate-gifting-hampers": CorporateGiftingTemplate1,
+  "hotellandingspa": HotelLandingSPA,
+  "hotel-landing-spa": HotelLandingSPA,
+  "aurelian-luxury-hotel-spa": HotelLandingSPA,
 };

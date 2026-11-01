@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { Github } from '@/components/icons';
 import { cn } from '@/lib/utils';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { TechBadge } from '@/components/ui/tech-icon';
 
 export default function TemplatesPage() {
   const [selectedCategory, setSelectedCategory] = React.useState<TemplateCategory>('All');
@@ -98,41 +100,44 @@ export default function TemplatesPage() {
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header Banner */}
-      <div className="relative mb-12 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-badge text-purple-400 text-xs font-semibold mb-4 border border-purple-500/30">
-          <LayoutTemplate className="w-4 h-4 text-purple-400 animate-pulse" />
-          <span>Production Architecture Blueprints & UI Starter Kits</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
-          Commercial Website Templates
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Over 40 production-grade, highly responsive web application templates engineered with Next.js, React, TypeScript, and modern styling. Test live responsive viewports across Desktop, Tablet, and Mobile.
-        </p>
+      <ScrollReveal direction="down" duration={0.8}>
+        <div className="relative mb-12 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-badge text-purple-400 text-xs font-semibold mb-4 border border-purple-500/30">
+            <LayoutTemplate className="w-4 h-4 text-purple-400 animate-pulse" />
+            <span>Production Architecture Blueprints & UI Starter Kits</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
+            Commercial Website Templates
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            Over 40 production-grade, highly responsive web application templates engineered with Next.js, React, TypeScript, and modern styling. Test live responsive viewports across Desktop, Tablet, and Mobile.
+          </p>
 
-        {/* Highlight Stats Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 p-3 rounded-2xl liquid-glass border border-white/10">
-          <div className="p-3 text-center">
-            <div className="text-2xl sm:text-3xl font-black text-foreground">40+</div>
-            <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Real Production Templates</div>
-          </div>
-          <div className="p-3 text-center">
-            <div className="text-2xl sm:text-3xl font-black text-indigo-400">9</div>
-            <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Industry Sectors</div>
-          </div>
-          <div className="p-3 text-center">
-            <div className="text-2xl sm:text-3xl font-black text-purple-400">3</div>
-            <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Interactive Viewports</div>
-          </div>
-          <div className="p-3 text-center">
-            <div className="text-2xl sm:text-3xl font-black text-emerald-400">100%</div>
-            <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Mobile Responsive</div>
+          {/* Highlight Stats Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 p-3 rounded-2xl liquid-glass border border-white/10">
+            <div className="p-3 text-center">
+              <div className="text-2xl sm:text-3xl font-black text-foreground">40+</div>
+              <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Real Production Templates</div>
+            </div>
+            <div className="p-3 text-center">
+              <div className="text-2xl sm:text-3xl font-black text-indigo-400">9</div>
+              <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Industry Sectors</div>
+            </div>
+            <div className="p-3 text-center">
+              <div className="text-2xl sm:text-3xl font-black text-purple-400">3</div>
+              <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Interactive Viewports</div>
+            </div>
+            <div className="p-3 text-center">
+              <div className="text-2xl sm:text-3xl font-black text-emerald-400">100%</div>
+              <div className="text-[11px] font-mono text-muted-foreground mt-0.5">Mobile Responsive</div>
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col gap-4 mb-10 p-3 sm:p-4 rounded-3xl liquid-glass border border-white/15 shadow-xl">
+      <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+        <div className="flex flex-col gap-4 mb-10 p-3 sm:p-4 rounded-3xl liquid-glass border border-white/15 shadow-xl">
         {/* Categories Bar */}
         <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => {
@@ -202,106 +207,113 @@ export default function TemplatesPage() {
           </div>
         </div>
       </div>
+      </ScrollReveal>
 
       {/* Templates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {filteredTemplates.map((template) => (
-          <div
+        {filteredTemplates.map((template, idx) => (
+          <ScrollReveal
             key={template.id}
-            className="group rounded-3xl liquid-glass liquid-glass-interactive p-6 sm:p-7 flex flex-col justify-between border border-white/10 hover:border-purple-500/40 transition-all duration-300 shadow-lg hover:shadow-2xl"
+            direction="scale"
+            delay={idx * 0.05}
+            duration={0.8}
+            amount={0.1}
           >
-            <div className="glass-reflection-highlight" />
+            <div
+              className="group rounded-3xl liquid-glass liquid-glass-interactive p-6 sm:p-7 flex flex-col justify-between border border-white/10 hover:border-purple-500/40 transition-all duration-300 shadow-lg hover:shadow-2xl h-full"
+            >
+              <div className="glass-reflection-highlight" />
 
-            <div>
-              {/* Category & Version */}
-              <div className="flex items-center justify-between mb-4">
-                <span className={cn('text-xs font-mono font-semibold px-3 py-1 rounded-full border', getCategoryBadgeClass(template.category))}>
-                  {template.category}
-                </span>
-                <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full liquid-glass-subtle text-muted-foreground border border-white/20">
-                  {template.version}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h2 className="text-xl sm:text-2xl font-black text-foreground group-hover:text-indigo-400 transition-colors tracking-tight">
-                {template.title}
-              </h2>
-
-              {/* Tagline */}
-              <p className="mt-1.5 text-xs font-medium text-purple-400">
-                {template.tagline}
-              </p>
-
-              {/* Description */}
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                {template.description}
-              </p>
-
-              {/* Key Features Preview */}
-              <div className="mt-5 pt-4 border-t border-border/50 space-y-2">
-                {template.features.slice(0, 3).map((feat, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                    <span className="truncate">{feat}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Tech Tags */}
-              <div className="mt-5 flex flex-wrap gap-1.5">
-                {template.tags.slice(0, 4).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] font-mono px-2.5 py-0.5 rounded-md liquid-glass-subtle text-muted-foreground border border-white/10"
-                  >
-                    {tag}
+              <div>
+                {/* Category & Version */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className={cn('text-xs font-mono font-semibold px-3 py-1 rounded-full border', getCategoryBadgeClass(template.category))}>
+                    {template.category}
                   </span>
-                ))}
+                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full liquid-glass-subtle text-muted-foreground border border-white/20">
+                    {template.version}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h2 className="text-xl sm:text-2xl font-black text-foreground group-hover:text-indigo-400 transition-colors tracking-tight">
+                  {template.title}
+                </h2>
+
+                {/* Tagline */}
+                <p className="mt-1.5 text-xs font-medium text-purple-400">
+                  {template.tagline}
+                </p>
+
+                {/* Description */}
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                  {template.description}
+                </p>
+
+                {/* Key Features Preview */}
+                <div className="mt-5 pt-4 border-t border-border/50 space-y-2">
+                  {template.features.slice(0, 3).map((feat, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                      <span className="truncate">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Tags */}
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {template.tags.slice(0, 4).map((tag) => (
+                    <TechBadge
+                      key={tag}
+                      name={tag}
+                      size="sm"
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Bottom Actions */}
-            <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between gap-2">
-              <button
-                onClick={() => setPreviewTemplate(template)}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl liquid-btn-primary font-semibold text-xs shadow-md transition-all group-hover:scale-102"
-              >
-                <Eye className="w-3.5 h-3.5 text-amber-300" />
-                <span>Live Viewport</span>
-              </button>
-
-              <div className="flex items-center gap-2">
-                <Link
-                  href={`/templates/${template.slug}`}
-                  className="flex items-center gap-1 text-xs font-semibold px-3 py-2 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-colors"
+              {/* Bottom Actions */}
+              <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between gap-2">
+                <button
+                  onClick={() => setPreviewTemplate(template)}
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl liquid-btn-primary font-semibold text-xs shadow-md transition-all group-hover:scale-102"
                 >
-                  <span>Specs</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  <Eye className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Live Viewport</span>
+                </button>
 
-                {template.sourceUrl && (
-                  <a
-                    href={template.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-colors"
-                    title="Source Repository"
-                    aria-label="Source Repository"
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/templates/${template.slug}`}
+                    className="flex items-center gap-1 text-xs font-semibold px-3 py-2 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <Github className="w-3.5 h-3.5" />
-                  </a>
-                )}
+                    <span>Specs</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+
+                  {template.sourceUrl && (
+                    <a
+                      href={template.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-xl liquid-btn-secondary text-muted-foreground hover:text-foreground transition-colors"
+                      title="Source Repository"
+                      aria-label="Source Repository"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Interactive Responsive Viewport Modal */}
       {previewTemplate && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-2xl animate-in fade-in duration-200">
-          <div className="relative w-full max-w-6xl max-h-[96vh] overflow-y-auto rounded-3xl p-4 sm:p-8 liquid-glass-elevated shadow-2xl animate-in zoom-in-95 duration-200 border border-white/20">
+          <div className="relative isolate w-full max-w-6xl max-h-[96vh] overflow-y-auto rounded-3xl p-4 sm:p-8 liquid-glass-elevated shadow-2xl animate-in zoom-in-95 duration-200 border border-white/20">
             <div className="glass-reflection-highlight" />
 
             {/* Modal Header */}

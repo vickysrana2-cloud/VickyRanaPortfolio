@@ -28,8 +28,8 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Enable liquid glass background styling after initial scroll
-      setScrolled(currentScrollY > 20);
+      // Enable liquid glass background styling after leaving top 0
+      setScrolled(currentScrollY > 10);
 
       // Always keep visible near the top of the page
       if (currentScrollY <= 60) {
@@ -59,6 +59,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
       lastScrollY.current = currentScrollY;
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen]);
@@ -67,6 +68,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   React.useEffect(() => {
     setMobileMenuOpen(false);
     setIsVisible(true);
+    setScrolled(window.scrollY > 10);
   }, [pathname]);
 
   const navLinks = [
@@ -86,10 +88,14 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 w-full bg-transparent border-none transition-transform duration-300 ease-in-out',
-        isVisible ? 'translate-y-0' : '-translate-y-full'
+        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out',
+        isVisible ? 'translate-y-0' : '-translate-y-full',
+        scrolled || mobileMenuOpen
+          ? 'liquid-glass-nav'
+          : 'bg-transparent border-b border-transparent shadow-none'
       )}
     >
+
 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,7 +127,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
 
 
           {/* Desktop Navigation Links (Simple Words, No BG, No Border) */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -129,17 +135,20 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 py-1 select-none',
+                    'text-sm font-medium transition-all duration-200 flex items-center gap-1.5 py-1 select-none relative',
                     isActive
-                      ? 'text-foreground font-bold'
+                      ? 'text-foreground font-semibold'
                       : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
                   <span>{link.name}</span>
                   {link.badge && (
-                    <span className="text-[10px] font-semibold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider">
+                    <span className="text-[9px] font-bold text-indigo-500 dark:text-indigo-400 bg-indigo-500/10 dark:bg-indigo-400/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
                       {link.badge}
                     </span>
+                  )}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
                   )}
                 </Link>
               );

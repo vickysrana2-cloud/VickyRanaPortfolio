@@ -8,14 +8,14 @@ import {
   Code2, 
   Sparkles, 
   RotateCcw, 
-  Maximize2, 
   Check, 
   Copy, 
   ExternalLink,
-  Layers,
-  ShieldCheck,
-  Zap,
-  Globe
+  Layers, 
+  ShieldCheck, 
+  Zap, 
+  Globe,
+  AlertTriangle
 } from 'lucide-react';
 import { Template } from '@/types';
 import { cn } from '@/lib/utils';
@@ -63,12 +63,12 @@ export function TemplateDevicePreview({
   const [device, setDevice] = React.useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [viewMode, setViewMode] = React.useState<'live' | 'blueprint'>(initialMode);
   const [copied, setCopied] = React.useState(false);
-  const [key, setKey] = React.useState(0); // For resetting/refreshing the preview
-  const [isMounted, setIsMounted] = React.useState(false);
+  const [key, setKey] = React.useState(0);
+  const [iframeError, setIframeError] = React.useState(false);
 
   React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIframeError(false);
+  }, [device, key, template.slug]);
 
   const LiveComponent = SLUG_TO_TEMPLATE_COMPONENT[template.slug];
   const hasLiveComponent = Boolean(LiveComponent);
@@ -86,6 +86,13 @@ export function TemplateDevicePreview({
       setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  const handleReload = () => {
+    setIframeError(false);
+    setKey((prev) => prev + 1);
+  };
+
+  const previewUrl = `/templates/preview/${template.slug}`;
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -168,7 +175,7 @@ export function TemplateDevicePreview({
 
         {/* Refresh Preview */}
         <button
-          onClick={() => setKey(prev => prev + 1)}
+          onClick={handleReload}
           className="p-2 rounded-full liquid-btn-secondary text-muted-foreground hover:text-foreground transition-all border border-white/15"
           title="Reload preview"
           aria-label="Reload preview"
@@ -183,13 +190,13 @@ export function TemplateDevicePreview({
           className={cn(
             'transition-all duration-500 w-full overflow-hidden shadow-2xl relative',
             device === 'desktop' && 'max-w-5xl rounded-2xl liquid-glass-elevated border border-white/20',
-            device === 'tablet' && 'max-w-[768px] rounded-[32px] liquid-glass-elevated p-2.5 sm:p-3 border-4 border-slate-700/60 bg-slate-900/90',
-            device === 'mobile' && 'max-w-[390px] rounded-[44px] liquid-glass-elevated p-3 border-4 sm:border-[6px] border-slate-800 bg-slate-950 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]'
+            device === 'tablet' && 'w-[800px] max-w-full rounded-[36px] liquid-glass-elevated p-3 border-4 border-slate-700/60 bg-slate-900/90 shadow-2xl',
+            device === 'mobile' && 'w-[414px] max-w-full rounded-[48px] liquid-glass-elevated p-3 border-4 sm:border-[6px] border-slate-800 bg-slate-950 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]'
           )}
         >
           {/* Mobile Chassis Top Notch / Dynamic Island */}
           {device === 'mobile' && (
-            <div className="w-full flex items-center justify-between px-6 pt-1 pb-2">
+            <div className="w-full flex items-center justify-between px-6 pt-1 pb-2 select-none">
               <span className="text-[11px] font-semibold text-foreground/80 font-mono">9:41</span>
               <div className="w-24 h-4.5 rounded-full bg-black/90 border border-white/15 flex items-center justify-end px-2 gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
@@ -204,19 +211,19 @@ export function TemplateDevicePreview({
 
           {/* Tablet Camera dot */}
           {device === 'tablet' && (
-            <div className="w-full flex justify-center pb-2">
+            <div className="w-full flex justify-center pb-2 select-none">
               <span className="w-2 h-2 rounded-full bg-black/60 border border-white/20 inline-block" />
             </div>
           )}
 
           {/* Desktop Browser Chrome top bar */}
           {device === 'desktop' && (
-            <div className="flex items-center justify-between px-5 py-3 border-b border-border/60 text-xs font-mono text-muted-foreground bg-muted/40 backdrop-blur-md">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-border/60 text-xs font-mono text-muted-foreground bg-muted/40 backdrop-blur-md select-none">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block shadow-xs shadow-rose-500/50" />
                 <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block shadow-xs shadow-amber-500/50" />
                 <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block shadow-xs shadow-emerald-500/50" />
-                <span className="ml-3 text-[11px] text-muted-foreground/80 hidden sm:inline">
+                <span className="ml-3 text-[11px] text-muted-foreground/80 hidden sm:inline truncate max-w-[200px]">
                   {template.title}
                 </span>
               </div>
@@ -233,6 +240,16 @@ export function TemplateDevicePreview({
                 >
                   {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                 </button>
+                <a
+                  href={previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-0.5 text-muted-foreground hover:text-foreground transition-colors"
+                  title="Open live preview in separate window"
+                  aria-label="Open preview in new tab"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
 
               {/* Resolution indicator */}
@@ -244,36 +261,81 @@ export function TemplateDevicePreview({
 
           {/* Preview Viewport Canvas */}
           <div 
-            key={key}
             className={cn(
-              'w-full bg-background overflow-y-auto scrollbar-thin transition-all',
-              device === 'desktop' ? 'h-[640px]' : device === 'tablet' ? 'h-[680px] rounded-[24px]' : 'h-[620px] rounded-[32px]'
+              'w-full bg-background overflow-hidden transition-all relative',
+              device === 'desktop' ? 'h-[640px]' : device === 'tablet' ? 'w-[768px] max-w-full mx-auto h-[740px] rounded-[24px]' : 'w-[390px] max-w-full mx-auto h-[680px] rounded-[36px]'
             )}
-            style={{ overscrollBehavior: 'contain' }}
           >
-            {isMounted && viewMode === 'live' && hasLiveComponent && LiveComponent ? (
+            {viewMode === 'live' && hasLiveComponent ? (
               <TemplateErrorBoundary
                 fallback={
-                  <div className="p-8 text-center space-y-4 my-auto">
+                  <div className="p-8 text-center space-y-4 my-auto h-full flex flex-col justify-center items-center">
                     <p className="text-sm text-amber-400 font-semibold">
-                      Live interaction temporarily displaying blueprint mode for this viewport.
+                      An unexpected error occurred in this viewport.
                     </p>
-                    <BlueprintCanvas template={template} />
+                    <button
+                      onClick={handleReload}
+                      className="px-4 py-2 rounded-xl liquid-btn-primary text-xs font-semibold flex items-center gap-2"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Reload Preview</span>
+                    </button>
                   </div>
                 }
               >
-                <div className="w-full text-foreground">
-                  <LiveComponent />
+                <div className="w-full h-full relative">
+                  {/* Iframe Error State (Never silently fall back to blueprint) */}
+                  {iframeError ? (
+                    <div className="absolute inset-0 z-30 bg-background flex flex-col items-center justify-center p-8 text-center space-y-4">
+                      <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+                        <AlertTriangle className="w-6 h-6" />
+                      </div>
+                      <div className="space-y-1 max-w-md">
+                        <h4 className="text-base font-bold text-foreground">Live Template Failed to Load</h4>
+                        <p className="text-xs text-muted-foreground">
+                          The preview frame for "{template.title}" encountered a connection error.
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 pt-2">
+                        <button
+                          onClick={handleReload}
+                          className="px-4 py-2 rounded-xl liquid-btn-primary text-xs font-semibold flex items-center gap-2"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                          <span>Retry Live Preview</span>
+                        </button>
+                        <button
+                          onClick={() => setViewMode('blueprint')}
+                          className="px-4 py-2 rounded-xl liquid-btn-secondary text-xs font-semibold flex items-center gap-2"
+                        >
+                          <Layers className="w-3.5 h-3.5" />
+                          <span>Switch to Blueprint Mode</span>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    /* The Isolated Preview Iframe */
+                    <iframe
+                      key={`${template.slug}-${key}`}
+                      src={previewUrl}
+                      title={`${template.title} Live Device Preview`}
+                      className="w-full h-full border-0 block bg-background"
+                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                      onError={() => setIframeError(true)}
+                    />
+                  )}
                 </div>
               </TemplateErrorBoundary>
             ) : (
-              <BlueprintCanvas template={template} />
+              <div className="w-full h-full overflow-y-auto scrollbar-thin">
+                <BlueprintCanvas template={template} />
+              </div>
             )}
           </div>
 
           {/* Mobile Home Indicator bar */}
           {device === 'mobile' && (
-            <div className="w-full flex justify-center pt-2 pb-1">
+            <div className="w-full flex justify-center pt-2 pb-1 select-none">
               <span className="w-32 h-1 rounded-full bg-white/40 inline-block" />
             </div>
           )}
@@ -284,14 +346,14 @@ export function TemplateDevicePreview({
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-muted-foreground">
         <span className="flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Production Ready</span>
+          <span>Production Ready Sandbox</span>
         </span>
         <span>•</span>
         <span>Framework: <strong className="text-foreground">{template.framework}</strong></span>
         <span>•</span>
         <span>Styling: <strong className="text-foreground">{template.styling}</strong></span>
         <span>•</span>
-        <span>Status: <span className="text-emerald-400 font-semibold">Active Interactive Preview</span></span>
+        <span>Viewport: <strong className="text-indigo-400">{deviceDimensions[device]}</strong></span>
       </div>
     </div>
   );

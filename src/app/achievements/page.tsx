@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export default function AchievementsPage() {
   const [selectedCategory, setSelectedCategory] = React.useState<AchievementCategory>('All');
@@ -67,89 +68,101 @@ export default function AchievementsPage() {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header Banner */}
-      <div className="relative mb-12 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-amber-500 text-xs font-semibold mb-4">
-          <Award className="w-4 h-4" />
-          <span>Verified Credentials & Honors</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
-          Achievements & Certifications
-        </h1>
-        <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Industry credentials, academic distinction, hackathon recognitions, and continuous problem-solving milestones.
-        </p>
+      <ScrollReveal direction="down" duration={0.8}>
+        <div className="relative mb-12 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-amber-500 text-xs font-semibold mb-4">
+            <Award className="w-4 h-4" />
+            <span>Verified Credentials & Honors</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
+            Achievements & Certifications
+          </h1>
+          <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            Industry credentials, academic distinction, hackathon recognitions, and continuous problem-solving milestones.
+          </p>
 
-        {/* Celebration trigger */}
-        <div className="mt-6 flex justify-center">
-          <button
-            onClick={fireCelebration}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl liquid-btn-secondary text-amber-500 text-xs font-semibold hover:scale-105"
-            title="Celebrate milestones!"
-          >
-            <PartyPopper className="w-4 h-4" />
-            <span>Celebrate Milestones</span>
-          </button>
+          {/* Celebration trigger */}
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={fireCelebration}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl liquid-btn-secondary text-amber-500 text-xs font-semibold hover:scale-105"
+              title="Celebrate milestones!"
+            >
+              <PartyPopper className="w-4 h-4" />
+              <span>Celebrate Milestones</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto p-1.5 rounded-2xl liquid-glass-subtle">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={cn(
-                'px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200',
-                selectedCategory === cat
-                  ? 'bg-amber-500 text-zinc-950 font-bold shadow-md shadow-amber-500/25 border border-white/30'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10'
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+          {/* Category Pills */}
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto p-1.5 rounded-2xl liquid-glass-subtle">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={cn(
+                  'px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200',
+                  selectedCategory === cat
+                    ? 'bg-amber-500 text-zinc-950 font-bold shadow-md shadow-amber-500/25 border border-white/30'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/10'
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
 
-        {/* Search */}
-        <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-amber-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search credentials or skills..."
-            className="w-full pl-10 pr-4 py-2 text-sm liquid-glass-input rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
+          {/* Search */}
+          <div className="relative w-full sm:w-72">
+            <Search className="w-4 h-4 text-amber-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search credentials or skills..."
+              className="w-full pl-10 pr-4 py-2 text-sm liquid-glass-input rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none"
+            />
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Achievements Cards */}
       {filteredAchievements.length === 0 ? (
-        <div className="py-20 text-center rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12">
-          <Award className="w-12 h-12 text-amber-500 mx-auto mb-3" />
-          <h3 className="text-lg font-bold text-foreground">No achievements found in this view</h3>
-          <p className="text-sm text-muted-foreground mt-1">Information will be displayed here as verified credentials become available.</p>
-          <button
-            onClick={() => {
-              setSelectedCategory('All');
-              setSearchQuery('');
-            }}
-            className="mt-4 px-5 py-2.5 text-xs font-semibold rounded-xl liquid-btn-primary text-white"
-          >
-            Show All
-          </button>
-        </div>
+        <ScrollReveal direction="scale" duration={0.6}>
+          <div className="py-20 text-center rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12">
+            <Award className="w-12 h-12 text-amber-500 mx-auto mb-3" />
+            <h3 className="text-lg font-bold text-foreground">No achievements found in this view</h3>
+            <p className="text-sm text-muted-foreground mt-1">Information will be displayed here as verified credentials become available.</p>
+            <button
+              onClick={() => {
+                setSelectedCategory('All');
+                setSearchQuery('');
+              }}
+              className="mt-4 px-5 py-2.5 text-xs font-semibold rounded-xl liquid-btn-primary text-white"
+            >
+              Show All
+            </button>
+          </div>
+        </ScrollReveal>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredAchievements.map((item) => {
+          {filteredAchievements.map((item, idx) => {
             const Icon = getIcon(item.iconName);
             return (
-              <div
+              <ScrollReveal
                 key={item.id}
-                className="group rounded-3xl liquid-glass-interactive border border-white/25 dark:border-white/12 p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden"
+                direction="scale"
+                delay={idx * 0.06}
+                duration={0.8}
+                amount={0.1}
               >
+                <div
+                  className="group rounded-3xl liquid-glass-interactive border border-white/25 dark:border-white/12 p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden h-full"
+                >
                 {/* Specular top highlight */}
                 <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/30 to-transparent pointer-events-none" />
 
@@ -231,6 +244,7 @@ export default function AchievementsPage() {
                   )}
                 </div>
               </div>
+              </ScrollReveal>
             );
           })}
         </div>

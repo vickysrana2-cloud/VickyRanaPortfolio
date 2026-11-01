@@ -1,12 +1,19 @@
 'use client';
 
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { Navbar } from './navbar';
 import { Footer } from './footer';
-import { CommandMenu } from './command-menu';
 import { BackToTop } from './back-to-top';
 import { cn } from '@/lib/utils';
+
+// Dynamically load heavy CommandMenu (which imports all project, template, and game datasets)
+// only when needed or in idle time, rather than bundling into initial critical rendering path.
+const CommandMenu = dynamic(
+  () => import('./command-menu').then((mod) => mod.CommandMenu),
+  { ssr: false }
+);
 
 // Inner component that uses usePathname — must be wrapped in <Suspense>
 // by the parent so Next.js can prerender the shell without blocking.

@@ -27,7 +27,6 @@ import Image from 'next/image';
 import { FixedBackgroundSection } from '@/components/sections/FixedBackgroundSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { FeaturedProjectsSection } from '@/components/sections/FeaturedProjectsSection';
-import { FlipCard } from '@/components/ui/FlipCard';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TechBadge } from '@/components/ui/tech-icon';
 import { cn } from '@/lib/utils';
@@ -40,12 +39,12 @@ export default function HomePage() {
   const featuredTemplates = templatesData.slice(0, 3);
 
   return (
-    <div className="flex flex-col gap-16 sm:gap-24 lg:gap-32 pb-16 overflow-hidden">
+    <div className="flex flex-col gap-24 sm:gap-36 lg:gap-48 pb-24 sm:pb-32 overflow-hidden">
       {/* 1. HERO SECTION */}
       <section
         id="home"
         aria-labelledby="hero-heading"
-        className="relative mx-auto w-full max-w-7xl px-4 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pt-28"
+        className="relative mx-auto w-full max-w-7xl px-4 pt-28 sm:px-6 sm:pt-20 lg:px-8 lg:pt-28"
       >
         {/* One soft ambient glow (was two) */}
         <div
@@ -191,48 +190,38 @@ export default function HomePage() {
         </ScrollReveal>
       </section>
 
-      {/* 2. ABOUT ME SECTION (3D Interactive FlipCard) */}
-      <ScrollReveal direction="up" duration={0.9} amount={0.15}>
+      {/* 2. ABOUT ME & VERIFIED MILESTONES SECTION */}
+      <ScrollReveal direction="up" duration={0.8} amount={0.15}>
         <section
           id="about"
           aria-labelledby="about-heading"
           className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <FlipCard
-            width="100%"
-            height="min(640px, 90vh)"
-            radius={24}
-            perspective={1200}
-            tiltMax={6}
-            glare={true}
-            glareOpacity={0.15}
-            ariaLabel="About Me interactive flip card"
-            className="w-full shadow-2xl"
-            front={
-              <div key="about-front" className="relative flex h-full flex-col justify-between p-5 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl overflow-y-auto">
-                {/* Specular top highlight */}
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent dark:via-white/30" />
-                {/* Soft ambient glow */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/15 blur-3xl dark:bg-indigo-400/10"
-                />
+          <div className="relative rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl p-6 sm:p-10 lg:p-12 shadow-2xl overflow-hidden">
+            {/* Top specular highlight */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent dark:via-white/30" />
+            {/* Ambient background glows */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-400/10"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl dark:bg-purple-400/10"
+            />
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
-                      <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
-                      <span>About Me</span>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
-                      <Sparkles className="h-3 w-3 text-amber-500" aria-hidden="true" />
-                      <span>Tap or Drag to Flip</span>
-                    </span>
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+              {/* Left Column: About Narrative */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
+                    <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span>About Me</span>
                   </div>
 
                   <h2
                     id="about-heading"
-                    className="mt-5 text-balance text-2xl font-extrabold leading-[1.2] tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+                    className="mt-4 text-balance text-2xl font-extrabold leading-[1.2] tracking-tight text-foreground sm:text-3xl lg:text-4xl"
                   >
                     Bridging frontend reactivity with{' '}
                     <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
@@ -240,7 +229,7 @@ export default function HomePage() {
                     </span>
                   </h2>
 
-                  <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
                     <p className="text-foreground/95 font-medium leading-relaxed">
                       I am an aspiring Software Developer with hands-on experience building responsive and scalable web applications using React.js, Next.js, Java, Spring Boot, and MySQL. I have a strong foundation in object-oriented programming, REST API integration, and full-stack development.
                     </p>
@@ -253,43 +242,42 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+                <div className="pt-4 border-t border-border/60 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     Available for full-time software engineering roles
                   </span>
-                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
-                    View Verified Milestones ↻
-                  </span>
+                  <Link
+                    href="/experience"
+                    className="inline-flex items-center gap-1.5 font-semibold text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors group"
+                  >
+                    <span>View Full Experience</span>
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </Link>
                 </div>
               </div>
-            }
-            back={
-              <div key="about-back" className="relative flex h-full flex-col justify-between p-5 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl overflow-y-auto">
-                {/* Specular top highlight */}
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent dark:via-white/30" />
-                {/* Soft ambient glow */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-500/15 blur-3xl dark:bg-purple-400/10"
-                />
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between">
+              {/* Right Column: Verified Milestones */}
+              <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/60 bg-background/50 dark:bg-zinc-900/40 p-5 sm:p-6 backdrop-blur-md">
+                <div>
+                  <div className="flex items-center justify-between pb-4 border-b border-border/60">
                     <div className="flex items-center gap-2.5">
                       <span className="p-2 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 border border-amber-500/20">
-                        <Sparkles className="h-5 w-5" aria-hidden="true" />
+                        <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
                       </span>
-                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                        Verified Milestones
-                      </h3>
+                      <div>
+                        <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground">
+                          Verified Milestones
+                        </h3>
+                        <p className="text-[11px] text-muted-foreground">Key career highlights</p>
+                      </div>
                     </div>
-                    <span className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 font-mono text-base font-bold text-indigo-500 dark:text-indigo-400 shadow-inner">
-                      05
+                    <span className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-1 font-mono text-xs sm:text-sm font-bold text-indigo-500 dark:text-indigo-400 shadow-inner">
+                      05 Records
                     </span>
                   </div>
 
-                  <ol className="relative mt-6 space-y-3 sm:space-y-3.5 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
+                  <ol className="relative mt-5 space-y-3 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
                     {[
                       'Hands-on full-stack engineering with React.js, Next.js, Java, Spring Boot, and MySQL',
                       'Frontend Developer Intern at Actifyzone contributing to responsive multi-project web UIs',
@@ -297,12 +285,12 @@ export default function HomePage() {
                       'Team Leader & Silver Medal winner at IT Vedant Hackathon (WeatherWatch platform)',
                       'Certified in Java Full Stack Web Development and HackerRank JavaScript'
                     ].map((milestone, idx) => (
-                      <li key={idx} className="group relative pl-9">
-                        <span className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
-                          <CheckCircle2 className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                      <li key={idx} className="group relative pl-8">
+                        <span className="absolute left-0 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
                         </span>
-                        <div className="rounded-xl border border-border/50 bg-background/40 p-3 sm:p-3.5 backdrop-blur-sm transition-all duration-200 group-hover:border-indigo-500/40 group-hover:bg-muted/30">
-                          <p className="text-sm leading-relaxed text-foreground/90 font-medium sm:text-base">
+                        <div className="rounded-xl border border-border/50 bg-background/60 p-2.5 sm:p-3 backdrop-blur-sm transition-all duration-200 group-hover:border-indigo-500/40 group-hover:bg-muted/30">
+                          <p className="text-xs sm:text-sm leading-relaxed text-foreground/90 font-medium">
                             {milestone}
                           </p>
                         </div>
@@ -311,18 +299,22 @@ export default function HomePage() {
                   </ol>
                 </div>
 
-                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                    All milestones independently verified & referenced
+                <div className="mt-5 pt-3.5 border-t border-border/60 flex items-center justify-between text-[11px] text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                    <span>Independently verified</span>
                   </span>
-                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
-                    Flip back to About Me ↺
-                  </span>
+                  <Link
+                    href="/achievements"
+                    className="font-medium text-indigo-500 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                  >
+                    <span>View all achievements</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
                 </div>
               </div>
-            }
-          />
+            </div>
+          </div>
         </section>
       </ScrollReveal>
 

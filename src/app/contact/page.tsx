@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/contact-form';
 import { profileData } from '@/data/profile';
-import { 
-  Mail, 
-  MapPin, 
-  Clock, 
+import {
+  Mail,
+  MapPin,
+  Clock,
   ArrowUpRight
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
@@ -21,10 +21,6 @@ export default function ContactPage() {
       {/* Header Banner */}
       <ScrollReveal direction="down" duration={0.8}>
         <div className="relative mb-12 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pill text-indigo-500 dark:text-indigo-400 text-xs font-semibold mb-4">
-            <Mail className="w-4 h-4" />
-            <span>Connect & Collaborate</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground">
             Let’s Build Something Exceptional
           </h1>
@@ -40,34 +36,34 @@ export default function ContactPage() {
           {/* Availability Card */}
           <ScrollReveal direction="up" delay={0.1} duration={0.8}>
             <div className="p-6 sm:p-7 rounded-3xl liquid-glass-elevated border border-white/25 dark:border-white/12 space-y-4 relative overflow-hidden">
-            {/* Specular top highlight */}
-            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />
+              {/* Specular top highlight */}
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />
 
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
-                Current Status
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-xs font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-xs shadow-emerald-500/50" />
-                <span>Available</span>
-              </span>
-            </div>
-
-            <p className="text-sm text-foreground font-medium">
-              {profileData.availability.message}
-            </p>
-
-            <div className="space-y-2 pt-3 border-t border-border/70 text-xs text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-indigo-500 shrink-0" />
-                <span>Location: <strong className="text-foreground">{profileData.availability.location}</strong></span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
+                  Current Status
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-xs font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-xs shadow-emerald-500/50" />
+                  <span>Available</span>
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-indigo-500 shrink-0" />
-                <span>Timezone: <strong className="text-foreground">{profileData.availability.timezone}</strong></span>
+
+              <p className="text-sm text-foreground font-medium">
+                {profileData.availability.message}
+              </p>
+
+              <div className="space-y-2 pt-3 border-t border-border/70 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-indigo-500 shrink-0" />
+                  <span>Location: <strong className="text-foreground">{profileData.availability.location}</strong></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-indigo-500 shrink-0" />
+                  <span>Timezone: <strong className="text-foreground">{profileData.availability.timezone}</strong></span>
+                </div>
               </div>
             </div>
-          </div>
           </ScrollReveal>
 
           {/* Direct channels & social links */}

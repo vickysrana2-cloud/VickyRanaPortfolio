@@ -16,6 +16,7 @@ import {
 import { cn } from '@/lib/utils';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TechBadge } from '@/components/ui/tech-icon';
+import { GameBanner } from '@/components/games/game-banner';
 
 export default function GamesArcadePage() {
   const [selectedCategory, setSelectedCategory] = React.useState<GameCategory>('All');
@@ -126,9 +127,9 @@ export default function GamesArcadePage() {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-indigo-500 transition-colors">
                 {game.title}
               </h2>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {game.description}
-              </p>
+              <div className="my-3.5"><GameBanner slug={game.slug} title={game.title} category={game.category} /></div>
+              <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2">{game.tagline}</p>
+
 
               {/* Controls List */}
               <div className="mt-4 p-3.5 rounded-2xl liquid-glass-subtle border border-white/20 dark:border-white/10">

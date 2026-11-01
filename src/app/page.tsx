@@ -5,29 +5,32 @@ import { experienceData } from '@/data/experience';
 import { gamesData } from '@/data/games';
 import { templatesData } from '@/data/templates';
 import { Project } from '@/types';
-import { 
-  ArrowRight, 
-  ExternalLink, 
-  Mail, 
-  FileText, 
-  Code2, 
-  Gamepad2, 
-  LayoutTemplate, 
-  Briefcase, 
-  Award, 
-  Sparkles, 
-  ShieldCheck, 
-  CheckCircle2, 
+import {
+  ArrowRight,
+  ExternalLink,
+  Mail,
+  FileText,
+  Code2,
+  Gamepad2,
+  LayoutTemplate,
+  Briefcase,
+  Award,
+  Sparkles,
+  ShieldCheck,
+  CheckCircle2,
   Terminal,
   Zap,
   Play,
   MapPin
 } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
-import { CursorCharacter } from '@/components/cursor-character';
-import { CharacterScene } from '@/components/character/CharacterScene';
+// import { CursorCharacter } from '@/components/cursor-character';
+import Image from 'next/image';
+
 import { FixedBackgroundSection } from '@/components/sections/FixedBackgroundSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
+import { FeaturedProjectsSection } from '@/components/sections/FeaturedProjectsSection';
+import { FlipCard } from '@/components/ui/FlipCard';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TechBadge } from '@/components/ui/tech-icon';
 import { cn } from '@/lib/utils';
@@ -51,7 +54,7 @@ function ProjectCard({
       <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/25 dark:border-white/15 bg-card/60 p-7 sm:p-9 backdrop-blur-md shadow-2xl transition-all duration-500 hover:border-indigo-500/50 hover:shadow-indigo-500/10">
         {/* Specular top highlight */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
-        
+
         {/* Watermark index number */}
         <span
           aria-hidden="true"
@@ -279,239 +282,288 @@ function ProjectCard({
 
 
 export default function HomePage() {
-  const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 3);
+  const featuredProjects = projectsData.slice(0, 4);
   const featuredGames = gamesData.slice(0, 4);
   const featuredTemplates = templatesData.slice(0, 3);
   const [leadBio, ...restBio] = profileData.bio;
 
   return (
     <div className="flex flex-col gap-16 sm:gap-24 lg:gap-32 pb-16 overflow-hidden">
-     {/* 1. HERO SECTION */}
-<section
-  id="home"
-  aria-labelledby="hero-heading"
-  className="relative mx-auto w-full max-w-7xl px-4 pt-20 sm:px-6 sm:pt-28 lg:px-8 lg:pt-36"
->
-  {/* One soft ambient glow (was two) */}
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl sm:h-[640px] sm:w-[640px] dark:bg-indigo-600/20"
-  />
-
-  <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 lg:gap-16">
-    {/* LEFT: message */}
-    <ScrollReveal direction="up" duration={0.8} once={true} className="flex flex-col items-center text-center md:col-span-7 md:items-start md:text-left">
-      {/* Availability */}
-      <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-3.5 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm">
-        <span className="relative flex h-2 w-2" aria-hidden="true">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-        </span>
-        <span>{profileData.availability.message}</span>
-      </div>
-
-      {/* Headline */}
-      <h1
-        id="hero-heading"
-        className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+      {/* 1. HERO SECTION */}
+      <section
+        id="home"
+        aria-labelledby="hero-heading"
+        className="relative mx-auto w-full max-w-7xl px-4 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pt-28"
       >
-        Building{" "}
-        <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
-          scalable systems
-        </span>{" "}
-        and reactive web apps
-      </h1>
+        {/* One soft ambient glow (was two) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl sm:h-[640px] sm:w-[640px] dark:bg-indigo-600/20"
+        />
 
-      {/* Intro */}
-      <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-        {profileData.tagline} Previously building full-stack platforms at{" "}
-        <span className="font-medium text-foreground">Actifyzone</span> and{" "}
-        <span className="font-medium text-foreground">Havet AI</span>.
-      </p>
-
-      {/* Actions: one primary, one secondary */}
-      <div className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
-        <Link
-          href="/projects"
-          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <Code2 className="h-4 w-4" aria-hidden="true" />
-          View projects
-        </Link>
-
-        <a
-          href="/vickyrana_resume_fe_new.pdf"
-          download="vickyrana_resume_fe_new.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <FileText className="h-4 w-4 text-indigo-500" aria-hidden="true" />
-          Download resume
-        </a>
-      </div>
-
-      {/* Quiet secondary links: contact + socials in one row */}
-      <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-1 text-muted-foreground">
-        <Link
-          href="/contact"
-          className="mr-2 rounded-md px-2 py-1 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
-        >
-          Get in touch
-        </Link>
-        <span className="h-4 w-px bg-border" aria-hidden="true" />
-        {[
-          { href: profileData.contact.github, label: "GitHub", Icon: Github, external: true },
-          { href: profileData.contact.linkedin, label: "LinkedIn", Icon: Linkedin, external: true },
-          { href: `mailto:${profileData.contact.email}`, label: "Email", Icon: Mail, external: false },
-        ].map(({ href, label, Icon, external }) => (
-          <a
-            key={label}
-            href={href}
-            aria-label={label}
-            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="rounded-lg p-2 transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
-          >
-            <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
-          </a>
-        ))}
-      </div>
-    </ScrollReveal>
-
-    {/* RIGHT: character */}
-    <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5">
-      <CursorCharacter className="aspect-square w-full max-w-xs select-none sm:max-w-sm md:max-w-md" />
-    </ScrollReveal>
-  </div>
-
-  {/* Metrics: one slim divided strip instead of four heavy cards */}
-  <ScrollReveal direction="up" delay={0.3} duration={0.8} once={true}>
-    <dl className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-2xl border border-border/60 bg-background/40 backdrop-blur-sm shadow-sm">
-      {profileData.metrics.map((metric, i) => {
-        const metricIcons = [Code2, Briefcase, Award, MapPin];
-        const Icon = metricIcons[i] || Sparkles;
-        return (
-          <div
-            key={metric.label}
-            className={cn(
-              "relative flex flex-col justify-between p-5 sm:p-6 transition-colors duration-200 hover:bg-muted/15",
-              i === 1 && "border-t border-border/60 sm:border-t-0 sm:border-l",
-              i === 2 && "border-t border-border/60 sm:border-l-0 lg:border-l lg:border-t-0",
-              i === 3 && "border-t border-border/60 sm:border-l lg:border-t-0"
-            )}
-          >
-            <div>
-              <div className="flex items-center justify-between gap-2">
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  {metric.label}
-                </dt>
-                <span className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
-                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
-              </div>
-              <dd className="mt-2.5 text-base sm:text-lg lg:text-base xl:text-lg font-bold tracking-tight text-foreground">
-                {metric.value}
-              </dd>
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 lg:gap-16">
+          {/* LEFT: message */}
+          <ScrollReveal direction="up" duration={0.8} once={true} className="flex flex-col items-center text-center md:col-span-7 md:items-start md:text-left">
+            {/* Availability */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-medium text-muted-foreground backdrop-blur-sm">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              <span>{profileData.availability.message}</span>
             </div>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{metric.description}</p>
-          </div>
-        );
-      })}
-    </dl>
-  </ScrollReveal>
-</section>
 
-      {/* 3D PROCEDURAL CHARACTER COMPANION */}
-      <ScrollReveal direction="up" duration={0.9} amount={0.15}>
-        <section
-          id="character-companion"
-          aria-label="Interactive 3D Golden Monkey Character"
-          className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
-        >
-          <CharacterScene />
-        </section>
-      </ScrollReveal>
+            {/* Headline */}
+            <h1
+              id="hero-heading"
+              className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            >
+              Building{" "}
+              <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
+                scalable systems
+              </span>{" "}
+              and reactive web apps
+            </h1>
 
-      {/* 2. ABOUT ME SECTION */}
+            {/* Intro */}
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {profileData.tagline} Previously building full-stack platforms at{" "}
+              <span className="font-medium text-foreground">Actifyzone</span> and{" "}
+              <span className="font-medium text-foreground">Havet AI</span>.
+            </p>
+
+            {/* Actions: one primary, one secondary */}
+            <div className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row flex-wrap items-center justify-center gap-3 md:justify-start">
+              <Link
+                href="/projects"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <Code2 className="h-4 w-4" aria-hidden="true" />
+                View projects
+              </Link>
+
+              <a
+                href="/vickyrana_resume_fe_new.pdf"
+                download="vickyrana_resume_fe_new.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <FileText className="h-4 w-4 text-indigo-500" aria-hidden="true" />
+                Download resume
+              </a>
+            </div>
+
+            {/* Quiet secondary links: contact + socials in one row */}
+            <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-1 text-muted-foreground">
+              <Link
+                href="/contact"
+                className="mr-2 rounded-md px-2 py-1 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
+              >
+                Get in touch
+              </Link>
+              <span className="h-4 w-px bg-border" aria-hidden="true" />
+              {[
+                { href: profileData.contact.github, label: "GitHub", Icon: Github, external: true },
+                { href: profileData.contact.linkedin, label: "LinkedIn", Icon: Linkedin, external: true },
+                { href: `mailto:${profileData.contact.email}`, label: "Email", Icon: Mail, external: false },
+              ].map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="rounded-lg p-2 transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
+                >
+                  <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* RIGHT: character */}
+          <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5">
+            {/* <CursorCharacter className="aspect-square w-full max-w-xs select-none sm:max-w-sm md:max-w-md" /> */}
+            <Image
+              src="/hero_section_img.png"
+              alt="Hero section illustration"
+              width={480}
+              height={480}
+              className="h-[460px] sm:h-[520px] md:h-[580px] lg:h-[640px] w-auto max-w-full select-none object-contain"
+              priority
+            />
+          </ScrollReveal>
+        </div>
+
+        {/* Metrics: one slim divided strip instead of four heavy cards */}
+        <ScrollReveal direction="up" delay={0.3} duration={0.8} once={true}>
+          <dl className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-hidden rounded-2xl border border-border/60 bg-background/40 backdrop-blur-sm shadow-sm">
+            {profileData.metrics.map((metric, i) => {
+              const metricIcons = [Code2, Briefcase, Award, MapPin];
+              const Icon = metricIcons[i] || Sparkles;
+              return (
+                <div
+                  key={metric.label}
+                  className={cn(
+                    "relative flex flex-col justify-between p-5 sm:p-6 transition-colors duration-200 hover:bg-muted/15",
+                    i === 1 && "border-t border-border/60 sm:border-t-0 sm:border-l",
+                    i === 2 && "border-t border-border/60 sm:border-l-0 lg:border-l lg:border-t-0",
+                    i === 3 && "border-t border-border/60 sm:border-l lg:border-t-0"
+                  )}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                        {metric.label}
+                      </dt>
+                      <span className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
+                        <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <dd className="mt-2.5 text-base sm:text-lg lg:text-base xl:text-lg font-bold tracking-tight text-foreground">
+                      {metric.value}
+                    </dd>
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{metric.description}</p>
+                </div>
+              );
+            })}
+          </dl>
+        </ScrollReveal>
+      </section>
+
+      {/* 2. ABOUT ME SECTION (3D Interactive FlipCard) */}
       <ScrollReveal direction="up" duration={0.9} amount={0.15}>
         <section
           id="about"
           aria-labelledby="about-heading"
           className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15">
-            {/* Specular top highlight */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent dark:via-white/30" />
-            {/* Soft ambient glow */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-400/10"
-            />
+          <FlipCard
+            width="100%"
+            height="min(640px, 90vh)"
+            radius={24}
+            perspective={1200}
+            tiltMax={6}
+            glare={true}
+            glareOpacity={0.15}
+            ariaLabel="About Me interactive flip card"
+            className="w-full shadow-2xl"
+            front={
+              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+                {/* Specular top highlight */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent dark:via-white/30" />
+                {/* Soft ambient glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/15 blur-3xl dark:bg-indigo-400/10"
+                />
 
-            <div className="relative grid grid-cols-1 gap-10 p-6 sm:p-10 lg:grid-cols-12 lg:gap-14 lg:p-14">
-              {/* LEFT: story */}
-              <div className="lg:col-span-7 xl:col-span-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
-                  <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>Engineering Philosophy</span>
-                </div>
-
-                <h2
-                  id="about-heading"
-                  className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl"
-                >
-                  Bridging frontend reactivity with{" "}
-                  <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
-                    scalable server architectures
-                  </span>
-                </h2>
-
-                <div className="mt-8 max-w-2xl space-y-5">
-                  {leadBio && (
-                    <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl">
-                      {leadBio}
-                    </p>
-                  )}
-                  {restBio.map((paragraph, idx) => (
-                    <p
-                      key={idx}
-                      className="text-sm leading-relaxed text-muted-foreground sm:text-base"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* RIGHT: milestones */}
-              <aside className="lg:col-span-5 xl:col-span-4">
-                <div className="rounded-2xl border border-border/60 bg-background/40 p-6 backdrop-blur-sm sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground">
-                      <Sparkles className="h-4 w-4 text-amber-500" aria-hidden="true" />
-                      <span>Verified Milestones</span>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
+                      <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
+                      <span>About Me</span>
                     </div>
-                    <span className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
-                      {String(profileData.coreHighlights.length).padStart(2, "0")}
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
+                      <Sparkles className="h-3 w-3 text-amber-500" aria-hidden="true" />
+                      <span>Tap or Drag to Flip</span>
                     </span>
                   </div>
 
-                  <ol className="relative mt-6 space-y-5 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
-                    {profileData.coreHighlights.map((highlight, idx) => (
+                  <h2
+                    id="about-heading"
+                    className="mt-5 text-balance text-2xl font-extrabold leading-[1.2] tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+                  >
+                    Bridging frontend reactivity with{' '}
+                    <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
+                      scalable server architectures
+                    </span>
+                  </h2>
+
+                  <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    <p className="text-foreground/95 font-medium leading-relaxed">
+                      I am an aspiring Software Developer with hands-on experience building responsive and scalable web applications using React.js, Next.js, Java, Spring Boot, and MySQL. I have a strong foundation in object-oriented programming, REST API integration, and full-stack development.
+                    </p>
+                    <p className="leading-relaxed">
+                      During my internships at Actifyzone (Frontend Developer Intern) and Havet AI (Full Stack Developer Intern), I contributed to multi-tier web projects using Next.js, NestJS, and MongoDB Atlas—implementing reusable UI components, integrating backend REST endpoints, and optimizing client-side performance.
+                    </p>
+                    <p className="leading-relaxed">
+                      I have led teams in hackathons (such as winning the Silver Medal for the WeatherWatch project at IT Vedant) and continuously build real-world web apps like Pawsitive (Pet Care Management Platform), DesignMeInteriors, and Archinet.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Available for full-time software engineering roles
+                  </span>
+                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
+                    View Verified Milestones ↻
+                  </span>
+                </div>
+              </div>
+            }
+            back={
+              <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/30 liquid-glass-elevated dark:border-white/15 bg-card/80 dark:bg-zinc-950/85 backdrop-blur-xl">
+                {/* Specular top highlight */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent dark:via-white/30" />
+                {/* Soft ambient glow */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-500/15 blur-3xl dark:bg-purple-400/10"
+                />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="p-2 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 border border-amber-500/20">
+                        <Sparkles className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                        Verified Milestones
+                      </h3>
+                    </div>
+                    <span className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 font-mono text-base font-bold text-indigo-500 dark:text-indigo-400 shadow-inner">
+                      05
+                    </span>
+                  </div>
+
+                  <ol className="relative mt-6 space-y-3 sm:space-y-3.5 before:absolute before:bottom-2 before:left-[11px] before:top-2 before:w-px before:bg-gradient-to-b before:from-indigo-500/40 before:via-border before:to-transparent">
+                    {[
+                      'Hands-on full-stack engineering with React.js, Next.js, Java, Spring Boot, and MySQL',
+                      'Frontend Developer Intern at Actifyzone contributing to responsive multi-project web UIs',
+                      'Full Stack Developer Intern at Havet AI engineering Next.js, NestJS, and MongoDB Atlas features',
+                      'Team Leader & Silver Medal winner at IT Vedant Hackathon (WeatherWatch platform)',
+                      'Certified in Java Full Stack Web Development and HackerRank JavaScript'
+                    ].map((milestone, idx) => (
                       <li key={idx} className="group relative pl-9">
-                        <span className="absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
+                        <span className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-background ring-1 ring-emerald-500/30 transition-all duration-200 group-hover:ring-emerald-500/60 group-hover:shadow-[0_0_0_4px_rgba(16,185,129,0.12)]">
                           <CheckCircle2 className="h-4 w-4 text-emerald-500" aria-hidden="true" />
                         </span>
-                        <p className="text-sm leading-relaxed text-muted-foreground transition-colors duration-200 group-hover:text-foreground">
-                          {highlight}
-                        </p>
+                        <div className="rounded-xl border border-border/50 bg-background/40 p-3 sm:p-3.5 backdrop-blur-sm transition-all duration-200 group-hover:border-indigo-500/40 group-hover:bg-muted/30">
+                          <p className="text-sm leading-relaxed text-foreground/90 font-medium sm:text-base">
+                            {milestone}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ol>
                 </div>
-              </aside>
-            </div>
-          </div>
+
+                <div className="relative z-10 mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    All milestones independently verified & referenced
+                  </span>
+                  <span className="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1.5 hover:underline">
+                    Flip back to About Me ↺
+                  </span>
+                </div>
+              </div>
+            }
+          />
         </section>
       </ScrollReveal>
 
@@ -523,66 +575,47 @@ export default function HomePage() {
       {/* 3. TECHNICAL SKILLS SHOWCASE */}
       <SkillsSection />
 
-{/* 4. FEATURED PROJECTS SECTION (Modern Asymmetric Bento Grid) */}
-<section
-  id="featured-projects"
-  aria-labelledby="projects-heading"
-  className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
->
-  <ScrollReveal direction="down" duration={0.8} amount={0.15}>
-    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between pb-4">
-      <div className="max-w-2xl space-y-3">
-        <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 backdrop-blur-md">
-          <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>Full-Stack Implementations</span>
-        </div>
-        <h2
-          id="projects-heading"
-          className="text-3xl sm:text-5xl font-black text-foreground tracking-tight"
-        >
-          Featured{" "}
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Case Studies & Systems
-          </span>
-        </h2>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          Production platforms, multi-tier architectures, Spring Boot REST backends, and responsive Next.js applications.
-        </p>
-      </div>
-
-      <Link
-        href="/projects"
-        className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-border/70 bg-background/50 px-5 py-2.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:border-indigo-500/40 hover:text-indigo-500 sm:self-auto"
+      {/* 4. FEATURED PROJECTS SECTION (Modern Asymmetric Bento Grid) */}
+      <section
+        id="featured-projects"
+        aria-labelledby="projects-heading"
+        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <span>View all projects</span>
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-      </Link>
-    </div>
-  </ScrollReveal>
+        <ScrollReveal direction="down" duration={0.8} amount={0.15}>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between pb-6">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 backdrop-blur-md">
+                <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>Full-Stack Implementations</span>
+              </div>
+              <h2
+                id="projects-heading"
+                className="text-3xl sm:text-5xl font-black text-foreground tracking-tight"
+              >
+                Featured{' '}
+                <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                  Case Studies & Systems
+                </span>
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                Production platforms, multi-tier architectures, Spring Boot REST backends, and responsive Next.js applications.
+              </p>
+            </div>
 
-  {/* Modern Asymmetric Bento Grid */}
-  <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8 items-stretch">
-    {/* Spotlight Lead Card (7 cols) */}
-    {featuredProjects[0] && (
-      <div className="lg:col-span-7 h-full flex flex-col">
-        <ScrollReveal direction="scale" duration={0.9} amount={0.1} className="h-full flex-1">
-          <ProjectCard project={featuredProjects[0]} index={0} lead={true} />
+            <Link
+              href="/projects"
+              className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-border/70 bg-background/50 px-5 py-2.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:border-indigo-500/40 hover:text-indigo-500 sm:self-auto"
+            >
+              <span>View all projects</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+          </div>
         </ScrollReveal>
-      </div>
-    )}
 
-    {/* Secondary Stack (5 cols) */}
-    <div className="lg:col-span-5 flex flex-col gap-6 lg:gap-8 h-full justify-between">
-      {featuredProjects.slice(1).map((project, idx) => (
-        <div key={project.id} className="flex-1 flex flex-col">
-          <ScrollReveal direction="up" delay={(idx + 1) * 0.15} duration={0.8} amount={0.1} className="h-full flex-1">
-            <ProjectCard project={project} index={idx + 1} lead={false} />
-          </ScrollReveal>
+        <div className="mt-6">
+          <FeaturedProjectsSection projects={featuredProjects} />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* 5. PROFESSIONAL EXPERIENCE & INTERNSHIP PREVIEW */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">

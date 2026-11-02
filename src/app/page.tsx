@@ -53,8 +53,8 @@ export default function HomePage() {
         />
 
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 lg:gap-16">
-          {/* LEFT: message */}
-          <ScrollReveal direction="up" duration={0.8} once={true} className="flex flex-col items-center text-center md:col-span-7 md:items-start md:text-left">
+          {/* LEFT: message (ordered below image on mobile, first on desktop) */}
+          <ScrollReveal direction="up" duration={0.8} once={true} className="order-2 md:order-1 flex flex-col items-center text-center md:col-span-7 md:items-start md:text-left">
             {/* Availability */}
             <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-medium text-muted-foreground backdrop-blur-sm">
               <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -70,7 +70,7 @@ export default function HomePage() {
               className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             >
               Building{" "}
-              <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
+              <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:violet-400">
                 scalable systems
               </span>{" "}
               and reactive web apps
@@ -132,20 +132,20 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          {/* RIGHT: character illustration with subtle glass pedestal backdrop */}
-          <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="hidden md:flex w-full justify-center md:col-span-5 relative">
+          {/* RIGHT: character illustration (ordered top on mobile, right column on desktop) */}
+          <ScrollReveal direction="scale" delay={0.2} duration={0.9} once={true} className="order-1 md:order-2 flex w-full justify-center md:col-span-5 relative">
             <div className="relative flex items-center justify-center">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-8 bottom-6 -z-10 h-64 rounded-full bg-gradient-to-t from-indigo-500/15 via-violet-500/10 to-transparent blur-2xl dark:from-indigo-400/15"
+                className="pointer-events-none absolute inset-x-8 bottom-4 sm:bottom-6 -z-10 h-44 sm:h-56 md:h-64 rounded-full bg-gradient-to-t from-indigo-500/15 via-violet-500/10 to-transparent blur-2xl dark:from-indigo-400/15"
               />
               <Image
                 src="/hero_section_img.webp"
                 alt="Vicky Rana full stack developer 3D character illustration"
                 width={480}
                 height={576}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 480px"
-                className="h-[460px] sm:h-[520px] md:h-[580px] lg:h-[640px] w-auto max-w-full select-none object-contain drop-shadow-2xl"
+                sizes="(max-width: 768px) 300px, (max-width: 1200px) 40vw, 480px"
+                className="h-[280px] sm:h-[360px] md:h-[580px] lg:h-[640px] w-auto max-w-full select-none object-contain drop-shadow-2xl"
                 priority
               />
             </div>

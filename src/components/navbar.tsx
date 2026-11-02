@@ -194,16 +194,41 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <span className="relative w-5 h-5 flex items-center justify-center pointer-events-none">
+                <Menu
+                  className={cn(
+                    'w-5 h-5 absolute transition-all duration-300 ease-out',
+                    mobileMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+                  )}
+                />
+                <X
+                  className={cn(
+                    'w-5 h-5 absolute transition-all duration-300 ease-out',
+                    mobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+                  )}
+                />
+              </span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation (Liquid Glass Surface) */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden liquid-glass-elevated border-b border-border animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="max-w-7xl mx-auto px-4 pt-3 pb-6 space-y-2">
+      {/* Mobile Drawer Navigation (Liquid Glass Surface / Smooth Shutter Dropdown) */}
+      <div
+        className={cn(
+          'lg:hidden mobile-shutter',
+          mobileMenuOpen
+            ? 'mobile-shutter-open border-b border-border/80'
+            : 'mobile-shutter-closed border-b-transparent'
+        )}
+      >
+        <div className="overflow-hidden min-h-0 liquid-glass-elevated">
+          <div
+            className={cn(
+              'max-w-7xl mx-auto px-4 pt-3 pb-6 space-y-2 transition-transform duration-300 ease-out',
+              mobileMenuOpen ? 'translate-y-0' : '-translate-y-3'
+            )}
+          >
             {/* Mobile Command Search Trigger */}
             <button
               onClick={() => {
@@ -270,7 +295,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
